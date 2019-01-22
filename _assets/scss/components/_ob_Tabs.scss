@@ -1,0 +1,22 @@
+//  Tabs object
+
+.ob_Tabs {
+  &__controls {
+  }
+
+  &__control {
+
+    &.is_Current {
+    }
+
+  }
+
+  &__panel {
+    overflow: hidden;
+    display: none;
+
+    &.is_Current {
+      display: block;
+    }
+  }
+}

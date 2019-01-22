@@ -1,0 +1,157 @@
+// Prose Text styles
+
+.tx_Prose {
+  $self: &;
+
+  &--poster {
+    text-align: center;
+    max-width:em(660);
+    margin:0 auto;
+  }
+
+  p {
+    margin:0 0 1em;
+  }
+
+  // Lists
+  li {
+    margin-bottom: 0.4em;
+  }
+
+  ul,
+  ol {
+    margin: 0 0 1.5em;
+    padding-left: 25px;
+    list-style: none;
+
+    li {
+      position: relative;
+
+      &:before {
+        position: absolute;
+      }
+
+      li {
+        font-size: 1em;
+      }
+    }
+  }
+
+  ul {
+    ul {
+      margin: 0.5em 0 0;
+    }
+
+    li {
+      &:before {
+        content: "";
+        display: block;
+        width: 10px;
+        height: 3px;
+        top: 0.6em;
+        left: -1.3em;
+      }
+    }
+  }
+
+  ol {
+    counter-reset: section;
+
+    ol {
+      margin: 0.5em 0 0;
+    }
+
+    li {
+      position: relative;
+
+      &:before {
+        font-weight: $medium;
+        text-align: right;
+        counter-increment: section;
+        content: counter(section) ".";
+        left: -40px;
+        width: 30px;
+      }
+    }
+  }
+
+  strong {
+    font-weight: $bold;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  // Links
+
+  a {
+
+    &:hover, &:focus, &:active {
+    }
+  }
+
+  // Blockquote
+  blockquote {
+    font-size:1em;
+
+    p {
+      position: relative;
+      margin-bottom: 0.75em;
+      
+      &:before {
+        content:"\201C";
+        position: absolute;
+        left: 0;
+        top:0;
+        transform:translateX(-100%);
+      }
+
+      &:after {
+        content:"\201D";
+      }
+    }
+
+    
+  }
+
+  cite {
+  }
+
+  // Horizontal Rule
+  hr {
+    padding:em(8) 0;
+    margin:1em  0;
+    border:none;
+
+    &:after {
+      width:8px;
+      height:8px;
+      border:2px solid $clrDarkGrey;
+      top:2px;
+      left:calc(50% - 4px);
+      transform:rotate(45deg);
+    }
+  }
+
+  > p:last-child {
+    margin-bottom: 0;
+  }
+
+  // Tables
+  table {
+
+  }
+
+  td,th {
+  }
+
+  th {
+  }
+
+  td {
+  }
+
+   
+}
+
