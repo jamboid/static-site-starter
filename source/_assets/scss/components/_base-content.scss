@@ -20,12 +20,3 @@
     left:calc(50% - 30px);
   }
 }
-
-.ct_Sprite {
-  position: relative;
-
-  &:before,
-  &:after {
-    @extend %spriteBase;
-  }
-}
