@@ -1,3 +1,8 @@
+---
+layout: default
+title: My Rad Blog
+---
+
 # This is an eleventy test site
 
 ## There are many like it, but this one is mine
