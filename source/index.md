@@ -1,12 +1,6 @@
 ---
 layout: default
-title: My Rad Blog
+title: Chris Boyd Design
 ---
 
-# This is an eleventy test site
-
-## There are many like it, but this one is mine
-
-### Here is another line.
-
-And another.
+# Chris Boyd Design
