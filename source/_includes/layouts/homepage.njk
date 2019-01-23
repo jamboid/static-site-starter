@@ -1,0 +1,11 @@
+---
+layout: default
+---
+
+homepage
+
+{{ content | safe }} 
+
+{%- for work in collections.work -%}
+  {{ work.data.title }}
+{%- endfor -%} 
