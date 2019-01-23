@@ -1,5 +1,5 @@
 module.exports = function (eleventyConfig) {
-  eleventyConfig.addLayoutAlias('default', 'layouts/default.html');
+  eleventyConfig.addLayoutAlias('default', 'layouts/default.njk');
   eleventyConfig.addLayoutAlias("home", "layouts/homepage.njk");
   
   return {
