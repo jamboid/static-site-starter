@@ -29,6 +29,14 @@ export function closestParent(el, selector, includeSelf) {
   return null;
 }
 
+
+/**
+ *
+ *
+ * @export
+ * @param {*} node
+ * @returns
+ */
 export function indexOfNode(node) {
   const child = node;
   const parent = child.parentNode;

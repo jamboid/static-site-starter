@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: work
 title: Case Study 2
 tags: work
 ---
