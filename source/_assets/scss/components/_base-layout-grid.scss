@@ -18,7 +18,7 @@
 
 // Grid Children
 .cp_Brand,
-.cp_Nav {
+.cp_MainNav {
   grid-row:1;
 }
 
@@ -26,7 +26,7 @@
   grid-column: 7 / span 6;
 }
 
-.cp_Nav,
+.cp_MainNav,
 .cp_Copyright {
   grid-column:1 / span 6;
 }
