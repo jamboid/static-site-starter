@@ -5,4 +5,19 @@
     list-style:none;
     margin:0;
   }
+
+  &__item {
+    margin-right: 20px;
+  }
+
+  &__link {
+    color:$clrDarkGrey;
+    text-decoration: none;
+    display: block;
+    padding:em(5) 0;
+
+    &:hover, &:focus, &:active {
+      text-decoration: underline;
+    }
+  }
 }

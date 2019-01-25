@@ -5,11 +5,18 @@
   width: 100%;
   max-width:em(1500); 
   margin:0 auto;
-  padding:0 em(40);
   grid-template-columns: repeat(12, 1fr);
   grid-gap:20px; 
 } 
 
+// Grid Containers
+.ob_PageSection {
+  &--header {
+    align-items: center;
+  }
+}
+
+// Grid Children
 .cp_Brand,
 .cp_Nav {
   grid-row:1;
@@ -19,6 +26,7 @@
   grid-column: 7 / span 6;
 }
 
-.cp_Nav {
+.cp_Nav,
+.cp_Copyright {
   grid-column:1 / span 6;
 }

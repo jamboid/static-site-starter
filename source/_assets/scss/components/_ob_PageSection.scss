@@ -1,7 +1,15 @@
 // Page Section Object
 
 .ob_PageSection {
+  padding:0 em(40);
+
   &--header {
-    padding:em(30) em(40);
+    padding-top:em(30);
+    padding-bottom:em(30);
+  }
+
+  &--footer {
+    padding-top:em(100);
+    padding-bottom:em(30);
   }
 }
