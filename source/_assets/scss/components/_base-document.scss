@@ -2,10 +2,10 @@
 
 /* Rules for <html> and <body> go here */
 body {
-  color: grey; 
+  color: $clrDarkGrey; 
   background: white; 
   font-size: 100%;
-  font-family: sans-serif;
+  font-family: $bodyfontfamily;
   font-weight: $normal;
   line-height: 1.5;
   font-feature-settings: "kern" 1, "dlig" 0;

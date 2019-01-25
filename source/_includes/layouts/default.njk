@@ -4,12 +4,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Chris Boyd Design</title>
-
+  <title>{{ title }} | Chris Boyd Design</title>
   <link rel="stylesheet" href="https://use.typekit.net/rkx3azi.css">
   <link rel="stylesheet" href="/assets/css/screen.css">
 </head>
 <body>
-  {{ content | safe }}
+  <header class="ob_PageSection--header ob_PageSection gd_Base">
+    <div class="cp_Brand">
+      <h1 class="cp_Brand__name hd_Han">Chris Boyd</h1>
+    </div>
+    <nav class="cp_MainNav">
+      <div class="cp_MainNav__menu fx_Group">
+        <li class="cp_MainNav__item"><a href="#" class="cp_MainNav__link">Design</a></li>
+        <li class="cp_MainNav__item"><a href="#" class="cp_MainNav__link">Work</a></li>
+        <li class="cp_MainNav__item"><a href="#" class="cp_MainNav__link">About</a></li>
+      </div>
+    </nav>
+  </header>
+  <main class="ob_PageSection--main ob_PageSection gd_Base">
+    {{ content | safe }}
+  </main>
+  <footer class="ob_PageSection--footer ob_PageSection gd_Base">
+    <div class="cp_Copyright">
+      <p>&copy; Chris Boyd</p>
+    </div>
+  </footer>
 </body>
 </html>
