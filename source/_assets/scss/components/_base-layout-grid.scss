@@ -6,7 +6,7 @@
   max-width:em(1500); 
   margin:0 auto;
   grid-template-columns: repeat(12, 1fr);
-  grid-gap:20px; 
+  grid-gap:40px; 
 } 
 
 // Grid Containers
@@ -31,12 +31,36 @@
   grid-column:1 / span 6;
 }
 
+.cp_Title {
+  grid-column: 1 / span 6;
+}
+
 .cp_Text {
   &--intro {
     grid-column:1 / span 12;
   }
+
+  &--case {
+    grid-column:7 / span 6;
+  }
 }
+
+
 
 .ob_Promo {
   grid-column: span 4;
+}
+
+.ob_Image {
+  &--large {
+    grid-column:span 12;
+  }
+
+  &--medium {
+    grid-column:span 6;
+  }
+
+  &--small {
+    grid-column:span 4;
+  }
 }

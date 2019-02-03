@@ -1,8 +1,24 @@
 // Promo object
 
 .ob_Promo {
+  color:$clrDarkGrey;
+  text-decoration: none;
+
   &__image {
     max-width:100%;
     height:auto;
+    margin-bottom:1em;
+  }
+
+  &__title,
+  &__desc {
+    display: inline;
+  }
+
+  &__title {
+    &:after {
+      content: "/";
+      margin:0 0.2em;
+    }
   }
 }

@@ -1,5 +1,5 @@
 /* != Typography - Basic Styles */
 
 p,li,th,td,dt,dd {
-  font-size:em(20);
+  font-size:var(--regularText);
 }
