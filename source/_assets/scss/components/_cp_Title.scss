@@ -1,0 +1,9 @@
+// Title component
+
+.cp_Title {
+  padding:em(110) 0;
+  
+  &__pageTitle {
+    text-transform: uppercase;
+  }
+}

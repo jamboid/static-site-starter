@@ -40,7 +40,8 @@
     grid-column:1 / span 12;
   }
 
-  &--case {
+  &--case,
+  &--standard {
     grid-column:7 / span 6;
   }
 }

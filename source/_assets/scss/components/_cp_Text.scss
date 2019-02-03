@@ -6,8 +6,9 @@
     padding:5vw 0 2.5vw;
   }
 
-  &--case {
-    
+  &--case,
+  &--standard {
+    padding:em(110) 0;
   }
   
   &__inner {

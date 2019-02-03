@@ -5,9 +5,11 @@ layout: default
 <img class="ob_Image--{{ image.size }} ob_Image" src="{{ site.imgPath }}{{ image.path }}" alt="">
 {%- endfor -%} 
 
-<h1 class="cp_Title hd_Han">{{ title }}</h1>
-<div class="cp_Text--case cp_Text">
-  <div class="cp_Text__inner tx_Prose--case tx_Prose">
+<div class="cp_Title">
+  <h1 class="cp_Title__pageTitle hd_Han">{{ title }}</h1>
+</div>
+<div class="cp_Text--standard cp_Text">
+  <div class="cp_Text__inner tx_Prose--standard tx_Prose">
     {{ content | safe }}
   </div>
 </div>
