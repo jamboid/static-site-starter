@@ -1,3 +1,9 @@
+
 {%- for work in collections.work -%}
-  {{ work.data.title }}
+  <div class="ob_Promo">
+    <img class="ob_Promo__image" src="/assets/img/{{ work.data.poster }}" alt="">
+    {{ work.data.title }}
+
+  </div>
 {%- endfor -%} 
+ 

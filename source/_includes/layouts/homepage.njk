@@ -2,8 +2,11 @@
 layout: default
 ---
 
-homepage
+<div class="cp_Text--intro cp_Text">
+  <div class="cp_Text__inner tx_Prose--intro tx_Prose">
+  {{ content | safe }}
+  </div>
+</div>
 
-{{ content | safe }} 
 
 {% include "components/work-list.njk" %}

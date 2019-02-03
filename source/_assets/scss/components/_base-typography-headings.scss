@@ -1,13 +1,15 @@
 // Heading styles
 
-.hd_Chewie {
+.hd_Chewie,
+.tx_Prose h1 {
   font-size:em(30);
-  font-weight: $bold;
+  font-weight: $normal;
   line-height: 1.2;
 }
 
-.hd_Han {
-  font-size:em(20);
+.hd_Han,
+.tx_Prose h2 {
+  font-size:em(20); 
   font-weight: $bold;
   line-height: 1.2;
 }

@@ -30,3 +30,13 @@
 .cp_Copyright {
   grid-column:1 / span 6;
 }
+
+.cp_Text {
+  &--intro {
+    grid-column:1 / span 12;
+  }
+}
+
+.ob_Promo {
+  grid-column: span 4;
+}

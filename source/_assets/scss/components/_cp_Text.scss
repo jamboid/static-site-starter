@@ -1,5 +1,11 @@
 //  Simple Text Component
 
 .cp_Text {
+  &--intro {
+    max-width:em(660);
+  }
   
+  &__inner {
+    
+  }
 }
