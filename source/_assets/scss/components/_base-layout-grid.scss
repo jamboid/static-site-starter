@@ -40,6 +40,10 @@
     grid-column:1 / span 12;
   }
 
+  &--title {
+    grid-column:1 / span 6;
+  }
+
   &--case,
   &--standard {
     grid-column:7 / span 6;
@@ -63,5 +67,31 @@
 
   &--small {
     grid-column:span 4;
+  }
+}
+
+/* !== Breakpoint */
+@include mq($bpPhasma) {
+  .cp_Text {
+    &--title,
+    &--case,
+    &--standard {
+      grid-column:4 / span 9;
+    }
+  }
+}
+
+/* !== Breakpoint */
+@include mq($bpRey) {
+  .gd_Base {
+    grid-gap:20px;
+  }
+
+  .cp_Text {
+    &--title,
+    &--case,
+    &--standard {
+      grid-column:1 / span 12;
+    }
   }
 }
