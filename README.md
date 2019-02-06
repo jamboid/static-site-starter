@@ -1,1 +1,1 @@
-# Chris Boyd Design
+# Static Site Starter
