@@ -1,9 +1,7 @@
 const path = require('path');
-//const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpackDashboard = require('webpack-dashboard/plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const WebpackNotifierPlugin = require("webpack-notifier");
-// const fs = require('fs');
 
 const config = {
   entry: ["./source/_assets/js", "./source/_assets/scss/screen.scss"],
@@ -61,9 +59,6 @@ const config = {
   },
   plugins: [
     new webpackDashboard(),
-    // new MiniCssExtractPlugin({
-    //   filename: "/css/screen.css"
-    // }),
     new CopyWebpackPlugin([{ from: "source/_assets/img", to: "assets/img" }]),
     new WebpackNotifierPlugin({ alwaysNotify: true })
   ]
