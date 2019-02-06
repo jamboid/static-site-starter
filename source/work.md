@@ -1,6 +1,7 @@
 ---
 layout: workList
 title: Work 
+permalink: /work/ 
 ---  
 
-# Case studies
+# Black book

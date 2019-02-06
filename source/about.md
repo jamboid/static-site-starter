@@ -1,7 +1,8 @@
 ---json 
 {
   "layout": "standard",
-  "title": "About", 
+  "title": "About",
+  "permalink": "/work/",  
   "gallery": [
     {
       "path":"placeholder_epoch.png",
