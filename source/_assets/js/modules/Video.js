@@ -68,7 +68,9 @@ class InlineVideo {
    *
    * @memberof InlineVideo
    */
-  loadVideo () {
+  loadVideo (e) {
+    e.preventDefault();
+
     if(!this.isLoaded){
       this.videoPlayer.setAttribute("src", this.videoURL);
       this.videoPlayer.load();
@@ -81,7 +83,9 @@ class InlineVideo {
    *
    * @memberof InlineVideo
    */
-  playVideo() {
+  playVideo(e) {
+    e.preventDefault();
+
     this.isPlaying = true;
     this.videoContainer.classList.add('is_Playing');
   }
@@ -91,7 +95,9 @@ class InlineVideo {
    *
    * @memberof InlineVideo
    */
-  pauseVideo() {
+  pauseVideo(e) {
+    e.preventDefault();
+
     this.isPlaying = false;
     this.videoContainer.classList.remove("is_Playing");
   }
@@ -101,13 +107,15 @@ class InlineVideo {
    *
    * @memberof InlineVideo
    */
-  togglePlayback() { 
+  togglePlayback(e) { 
+    e.preventDefault();
+
     if(this.isPlaying) {
       this.videoPlayer.pause();
     } else {
       this.videoPlayer.play();
     }
-  }
+  } 
 
   /**
    * bindCustomMessageEvents - Binds custom event listeners to the Smart Image DOM Element

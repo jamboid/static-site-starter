@@ -380,7 +380,7 @@ class SmartImageFactory {
 
   subscribeToEvents () {
     // On a content change, the newly-added elements are passed as parameters to a function
-    // that finds any smartImages and initialises controlling objects for each
+    // that finds any smartImages and instantiates controlling objects for each
     PubSub.subscribe(Events.messages.contentChange, (topic, data) => {
       this.createNewSmartImageObjects(data);
     });
