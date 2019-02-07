@@ -1,4 +1,18 @@
 {
   "title": "Static Site Starter",
-  "imgPath": "/assets/img/"
+  "imgPath": "/assets/img/",
+  "navMenu": [
+    {
+      "label":"Home",
+      "path": "/"
+    },
+    {
+      "label": "About",
+      "path": "/about/"
+    },
+    {
+      "label": "Other",
+      "path": "/other/"
+    }
+  ]
 }

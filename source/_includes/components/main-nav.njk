@@ -1,0 +1,7 @@
+<nav class="cp_MainNav">
+  <div class="cp_MainNav__menu fx_Group">
+  {%- for item in site.navMenu -%}
+    <li class="cp_MainNav__item"><a href="{{item.path}}" class="{% if nav === item.label %}cp_MainNav__link--active{% endif %} cp_MainNav__link">{{item.label}}</a></li>
+  {%- endfor -%}
+  </div>
+</nav>

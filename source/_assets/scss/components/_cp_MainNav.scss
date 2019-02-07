@@ -16,7 +16,7 @@
     display: block;
     padding:em(5) 0;
 
-    &:hover, &:focus, &:active {
+    &:hover, &:focus, &:active,&--active {
       text-decoration: underline;
     }
   }
