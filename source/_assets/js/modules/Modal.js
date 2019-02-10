@@ -113,7 +113,6 @@ class Modal {
    * @memberof Modal
    */
   closeModal () {
-    
     bodyElement.removeChild(this.modal); 
     bodyElement.removeChild(this.modalScreen);
   }
@@ -197,9 +196,7 @@ class ModalLinkManager {
     const modalLinkURL = modalLink.getAttribute("href");
     const modalMode = modalLink.dataset.modalSource;
 
-    let modalContent;
-
-    
+    let modalContent;    
 
     this.modalLinkContent.innerHTML = "";
 

@@ -1,10 +1,6 @@
 module.exports = function (eleventyConfig) {
   eleventyConfig.addLayoutAlias('default', 'layouts/default.njk');
-  eleventyConfig.addLayoutAlias("home", "layouts/homepage.njk");
-  eleventyConfig.addLayoutAlias("work", "layouts/work.njk");
-  eleventyConfig.addLayoutAlias("workList", "layouts/workList.njk");
-  eleventyConfig.addLayoutAlias("standard", "layouts/standard.njk");
-  
+
   return {
     dir: {
       input: "./source", // Equivalent to Jekyll's source property
