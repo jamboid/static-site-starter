@@ -401,6 +401,10 @@ function delegateEvents() {
 }
 
 
+/**
+ *
+ *  Instantiate objects to manage smart image components
+ */
 function initialiseSmartImages() {
   const smartImages = document.querySelectorAll(selSmartImage);
 
@@ -411,7 +415,14 @@ function initialiseSmartImages() {
   const newSmartImageFactory = new SmartImageFactory();
 }
 
-function handleIntersection (entries, observer) {
+
+/**
+ * Handle observed intersections for smart image components
+ *
+ * @param {*} entries
+ * @param {*} observer
+ */
+function handleSmartImageIntersection (entries, observer) {
   entries.forEach(function(entry) {
     if (entry.intersectionRatio > 0) {
       entry.target.dispatchEvent(Events.createCustomEvent("imageInView"));
@@ -419,9 +430,13 @@ function handleIntersection (entries, observer) {
   });
 }
 
-function initialiseImageObserver() { 
+/**
+ * Instantiate an IntersectionObserver object for the smart image components
+ *
+ */
+function initialiseSmartImageObserver() { 
   if (typeof (window.IntersectionObserver) !== 'undefined') {
-    imageObserver = new IntersectionObserver(handleIntersection, observerOptions);
+    imageObserver = new IntersectionObserver(handleSmartImageIntersection, observerOptions);
   }  
 }
 
@@ -435,7 +450,7 @@ export function initModule() {
   delegateEvents();
 
   // Initialise an observer object to detect when smart image elements are in view
-  initialiseImageObserver();
+  initialiseSmartImageObserver();
 
   // Find and initialise Show/Hide components using the ShowHide class
   initialiseSmartImages(); 

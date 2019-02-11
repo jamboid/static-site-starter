@@ -122,12 +122,12 @@ class InlineVideo {
    *
    */
   bindCustomMessageEvents() {
+    // EventListener for custom event from Video IntersectionObserver
     this.videoContainer.addEventListener("videoInView", this.loadVideo.bind(this));
     this.videoContainer.addEventListener("loadVideo", this.loadVideo.bind(this));
 
     this.videoPlayer.addEventListener("play", this.playVideo.bind(this));
     this.videoPlayer.addEventListener("pause", this.pauseVideo.bind(this));
-    //this.videoPlayer.addEventListener("ended", this.resetVideo.bind(this));
 
     this.videoContainer.addEventListener("playbackToggled", this.togglePlayback.bind(this));
   }
