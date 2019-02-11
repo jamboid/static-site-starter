@@ -19,7 +19,7 @@
     "pubsub-js": "^1.7.0"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^0.6.0",
+    "@11ty/eleventy": "^0.7.1",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
     "babel-preset-env": "^1.7.0",
@@ -36,7 +36,7 @@
     "postcss-loader": "^2.1.6",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.21.0",
-    "webpack": "^4.26.0",
+    "webpack": "^4.29.3",
     "webpack-cli": "^3.1.2",
     "webpack-dashboard": "^2.0.0",
     "webpack-notifier": "^1.7.0"
