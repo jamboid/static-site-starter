@@ -33,7 +33,6 @@
     "extract-loader": "^3.1.0",
     "file-loader": "^2.0.0",
     "node-sass": "^4.10.0",
-    "parallel-webpack": "^2.3.0",
     "postcss-loader": "^2.1.6",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.21.0",
