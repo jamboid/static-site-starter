@@ -50,7 +50,8 @@ function createCustomEvent(eventName, eventData) {
     customEvent.initCustomEvent(eventName, true, true, {some: eventData});
   }
 
-  return customEvent;
+  return customEvent; 
+
 }
 
 /**

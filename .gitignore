@@ -77,6 +77,8 @@ typings/
 
 # Compiled Output
 _site
+www
+build
 
 # OS generated files #
 .DS_Store
