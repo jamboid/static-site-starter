@@ -3,10 +3,28 @@ const webpackDashboard = require('webpack-dashboard/plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const WebpackNotifierPlugin = require("webpack-notifier");
 
+// What does this Webpack workflow do?
+// ------------------------------------
+// 
+// This configuration allows you to compile sets of site assets for multiple sites, putting each set in a
+// different directory. This lets multiple sites (e.g. similar microsites) using the same JS and CSS assets.
+// 
+// Each config does the following:
+//
+// 1. Compiles site JS modules into one bundle
+// 2. Compiles Sass files into a single stylesheet
+// 3. Copies contents of images directory to the compiled site assets folder
+//
+// ------------------------------------
+
 
 // Environment settings
 // --------------------
 //
+// These are the global settings that each configuration will use as the basis for putting things
+// where they need to go.
+//
+// --------------------
 const envSettings = {
   "rootDir": 'build/', // Where all the compiled sites go
   "assetsJSRoot": "./source/_assets/js/",
@@ -16,13 +34,15 @@ const envSettings = {
 
 // Site settings
 // -------------
-// You can configure 1 or multiple sites here. Just add a new entry to the array, filling in the details for each site
+//
+// You can configure a single or multiple sites here. Just add a new entry to the array, filling in the details for each site
 // This is to allow multiple sites to be generated in different directories, using a single set of source asset files.
 //
+// -------------
 const sitesData = [
   {
     "name": 'Default',
-    "siteRoot": '', // single site going into the root directory so set the name to an empty string
+    "siteRoot": '', // this single site is going into the root directory so siteRoot is set to an empty string
     "cssEntry": 'screen.scss',
     "jsEntry": 'index.js'
   },
@@ -32,36 +52,40 @@ const sitesData = [
  * Loops through array of site in config array and generates a webpack configuration for each one,
  * then returns these as an array for this module to export
  *
- * @returns
+ * @returns {array}
  */
 function createSiteConfigs(sites) {
+  // The array, currently empty, that we'll be returning
   let siteConfigs = [];
 
-  sites.forEach(function (site, index) {
-    siteConfigs.push(createConfig(site));
+  // For each individual site config in the sites object...
+  // generate a webpack config object and push that to our array
+  sites.forEach(function (site) {
+    siteConfigs.push(createConfig(site, envSettings));
   })
 
+  // Return the now-populated array
   return siteConfigs;
 }
 
 /**
- * Returns a webpack configuration object 
+ * Returns a webpack configuration object, using the settings in the site and environment data above
  *
- * @param {object} config - Site data object
+ * @param {object} siteConfig - Site data object
+ * @param {object} envConfig - Environment data object
  * @returns {object} webpack configuration object
  */
-function createConfig(siteConfig) {
-  
+function createConfig(siteConfig, envConfig) {
   return { 
     entry: {
       site: [
-        envSettings.assetsJSRoot + siteConfig.jsEntry,
-        envSettings.assetsCSSRoot  + siteConfig.cssEntry,
+        envConfig.assetsJSRoot + siteConfig.jsEntry,
+        envConfig.assetsCSSRoot  + siteConfig.cssEntry,
       ]
     },
     output: {
       filename: "assets/js/[name].js",
-      path: path.resolve(__dirname, envSettings.rootDir + siteConfig.siteRoot),
+      path: path.resolve(__dirname, envConfig.rootDir + siteConfig.siteRoot),
       publicPath: "."
     },
     devtool: "source-map",
@@ -79,9 +103,9 @@ function createConfig(siteConfig) {
               loader: 'file-loader',
               options: {
                 name: '[name].css',  
-                context: envSettings.assetsCSSRoot,
+                context: envConfig.assetsCSSRoot,
                 outputPath: 'assets/css',
-                publicPath: envSettings.rootDir + 'assets/css' // Needs set in variant config
+                publicPath: envConfig.rootDir + 'assets/css' // Needs set in variant config
               }
             },
             {
@@ -117,11 +141,10 @@ function createConfig(siteConfig) {
 
     plugins: [
       new webpackDashboard(),
-      new CopyWebpackPlugin([{ from: envSettings.assetsImgRoot, to: "assets/img" }]),
+      new CopyWebpackPlugin([{ from: envConfig.assetsImgRoot, to: "assets/img" }]),
       new WebpackNotifierPlugin({ alwaysNotify: true })
     ]
   };
 }
-
 
 module.exports = createSiteConfigs(sitesData);
