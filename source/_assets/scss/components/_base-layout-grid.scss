@@ -31,8 +31,9 @@
   grid-column:1 / span 6;
 }
 
-.cp_Title {
-  grid-column: 1 / span 6;
+.cp_PageTitle,
+.ob_Section {
+  grid-column: 1 / span 12;
 }
 
 .cp_Text {

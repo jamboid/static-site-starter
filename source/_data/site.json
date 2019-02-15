@@ -11,8 +11,8 @@
       "path": "/about/"
     },
     {
-      "label": "Other",
-      "path": "/other/"
+      "label": "Demo",
+      "path": "/demo/"
     }
   ]
 }

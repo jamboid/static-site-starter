@@ -46,12 +46,18 @@ $legacy: false;
 @import "components/ob_PageSection";
 @import "components/ob_Promo";
 @import "components/ob_Image";
+@import "components/ob_Carousel";
 
 @import "components/tx_Prose"; 
 
 @import "components/cp_Brand";
 @import "components/cp_NavToggle";
 @import "components/cp_MainNav";
+
+@import "components/cp_PageTitle";
+
 @import "components/cp_Text";
 @import "components/cp_SimpleImage"; 
 @import "components/cp_Video";
+
+
