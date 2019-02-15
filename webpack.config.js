@@ -1,5 +1,4 @@
 const path = require('path');
-const webpackDashboard = require('webpack-dashboard/plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const WebpackNotifierPlugin = require("webpack-notifier");
 
@@ -140,7 +139,6 @@ function createConfig(siteConfig, envConfig) {
     },
 
     plugins: [
-      new webpackDashboard(),
       new CopyWebpackPlugin([{ from: envConfig.assetsImgRoot, to: "assets/img" }]),
       new WebpackNotifierPlugin({ alwaysNotify: true })
     ]

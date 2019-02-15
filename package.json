@@ -8,12 +8,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
 
     "sd": "concurrently --kill-others \"npx eleventy --watch\" \"webpack --mode development --watch\"",
-    "sdd": "concurrently --kill-others \"npx eleventy --watch\" \"webpack-dashboard -- webpack --mode development --watch\"",
     "sb": "concurrently --kill-others \"npx eleventy --watch\" \"webpack --mode production --watch\"",
 
-    "dev": "webpack --mode development --watch",
-    "dashDev": "webpack-dashboard -- webpack --mode development --watch",
-    "build": "webpack --mode production --watch"
+    "ad": "webpack --mode development --watch",
+    "ab": "webpack --mode production --watch"
   },
   "author": "Jamie Boyd",
   "license": "ISC",
@@ -43,7 +41,6 @@
     "style-loader": "^0.21.0",
     "webpack": "^4.29.3",
     "webpack-cli": "^3.1.2",
-    "webpack-dashboard": "^2.0.0",
     "webpack-notifier": "^1.7.0"
   }
 }

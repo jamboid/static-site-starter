@@ -13,9 +13,8 @@ To get up and running:
 
 (Other build scripts are available in the package.json file)
 
-There are a couple of little extra features that I've found are a big help with my setup:
+There's also an extra features that I've found is a big help with my setup:
 
-1. There are optional scripts for using the webpack-dashboard package, rather than the standard command line log
-2. The webpack-notifier package provides system level notifications for corner-of-the-eye feedback.
+* The webpack-notifier package provides system level notifications for corner-of-the-eye feedback.
 
 — Jamie
