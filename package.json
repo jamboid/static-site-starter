@@ -7,11 +7,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
 
-    "sd": "concurrently --kill-others \"npx eleventy --watch\" \"webpack --mode development --watch\"",
-    "sb": "concurrently --kill-others \"npx eleventy --watch\" \"webpack --mode production --watch\"",
+    "static:dev": "concurrently --kill-others \"npx eleventy --watch\" \"webpack --mode development --watch\"",
+    "static:build": "concurrently --kill-others \"npx eleventy --watch\" \"webpack --mode production --watch\"",
 
-    "ad": "webpack --mode development --watch",
-    "ab": "webpack --mode production --watch"
+    "assets:dev": "webpack --mode development --watch",
+    "assets:build": "webpack --mode production --watch"
   },
   "author": "Jamie Boyd",
   "license": "ISC",
