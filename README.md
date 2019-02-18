@@ -13,7 +13,7 @@ To get up and running:
 
 (Other build scripts are available in the package.json file)
 
-There's also an extra features that I've found is a big help with my setup:
+There's also an extra feature that I've found is a big help with my setup:
 
 * The webpack-notifier package provides system level notifications for corner-of-the-eye feedback.
 
