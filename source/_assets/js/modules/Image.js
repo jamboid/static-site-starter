@@ -7,6 +7,7 @@
 
 import PubSub from "pubsub-js";
 import imagesLoaded from "imagesloaded";
+import IntersectionObserver from "intersection-observer";
 
 import Events from "Modules/Events";
 import { isElementInView as inView } from "Modules/Utils";
