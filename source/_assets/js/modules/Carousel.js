@@ -9,7 +9,7 @@ const selComponent = "[data-carousel=component]";
 
 
 /**
- * Carousel - Description
+ * Carousel - Base class for different carousel types, each of which extend this.
  */
 class Carousel {
   constructor(element) {
