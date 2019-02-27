@@ -1,6 +1,7 @@
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const WebpackNotifierPlugin = require("webpack-notifier");
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 // What does this Webpack workflow do?
 // ------------------------------------
@@ -43,7 +44,8 @@ const sitesData = [
     "name": 'Default',
     "siteRoot": '', // this single site is going into the root directory so siteRoot is set to an empty string
     "cssEntry": 'screen.scss',
-    "jsEntry": 'index.js'
+    "jsEntry": 'index.js',
+    "assetsDir": "/assets/"
   },
 ];
 
@@ -136,8 +138,9 @@ function createConfig(siteConfig, envConfig) {
     },
 
     plugins: [
+      new CleanWebpackPlugin([envConfig.rootDir + siteConfig.assetsDir]),
       new CopyWebpackPlugin([{ from: envConfig.assetsImgRoot, to: "assets/img" }]),
-      new WebpackNotifierPlugin({ alwaysNotify: true })
+      new WebpackNotifierPlugin({ alwaysNotify: true }),
     ]
   };
 }
