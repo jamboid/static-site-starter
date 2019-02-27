@@ -114,17 +114,14 @@ function createConfig(siteConfig, envConfig) {
               loader: "css-loader",
               options: {
                 url: false,
-                importLoaders: 2,
-                sourceMap: true
+                importLoaders: 2
               }
             },
             {
-              loader: "postcss-loader",
-              options: { sourceMap: true }
+              loader: "postcss-loader"
             },
             {
-              loader: "sass-loader",
-              options: { sourceMap: true }
+              loader: "sass-loader"
             }
           ]
         }
