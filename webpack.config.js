@@ -49,6 +49,17 @@ const sitesData = [
   },
 ];
 
+// Clean Options
+// -------------
+//
+// Settings for the Clean Webpack plugin that cleans up things before assets are recompiled/copied
+//
+// -------------
+const cleanOptions = {
+  beforeEmit: false,
+  verbose: false
+}
+
 /**
  * Loops through array of site in config array and generates a webpack configuration for each one,
  * then returns these as an array for this module to export
@@ -138,7 +149,7 @@ function createConfig(siteConfig, envConfig) {
     },
 
     plugins: [
-      new CleanWebpackPlugin([envConfig.rootDir + siteConfig.assetsDir]),
+      new CleanWebpackPlugin([envConfig.rootDir + siteConfig.assetsDir], cleanOptions),
       new CopyWebpackPlugin([{ from: envConfig.assetsImgRoot, to: "assets/img" }]),
       new WebpackNotifierPlugin({ alwaysNotify: true }),
     ]
