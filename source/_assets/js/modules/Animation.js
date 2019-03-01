@@ -12,19 +12,19 @@
  */
 export function collapseElement(element) {
   // get the height of the element's inner content, regardless of its actual size
-  const sectionHeight = element.scrollHeight;
-  element.style.height = sectionHeight + "px";
+  const SECTION_HEIGHT = element.scrollHeight;
+  element.style.height = SECTION_HEIGHT + "px";
 
   // temporarily disable all css transitions
-  const elementTransition = element.style.transition;
+  const ELEMENT_TRANSITION = element.style.transition;
   element.style.transition = '';
   
   // on the next frame (as soon as the previous style change has taken effect),
   // explicitly set the element's height to its current pixel height, so we
   // aren't transitioning out of 'auto'
   requestAnimationFrame(() => {
-    element.style.height = sectionHeight + 'px';
-    element.style.transition = elementTransition;
+    element.style.height = SECTION_HEIGHT + 'px';
+    element.style.transition = ELEMENT_TRANSITION;
 
     // on the next frame (as soon as the previous style change has taken effect),
     // have the element transition to height: 0
@@ -41,10 +41,10 @@ export function collapseElement(element) {
  */
 export function expandElement(element) {
   // get the height of the element's inner content, regardless of its actual size
-  var sectionHeight = element.scrollHeight;
+  var SECTION_HEIGHT = element.scrollHeight;
 
   // have the element transition to the height of its inner content
-  element.style.height = sectionHeight + 'px';
+  element.style.height = SECTION_HEIGHT + 'px';
 
   // when the next css transition finishes (which should be the one we just triggered)
   element.addEventListener('transitionend', function expansionEnds() {

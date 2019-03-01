@@ -13,11 +13,11 @@ import { isElementInView as inView } from "Modules/Utils";
 // Module Constants //
 //////////////////////
 
-const selInlineVideo = "[data-inline-video=container]";
-const selInlineVideoPlayer = "[data-inline-video=player]";
-const selInlineVideoToggle = "[data-inline-video=toggle]";
+const SEL_INLINE_VIDEO = "[data-inline-video=container]";
+const SEL_INLINE_VIDEO_PLAYER = "[data-inline-video=player]";
+const SEL_INLINE_VIDEO_TOGGLE = "[data-inline-video=toggle]";
 
-const observerOptions = {
+const OBSERVER_OPTIONS = {
   root: null,
   rootMargin: "0px",
   threshold: 0
@@ -42,7 +42,7 @@ class InlineVideo {
    */
   constructor(element) {
     this.videoContainer = element;
-    this.videoPlayer = this.videoContainer.querySelector(selInlineVideoPlayer);
+    this.videoPlayer = this.videoContainer.querySelector(SEL_INLINE_VIDEO_PLAYER);
     this.videoSource = this.videoPlayer.querySelector('source');
     this.videoURL = this.videoSource.dataset.src;
 
@@ -154,7 +154,7 @@ class InlineVideo {
  * @returns {type} Description
  */
 function delegateEvents() {
-  Events.delegate("click", selInlineVideoToggle, "playbackToggled");
+  Events.delegate("click", SEL_INLINE_VIDEO_TOGGLE, "playbackToggled");
 }
 
 /**
@@ -162,7 +162,7 @@ function delegateEvents() {
  *
  */
 function initialiseVideoPlayers() {
-  const inlineVideos = document.querySelectorAll(selInlineVideo);
+  const inlineVideos = document.querySelectorAll(SEL_INLINE_VIDEO);
   inlineVideos.forEach(element => {
     const newInlineVideo = new InlineVideo(element);
   });
@@ -188,7 +188,7 @@ function handleIntersection(entries, observer) {
  */
 function initialiseVideoObserver() {
   if (typeof (window.IntersectionObserver) !== 'undefined') {
-    videoObserver = new IntersectionObserver(handleIntersection, observerOptions);
+    videoObserver = new IntersectionObserver(handleIntersection, OBSERVER_OPTIONS);
   }
 }
 

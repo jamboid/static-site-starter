@@ -12,14 +12,14 @@ import Events from "Modules/Events";
 // Module Constants //
 //////////////////////
 
-const selMainNav = "[data-main-nav=component]";
-const selMainNavToggle = "[data-main-nav=toggle]";
-const selMainNavToggleGlobal = "[data-main-nav=component] [data-main-nav=toggle]";
-const selMainNavMenu = "[data-main-nav=menu]";
-const selMainNavCloseGlobal = "[data-main-nav=component] [data-main-nav=close]";
-const selMainNavSecondaryMenuContainer = ".cp_MainNav__secondaryMenu";
-const selMainNavSecondaryItem = "li.secondary";
-const menuShowHideTransitionTime = 350;
+const SEL_MAIN_NAV = "[data-main-nav=component]";
+const SEL_MAIN_NAV_TOGGLE = "[data-main-nav=toggle]";
+const SEL_MAIN_NAV_TOGGLE_GLOBAL = "[data-main-nav=component] [data-main-nav=toggle]";
+const SEL_MAIN_NAV_MENU = "[data-main-nav=menu]";
+const SEL_MAIN_NAV_CLOSE_GLOBAL = "[data-main-nav=component] [data-main-nav=close]";
+const SEL_MAIN_NAV_SECONDARY_MENU_CONTAINER = ".cp_MainNav__secondaryMenu";
+const SEL_MAIN_NAV_SECONDARY_ITEM = "li.secondary";
+const MENU_SHOW_HIDE_TRANSITION_TIME = 350;
 
 
 ////////////////////////////////
@@ -58,9 +58,9 @@ class MainNavToggle {
 
 
 function initialiseMainMenu() {
-  const navToggle = document.querySelectorAll(selMainNavToggle);
+  const NAV_TOGGLE = document.querySelectorAll(SEL_MAIN_NAV_TOGGLE);
 
-  Array.prototype.forEach.call(navToggle, element => {
+  Array.prototype.forEach.call(NAV_TOGGLE, element => {
     const newMainNavToggle = new MainNavToggle(element);
   });
 }
@@ -71,7 +71,7 @@ function initialiseMainMenu() {
  * @returns {type} Description
  */
 function delegateEvents() {
-  Events.delegate("click", selMainNavToggle, "toggleMainNav");
+  Events.delegate("click", SEL_MAIN_NAV_TOGGLE, "toggleMainNav");
 }
 
 

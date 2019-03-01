@@ -13,11 +13,11 @@ import { indexOfNode } from "Modules/Utils";
 // Module Constants //
 ////////////////////// 
 
-const selTabComponent = "[data-tabs=component]";
-const selTabPanel = "[data-tabs=panel]";
-const selTabControl = "[data-tabs=control]";
+const SEL_TAB_COMPONENT = "[data-tabs=component]";
+const SEL_TAB_PANEL = "[data-tabs=panel]";
+const SEL_TAB_CONTROL = "[data-tabs=control]";
 // const selTabControlCurrent = ".current[data-tabs=control]";
-const selTabControlGlobal = "[data-tabs=component] [data-tabs=control]";
+const SEL_TAB_CONTROL_GLOBAL = "[data-tabs=component] [data-tabs=control]";
 // const selTabAdvance = "[data-tabs=advance]";
 
 // TODO: Add functionality to dynamically create tab controls
@@ -37,8 +37,8 @@ class TabbedContent {
   constructor(element) {
     this.component = element;
     this.config = JSON.parse(this.component.dataset.tabsConfig);
-    this.tabControls = this.component.querySelectorAll(selTabControl);
-    this.tabPanels = this.component.querySelectorAll(selTabPanel);
+    this.tabControls = this.component.querySelectorAll(SEL_TAB_CONTROL);
+    this.tabPanels = this.component.querySelectorAll(SEL_TAB_PANEL);
     this.currentIndex = 0;
     this.currentTab;
 
@@ -56,15 +56,15 @@ class TabbedContent {
   }
 
   updateCurrentTab(event) {
-    const targetIndex = indexOfNode(event.target);
+    const TARGET_INDEX = indexOfNode(event.target);
 
     this.tabPanels.item(this.currentIndex).classList.remove("is_Current");
     this.tabControls.item(this.currentIndex).classList.remove("is_Current");
 
-    this.tabPanels.item(targetIndex).classList.add("is_Current");
-    this.tabControls.item(targetIndex).classList.add("is_Current");
+    this.tabPanels.item(TARGET_INDEX).classList.add("is_Current");
+    this.tabControls.item(TARGET_INDEX).classList.add("is_Current");
 
-    this.currentIndex = targetIndex;
+    this.currentIndex = TARGET_INDEX;
   }
 
   bindCustomMessageEvents() {
@@ -78,7 +78,7 @@ class TabbedContent {
  * @returns {type} Description
  */
 function delegateEvents() {
-  Events.delegate("click", selTabControlGlobal, "selectTab");
+  Events.delegate("click", SEL_TAB_CONTROL_GLOBAL, "selectTab");
 }
 
 /**
@@ -91,9 +91,9 @@ export function initModule() {
   delegateEvents(); 
 
   // Find and initialise Show/Hide components using the ShowHide class
-  const tabComponents = document.querySelectorAll(selTabComponent);
+  const TAB_COMPONENTS = document.querySelectorAll(SEL_TAB_COMPONENT);
 
-  tabComponents.forEach((element) => {
+  TAB_COMPONENTS.forEach((element) => {
     const newTabbedContent = new TabbedContent(element);
   });
 }
