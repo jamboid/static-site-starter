@@ -5,7 +5,7 @@ import PubSub from "pubsub-js";
 import Events from "Modules/Events";
 import { createNodeFromHTML } from "Modules/Utils"; 
 
-const modalTemplate = `
+const MODAL_TEMPLATE = `
   <div class="cp_Modal" aria-modal="true">
     <div id="confirmation-popup" class="cp_Modal__inner">
       <div class="cp_Modal__content">
@@ -16,15 +16,15 @@ const modalTemplate = `
     </div>
   </div>`;
 
-const modalScreenTemplate = `<div class='cp_ModalScreen'></div>`;
+const MODAL_SCREEN_TEMPLATE = `<div class='cp_ModalScreen'></div>`;
 
-const modalComponentSel = ".cp_Modal";
-const modalLinkSel = "[data-modal-source]";
-const modalCloseSel = ".cp_Modal__closeLink";
-const modalContentSel = ".cp_Modal__content";
-const modalScreenSel = ".cp_ModalScreen";
+// const SEL_MODAL_COMPONENT = ".cp_Modal";
+const SEL_MODAL_LINK = "[data-modal-source]";
+const SEL_MODAL_CLOSE = ".cp_Modal__closeLink";
+const SEL_MODAL_CONTENT = ".cp_Modal__content";
+const SEL_MODAL_SCREEN = ".cp_ModalScreen";
 
-const bodyElement = document.getElementsByTagName('body')[0];
+const BODY_ELEMENT = document.getElementsByTagName('body')[0];
 
 /** 
  *
@@ -41,20 +41,20 @@ class Modal {
    * @memberof Modal
    */
   constructor(content, modalType, modalID) {
-    this.modal = createNodeFromHTML(modalTemplate);
-    this.modalScreen = createNodeFromHTML(modalScreenTemplate);
+    this.modal = createNodeFromHTML(MODAL_TEMPLATE);
+    this.modalScreen = createNodeFromHTML(MODAL_SCREEN_TEMPLATE);
     
     this.modalID = modalID;
     this.modalType = modalType;
     this.modalContent = content;
     
-    this.closeButton = this.modal.querySelector(modalCloseSel);
+    this.closeButton = this.modal.querySelector(SEL_MODAL_CLOSE);
 
     this.bindCustomMessageEvents();
     this.subscribeToEvents();
 
-    bodyElement.appendChild(this.modal);
-    bodyElement.appendChild(this.modalScreen);
+    BODY_ELEMENT.appendChild(this.modal);
+    BODY_ELEMENT.appendChild(this.modalScreen);
 
     if (this.modalType === "inpage") {
       this.displayPageContentInModal();
@@ -75,10 +75,10 @@ class Modal {
   displaySmartImageInModal () {
     this.modal.classList.add("cp_Modal--image");
 
-    const modalContent = this.modal.querySelector(modalContentSel);
+    const modalContent = this.modal.querySelector(SEL_MODAL_CONTENT);
     modalContent.appendChild(this.modalContent);
 
-    //bodyElement.classList.add("modalDisplayed");
+    //BODY_ELEMENT.classList.add("modalDisplayed");
     
     this.positionModal();
     PubSub.publish(Events.messages.contentChange, this.modalContent);
@@ -113,8 +113,8 @@ class Modal {
    * @memberof Modal
    */
   closeModal () {
-    bodyElement.removeChild(this.modal); 
-    bodyElement.removeChild(this.modalScreen);
+    BODY_ELEMENT.removeChild(this.modal); 
+    BODY_ELEMENT.removeChild(this.modalScreen);
   }
 
 
@@ -163,7 +163,6 @@ class Modal {
       this.modal.dispatchEvent(Events.createCustomEvent("activateModal"));
     });
   }
-
 }
 
 /**
@@ -191,24 +190,24 @@ class ModalLinkManager {
    * @memberof ModalLinkManager
    */
   createModalContent(linkElement) {
-    const modalLink = linkElement;
-    const modalLinkID = modalLink.getAttribute("id") || "unidentified";
-    const modalLinkURL = modalLink.getAttribute("href");
-    const modalMode = modalLink.dataset.modalSource;
+    const MODAL_LINK = linkElement;
+    const MODAL_LINK_ID = MODAL_LINK.getAttribute("id") || "unidentified";
+    const MODAL_LINK_URL = MODAL_LINK.getAttribute("href");
+    const MODAL_MODE = MODAL_LINK.dataset.modalSource;
 
     let modalContent;    
 
     this.modalLinkContent.innerHTML = "";
 
-    if (modalMode === "iframe") {
-      modalContent = `<iframe src="${modalLinkURL}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>`;
-    } else if (modalMode === "image") {
-      modalContent = `<div class="ob_Media--image ob_Media" data-image-load="pageload" data-image-config='{ "type" : "inline", "reload" : true }' data-src-set='{ "max": "${modalLinkURL}"}'></div>`;
+    if (MODAL_MODE === "iframe") {
+      modalContent = `<iframe src="${MODAL_LINK_URL}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>`;
+    } else if (MODAL_MODE === "image") {
+      modalContent = `<div class="ob_Media--image ob_Media" data-image-load="pageload" data-image-config='{ "type" : "inline", "reload" : true }' data-src-set='{ "max": "${MODAL_LINK_URL}"}'></div>`;
     }
 
     if (modalContent) {
       this.modalLinkContent.innerHTML = modalContent;
-      this.createModal(modalMode, modalLinkID);
+      this.createModal(MODAL_MODE, MODAL_LINK_ID);
     } 
   }
 
@@ -218,7 +217,7 @@ class ModalLinkManager {
    * @memberof ModalLinkManager
    */
   createModal(mode, id) {
-    const newModal = new Modal(this.modalLinkContent, mode, id);
+    const NEW_MODAL = new Modal(this.modalLinkContent, mode, id);
   }
 
   /**
@@ -230,10 +229,10 @@ class ModalLinkManager {
     PubSub.subscribe("display/modal", (topic, data) => {
       let modalLink;
 
-      if (data.target.matches(modalLinkSel)) {
+      if (data.target.matches(SEL_MODAL_LINK)) {
         modalLink = data.target;
       } else {
-        modalLink = data.target.closest(modalLinkSel);
+        modalLink = data.target.closest(SEL_MODAL_LINK);
       } 
 
       if(modalLink) {
@@ -249,9 +248,9 @@ class ModalLinkManager {
  * @returns {type} Description
  */
 function delegateEvents() {
-  Events.delegate("click", modalCloseSel, "closeModal");
-  Events.delegate("click", modalScreenSel, "closeModal");
-  Events.global("click", modalLinkSel, "display/modal", true);
+  Events.delegate("click", SEL_MODAL_CLOSE, "closeModal");
+  Events.delegate("click", SEL_MODAL_SCREEN, "closeModal");
+  Events.global("click", SEL_MODAL_LINK, "display/modal", true);
 }
 
 /**

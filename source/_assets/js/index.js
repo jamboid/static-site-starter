@@ -2,13 +2,13 @@
 
 //import "../scss/screen.scss";
 import { ready, wrapElement } from "Modules/Utils";
-// import { initModule as initShowhide } from "Modules/Showhide";
-// import { initModule as initEvents } from "Modules/Events";
-// import { initModule as initModal } from "Modules/Modal";
-// import { initModule as initImage } from "Modules/Image";
-// import { initModule as initVideo } from "Modules/Video";
-// import { initModule as initNav } from "Modules/Navigation";
-// import { initModule as initTabs } from "Modules/Tabs";
+import { initModule as initShowhide } from "Modules/Showhide";
+import { initModule as initEvents } from "Modules/Events";
+import { initModule as initModal } from "Modules/Modal";
+import { initModule as initSmartImage } from "Modules/media/SmartImage";
+import { initModule as initVideo } from "Modules/Video";
+import { initModule as initNav } from "Modules/Navigation";
+import { initModule as initTabs } from "Modules/Tabs";
 
 /**
  * initialiseComponentModules - call module init functions
@@ -19,7 +19,7 @@ function initialiseComponentModules() {
   // initEvents();
   // initNav(); 
   // initShowhide(); 
-  // initImage();
+  initSmartImage();
   // initModal();
   // initVideo();
   // initTabs();

@@ -38,12 +38,12 @@ export function closestParent(el, selector, includeSelf) {
  * @returns
  */
 export function indexOfNode(node) {
-  const child = node;
-  const parent = child.parentNode;
+  const CHILD = node;
+  const PARENT = CHILD.parentNode;
   // The equivalent of parent.children.indexOf(child)
-  const index = Array.prototype.indexOf.call(parent.children, child);  
+  const INDEX = Array.prototype.indexOf.call(PARENT.children, CHILD);  
 
-  return index;
+  return INDEX;
 }
 
 /**
@@ -54,10 +54,10 @@ export function indexOfNode(node) {
  * @returns
  */
 export function createNodeFromHTML(htmlString) {
-  const div = document.createElement('div');
-  div.innerHTML = htmlString.trim();
+  const CONTAINER_ELEMENT = document.createElement('div');
+  CONTAINER_ELEMENT.innerHTML = htmlString.trim();
   // Change this to div.childNodes to support multiple top-level nodes
-  return div.firstChild;
+  return CONTAINER_ELEMENT.firstChild;
 }
 
 export function wrapElement(el, wrapper) {
@@ -74,15 +74,15 @@ export function wrapElement(el, wrapper) {
  * @returns {boolean} Description
  */
 export function isElementInView(element) {
-  const windowHeight = window.innerHeight;
-  const scrollTop = window.scrollY;
-  const elementOffset = element.getBoundingClientRect();
-  const elementTop = elementOffset.top;
-  const elementHeight = element.offsetHeight;
+  const WINDOW_HEIGHT = window.innerHeight;
+  const SCROLL_TOP = window.scrollY;
+  const ELEMENT_OFFSET = element.getBoundingClientRect();
+  const ELEMENT_TOP = ELEMENT_OFFSET.top;
+  const ELEMENT_HEIGHT = element.offsetHeight;
 
-  if ( elementTop < (scrollTop + windowHeight)  && (elementTop + elementHeight) > scrollTop ) {
+  if ( ELEMENT_TOP < (SCROLL_TOP + WINDOW_HEIGHT)  && (ELEMENT_TOP + ELEMENT_HEIGHT) > SCROLL_TOP ) {
     return true;
-  } else if ( (elementTop + elementHeight) > scrollTop && (elementTop + elementHeight) < (scrollTop + windowHeight) ) {
+  } else if ( (ELEMENT_TOP + ELEMENT_HEIGHT) > SCROLL_TOP && (ELEMENT_TOP + ELEMENT_HEIGHT) < (SCROLL_TOP + WINDOW_HEIGHT) ) {
     return true;
   } else {
     return false;
@@ -98,9 +98,9 @@ export function isElementInView(element) {
  */
 export function outerWidth(el) {
   let width = parseInt(el.offsetWidth);
-  const style = getComputedStyle(el);
+  const STYLE = getComputedStyle(el);
 
-  width += parseInt(style.marginLeft) + parseInt(style.marginRight);
+  width += parseInt(STYLE.marginLeft) + parseInt(STYLE.marginRight);
   return width;
 }
 
@@ -111,9 +111,9 @@ export function outerWidth(el) {
 
 export function outerHeight(el) {
   let height = parseInt(el.offsetHeight);
-  const style = getComputedStyle(el);
+  const STYLE = getComputedStyle(el);
 
-  height += parseInt(style.marginTop) + parseInt(style.marginBottom);
+  height += parseInt(STYLE.marginTop) + parseInt(STYLE.marginBottom);
   return height;
 }
 

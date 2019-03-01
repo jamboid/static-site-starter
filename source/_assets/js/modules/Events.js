@@ -17,7 +17,7 @@ import PubSub from "pubsub-js";
  * Object containing global message strings
  * @constant
  */
-export const messages = {
+export const MESSAGES = {
   "resize": "page/resize",
   "scroll": "page/scroll",
   "load": "page/load",
@@ -51,7 +51,6 @@ function createCustomEvent(eventName, eventData) {
   }
 
   return customEvent; 
-
 }
 
 /**
@@ -122,7 +121,7 @@ export function initModule() {
 
 export default {
   initModule: initModule,
-  messages:messages,
+  messages: MESSAGES,
   delegate:createDelegatedEventListener,
   global: createGlobalMessenger,
   createCustomEvent:createCustomEvent,
