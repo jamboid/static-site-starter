@@ -1,11 +1,19 @@
 // Analytics Module
-
 "use strict";
 
 //////////////////////
 // Module Functions //
 //////////////////////
 
+/**
+ * Fire a custom Google Analytics page event
+ *
+ * @export
+ * @param {*} category
+ * @param {*} action
+ * @param {*} label
+ * @param {*} value
+ */
 export function trackPageEvent (category, action, label, value) {
   const THIS_CATEGORY = category;
   const THIS_ACTION = action;
@@ -22,7 +30,7 @@ export function trackPageEvent (category, action, label, value) {
       'eventValue': THIS_VALUE
     });
 
-  } else {
+  } else { // TODO: Added fallbacks for UA and GA legacy scripts
 
     // window.console.log("Page Event tracked");
     // window.console.log('Event Category:');
