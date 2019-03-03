@@ -66,8 +66,8 @@ export function wrapElement(el, wrapper) {
 }
 
 /**
- * isElementInView - Check if an element is visible in the viewport and returns a boolean accordingly
- * 
+ * isElementInView - Check if an element is visible in the viewport and returns a boolean 
+ * accordingly
  *
  * @param {object} element Description
  *
