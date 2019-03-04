@@ -18,14 +18,14 @@ import PubSub from "pubsub-js";
  * @constant
  */
 export const MESSAGES = {
-  "resize": "page/resize",
-  "scroll": "page/scroll",
-  "load": "page/load",
-  "contentChange": "page-content/change",
+  "resize":           "page/resize",
+  "scroll":           "page/scroll",
+  "load":             "page/load",
+  "contentChange":    "page-content/change",
   "contentDisplayed": "page-content/displayed",
-  "layoutChange": "layout/change",
-  "breakChange" : "breakpoint/change",
-  "imageLoaded" : "image/loaded"
+  "layoutChange":     "layout/change",
+  "breakChange" :     "breakpoint/change",
+  "imageLoaded" :     "image/loaded"
 }
 
 /////////////////////////
@@ -66,14 +66,14 @@ function bindGlobalMessages() {
   if (typeof (window.IntersectionObserver) === 'undefined') {
     window.addEventListener('scroll', function() {
       // Publish global message
-      PubSub.publish(messages.scroll);
+      PubSub.publish(MESSAGES.scroll);
     });
   }
 
   // Handle debounced resize
   window.onresize = debounce(function() {
     // Publish global  message
-    PubSub.publish(messages.resize);
+    PubSub.publish(MESSAGES.resize);
   }, 200);
 }
 

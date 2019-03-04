@@ -31,7 +31,7 @@ export function closestParent(el, selector, includeSelf) {
 
 
 /**
- *
+ * Get the index if a DOM node in relation to its siblings within a parent element
  *
  * @export
  * @param {*} node
@@ -47,7 +47,7 @@ export function indexOfNode(node) {
 }
 
 /**
- *
+ * Create HTML elements from a string containing HTML tags and content
  *
  * @export
  * @param {*} htmlString
@@ -105,10 +105,10 @@ export function outerWidth(el) {
 }
 
 /**
- * outerWidth function that returns the height of an element including vertical margins
+ * Returns the height of an element including vertical margins
+ * 
  * @param {Element} el
  */
-
 export function outerHeight(el) {
   let height = parseInt(el.offsetHeight);
   const STYLE = getComputedStyle(el);
@@ -119,6 +119,7 @@ export function outerHeight(el) {
 
 /**
  * Read a page's GET URL query string variables and return them as an associative array.
+ * 
  * @return  {Array}
  */
 export function getURLQueryString() {
@@ -134,7 +135,7 @@ export function getURLQueryString() {
 }
 
 /**
- * decodeCharacters - Convert any encoded characters in a string to their unencoded versions - e.g. &amp to &
+ * Converts any encoded characters in a string to their unencoded versions - e.g. &amp to &
  *
  * @param {string} text
  *
@@ -147,7 +148,7 @@ export function decodeCharacters(text) {
 }
 
 /**
- * resetStyles - Remove the style attribute from an element
+ * Remove the style attribute from an element
  *
  * @param {type} element Description
  *
