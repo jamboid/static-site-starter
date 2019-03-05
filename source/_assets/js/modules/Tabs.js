@@ -7,7 +7,7 @@
 
 // import PubSub from "pubsub-js";
 import Events from "Modules/Events";
-import { indexOfNode } from "Modules/Utils";
+import { getIndexOfNode } from "Modules/utilities/getIndexOfNode";
  
 //////////////////////
 // Module Constants //

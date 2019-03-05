@@ -1,7 +1,9 @@
 "use strict";
 
-//import "../scss/screen.scss";
-import { ready, wrapElement } from "Modules/Utils";
+import { getClosestParent } from "Modules/utilities/getClosestParent";
+import { wrapElement } from "Modules/utilities/wrapElement";
+import { ready } from "Modules/utilities/ready";
+
 import { initModule as initShowhide } from "Modules/Showhide";
 import { initModule as initEvents } from "Modules/Events";
 import { initModule as initModal } from "Modules/Modal";
@@ -9,6 +11,7 @@ import { initModule as initSmartImage } from "Modules/media/SmartImage";
 import { initModule as initVideo } from "Modules/Video";
 import { initModule as initNav } from "Modules/Navigation";
 import { initModule as initTabs } from "Modules/Tabs";
+
 
 /**
  * initialiseComponentModules - call module init functions

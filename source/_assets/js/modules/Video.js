@@ -7,7 +7,7 @@
 import PubSub from "pubsub-js";
 
 import Events from "Modules/Events";
-import { isElementInView as inView } from "Modules/Utils";
+import { isElementInView as inView } from "Modules/utilities/isElementInView";
 
 //////////////////////
 // Module Constants //

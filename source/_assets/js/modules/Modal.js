@@ -3,7 +3,7 @@
 
 import PubSub from "pubsub-js";
 import Events from "Modules/Events";
-import { createNodeFromHTML } from "Modules/Utils"; 
+import { createNodeFromHTML } from "Modules/utilities/createNodeFromHTML"; 
 
 const MODAL_TEMPLATE = `
   <div class="cp_Modal" aria-modal="true">

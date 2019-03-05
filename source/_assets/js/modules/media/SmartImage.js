@@ -10,7 +10,7 @@ import PubSub from "pubsub-js";
 import imagesLoaded from "imagesloaded";
 
 import Events from "Modules/Events";
-import { isElementInView as inView } from "Modules/Utils";
+import { isElementInView } from "Modules/utilities/isElementInView";
 
 //////////////////////
 // Module Constants //
@@ -260,7 +260,7 @@ class SmartImage {
       component = component.parentNode;
     }
 
-    if ( inView(component) && (this.imageLoaded === false || this.imageReloader === true)) {
+    if ( isElementInView(component) && (this.imageLoaded === false || this.imageReloader === true)) {
       this.getImageFile(this.smartImageElem);
     }
   }
