@@ -1,3 +1,5 @@
+import delegate from "delegate";
+
 /**
  * createDelegatedEventListener - Simple factory function to bind a common delegated event listener to the <body> element
  *

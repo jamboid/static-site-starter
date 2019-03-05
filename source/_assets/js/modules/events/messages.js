@@ -1,5 +1,5 @@
 /**
- * Object containing global message strings
+ * Object containing pub-sub message strings
  * 
  * @constant
  */

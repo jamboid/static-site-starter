@@ -1,10 +1,3 @@
-// Analytics Module
-"use strict";
-
-//////////////////////
-// Module Functions //
-//////////////////////
-
 /**
  * Fire a custom Google Analytics page event
  *

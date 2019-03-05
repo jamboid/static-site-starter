@@ -1,7 +1,8 @@
 
 export class SmartImageFactory {
-  constructor() {
+  constructor(observer) {
     this.subscribeToEvents();
+    this.observer = observer;
   }
 
 

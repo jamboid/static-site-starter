@@ -10,7 +10,6 @@ import PubSub from "pubsub-js";
 import imagesLoaded from "imagesloaded";
 
 import { MESSAGES } from "Modules/events/messages";
-import { isElementInView } from "Modules/utilities/isElementInView";
 
 //////////////////////
 // Module Constants //
@@ -20,6 +19,15 @@ import { isElementInView } from "Modules/utilities/isElementInView";
 const SEL_PLACEHOLDER_IMAGE = "img";
 
 // Classes
+
+// const classes = {
+//   IMAGE_LOADING_CLASS :"ob_Media--loading",
+//   IMAGE_LOADED_CLASS : "ob_Media--loaded",
+//   IMAGE_DISPLAYED_CLASS : "ob_Media--displayed",
+//   IMAGE_FLEX_CLASS : "ob_Media--flex",
+//   IMAGE_HIDDEN_CLASS : "ob_Media--isHidden"
+// }
+
 const IMAGE_LOADING_CLASS = "ob_Media--loading";
 const IMAGE_LOADED_CLASS = "ob_Media--loaded";
 const IMAGE_DISPLAYED_CLASS = "ob_Media--displayed";
@@ -32,11 +40,16 @@ const IMAGE_HIDDEN_CLASS = "ob_Media--isHidden";
 
 /**
  * SmartImage - Class representing a Smart Image component that loads optimised images based on screen size
+ *
+ * @export
+ * @class SmartImage
  */
 export class SmartImage { 
-  constructor(element) {
+  constructor(element, observer) {
     // Set properties
     this.smartImageElem = element;
+    this.observer = observer;
+
     this.placeholderImage = this.smartImageElem.querySelector(SEL_PLACEHOLDER_IMAGE);
     this.loadingMethod = this.smartImageElem.dataset.imageLoad;
     this.config = JSON.parse(this.smartImageElem.dataset.imageConfig);
@@ -46,12 +59,11 @@ export class SmartImage {
     this.imageLoaded = false;
     this.imageToAdd = document.createElement("img");
     this.srcSet = JSON.parse(this.smartImageElem.dataset.srcSet) || {};
+    
 
-    // Add Image Element to observer
+    // Add Image Element to observer if it has the "view" loading method
     if(this.loadingMethod === 'view') {
-      if (typeof (window.IntersectionObserver) !== 'undefined') {
-        imageObserver.observe(this.smartImageElem);
-      }
+      this.observer.observe(this.smartImageElem);
     }
 
     // Call initial methods
@@ -60,8 +72,6 @@ export class SmartImage {
 
     if (this.loadingMethod === "pageload") {
       this.getImageFile();
-    } else if (this.loadingMethod === "view") {
-      this.loadImageIfInView();
     }
   }
 
@@ -158,7 +168,10 @@ export class SmartImage {
     }, 50);
 
     this.imageLoaded = true;
-    imageObserver.unobserve(this.smartImageElem);
+
+    if (typeof (window.IntersectionObserver) !== 'undefined') {
+      this.observer.unobserve(this.smartImageElem);
+    }
   }
 
   /**
@@ -168,12 +181,12 @@ export class SmartImage {
    *
    */
   displayImageAsBackground(path) {
-    const SMART_IMAGE = "url(" + path + ")";
+    const SMART_IMAGE_CSS = "url(" + path + ")";
     const IMAGE_BACKGROUND_POS = this.smartImageElem.dataset.position;
     const IMAGE_BACKGROUND_COLOR = this.smartImageElem.dataset.backgroundColor;
 
     this.smartImageElem.classList.add(IMAGE_LOADED_CLASS);
-    this.smartImageElem.style.backgroundImage = SMART_IMAGE;
+    this.smartImageElem.style.backgroundImage = SMART_IMAGE_CSS;
     this.smartImageElem.classList.add(IMAGE_BACKGROUND_POS);
     this.smartImageElem.style.backgroundColor = IMAGE_BACKGROUND_COLOR;
 
@@ -249,9 +262,9 @@ export class SmartImage {
       component = component.parentNode;
     }
 
-    if ( isElementInView(component) && (this.imageLoaded === false || this.imageReloader === true)) {
-      this.getImageFile(this.smartImageElem);
-    }
+    // if ( isElementInView(component) && (this.imageLoaded === false || this.imageReloader === true)) {
+    //   this.getImageFile(this.smartImageElem);
+    // }
   }
 
   /**
@@ -304,7 +317,7 @@ export class SmartImage {
     );
 
     this.smartImageElem.addEventListener(
-      "imageInView",
+      "imageObservedInView",
       this.loadSmartImage.bind(this)
     );
     
@@ -324,14 +337,7 @@ export class SmartImage {
    *
    */
   subscribeToEvents() {
-    if (this.loadingMethod === "view") {     
-      // Fallback to scroll event detection if browser doesn't support IntersectionObserver
-      if (typeof(window.IntersectionObserver) === 'undefined') {
-        // PubSub.subscribe(MESSAGES.scroll, () => {
-        //   this.smartImageElem.dispatchEvent(Events.createCustomEvent("siLoad"));
-        // }); 
-      }
-      
+    if (this.loadingMethod === "view") {           
       PubSub.subscribe(MESSAGES.load, () => {
         this.smartImageElem.dispatchEvent(Events.createCustomEvent("siLoad"));
       });

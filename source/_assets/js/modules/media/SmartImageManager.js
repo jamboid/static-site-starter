@@ -7,7 +7,7 @@
 
 import "intersection-observer";
 
-import { MESSAGES } from "Modules/events/messages";
+import { createDelegatedEventListener as delegate } from "Modules/events/createDelegatedEventListener";
 import { SmartImage } from "Modules/media/SmartImage";
 
 //////////////////////
@@ -31,14 +31,13 @@ let imageObserver;
 // Module Classes & Functions //
 ////////////////////////////////
 
-
 /**
  * delegateEvents - Create delegated event listeners for the components managed within this module
  *
  * @returns {type} Description
  */
 function delegateEvents() {
-  Events.delegate("click", SEL_CLICK_TO_LOAD_SMART_IMAGE, "siClickLoad");
+  delegate("click", SEL_CLICK_TO_LOAD_SMART_IMAGE, "siClickLoad");
 }
 
 /**
@@ -49,7 +48,7 @@ function initialiseSmartImages() {
   const SMART_IMAGES = document.querySelectorAll(SEL_SMART_IMAGE);
 
   SMART_IMAGES.forEach(element => {
-    const NEW_SMART_IMAGE = new SmartImage(element);
+    let smartImage = new SmartImage(element, imageObserver);
   });
 }
 

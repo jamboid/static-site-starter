@@ -1,6 +1,5 @@
 "use strict";
 
-import { getClosestParent } from "Modules/utilities/getClosestParent";
 import { wrapElement } from "Modules/utilities/wrapElement";
 import { ready } from "Modules/utilities/ready";
 
@@ -21,7 +20,7 @@ function initialiseComponentModules() {
   // initEvents();
   // initNav(); 
   // initShowhide(); 
-  initSmartImage();
+  initSmartImageManager();
   // initModal();
   // initVideo();
   // initTabs();
