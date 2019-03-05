@@ -5,8 +5,7 @@
 // Module Imports //
 ////////////////////
 
-// import PubSub from "pubsub-js";
-import Events from "Modules/Events";
+import { createDelegatedEventListener as delegate } from "Modules/events/createDelegatedEventListener";
 import { getIndexOfNode } from "Modules/utilities/getIndexOfNode";
  
 //////////////////////
@@ -78,7 +77,7 @@ class TabbedContent {
  * @returns {type} Description
  */
 function delegateEvents() {
-  Events.delegate("click", SEL_TAB_CONTROL_GLOBAL, "selectTab");
+  delegate("click", SEL_TAB_CONTROL_GLOBAL, "selectTab");
 }
 
 /**

@@ -6,7 +6,7 @@
 
 import PubSub from "pubsub-js";
 
-import Events from "Modules/Events";
+import { MESSAGES } from "Modules/events/messages";
 import { isElementInView as inView } from "Modules/utilities/isElementInView";
 
 //////////////////////
@@ -139,7 +139,7 @@ class InlineVideo {
   subscribeToEvents() {   
     // Fallback to scroll event detection if browser doesn't support IntersectionObserver
     if (typeof (window.IntersectionObserver) === 'undefined') {
-      PubSub.subscribe(Events.messages.scroll, () => {
+      PubSub.subscribe(MESSAGES.scroll, () => {
         if (inView(this.videoContainer) && !this.isLoaded){
           this.videoContainer.dispatchEvent(Events.createCustomEvent("videoInView"));
         }

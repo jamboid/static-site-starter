@@ -6,7 +6,7 @@
 
 import PubSub from "pubsub-js";
 
-import Events from "Modules/Events";
+import { createDelegatedEventListener as delegate } from "Modules/events/createDelegatedEventListener";
 
 //////////////////////
 // Module Constants //
@@ -71,7 +71,7 @@ function initialiseMainMenu() {
  * @returns {type} Description
  */
 function delegateEvents() {
-  Events.delegate("click", SEL_MAIN_NAV_TOGGLE, "toggleMainNav");
+  delegate("click", SEL_MAIN_NAV_TOGGLE, "toggleMainNav");
 }
 
 

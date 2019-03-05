@@ -9,7 +9,7 @@ import "intersection-observer";
 import PubSub from "pubsub-js";
 import imagesLoaded from "imagesloaded";
 
-import Events from "Modules/Events";
+import { MESSAGES } from "Modules/events/messages";
 import { isElementInView } from "Modules/utilities/isElementInView";
 
 //////////////////////
@@ -17,8 +17,6 @@ import { isElementInView } from "Modules/utilities/isElementInView";
 //////////////////////
 
 // Selectors
-const SEL_SMART_IMAGE = "[data-image-load]";
-const SEL_CLICK_TO_LOAD_SMART_IMAGE = "[data-image-load=click] img.placeholder";
 const SEL_PLACEHOLDER_IMAGE = "img";
 
 // Classes
@@ -28,15 +26,6 @@ const IMAGE_DISPLAYED_CLASS = "ob_Media--displayed";
 const IMAGE_FLEX_CLASS = "ob_Media--flex";
 const IMAGE_HIDDEN_CLASS = "ob_Media--isHidden";
 
-// Image Observer
-const OBSERVER_OPTIONS  = {
-  root: null,
-  rootMargin: "0px",
-  threshold: 0
-};
-
-let imageObserver;
-
 ////////////////////////////////
 // Module Classes & Functions //
 ////////////////////////////////
@@ -44,7 +33,7 @@ let imageObserver;
 /**
  * SmartImage - Class representing a Smart Image component that loads optimised images based on screen size
  */
-class SmartImage {
+export class SmartImage { 
   constructor(element) {
     // Set properties
     this.smartImageElem = element;
@@ -190,7 +179,7 @@ class SmartImage {
 
     window.setTimeout(() => {
       this.smartImageElem.classList.add(IMAGE_DISPLAYED_CLASS);
-      PubSub.publish(Events.messages.contentChange);
+      PubSub.publish(MESSAGES.contentChange);
     }, 50);
 
     this.imageLoaded = true;
@@ -230,8 +219,8 @@ class SmartImage {
       this.smartImageElem.classList.add(IMAGE_HIDDEN_CLASS);
     }
 
-    PubSub.publish(Events.messages.imageLoaded);
-    PubSub.publish(Events.messages.layoutChange);
+    PubSub.publish(MESSAGES.imageLoaded);
+    PubSub.publish(MESSAGES.layoutChange);
   }
 
   /**
@@ -338,121 +327,26 @@ class SmartImage {
     if (this.loadingMethod === "view") {     
       // Fallback to scroll event detection if browser doesn't support IntersectionObserver
       if (typeof(window.IntersectionObserver) === 'undefined') {
-        // PubSub.subscribe(Events.messages.scroll, () => {
+        // PubSub.subscribe(MESSAGES.scroll, () => {
         //   this.smartImageElem.dispatchEvent(Events.createCustomEvent("siLoad"));
         // }); 
       }
       
-      PubSub.subscribe(Events.messages.load, () => {
+      PubSub.subscribe(MESSAGES.load, () => {
         this.smartImageElem.dispatchEvent(Events.createCustomEvent("siLoad"));
       });
 
-      PubSub.subscribe(Events.messages.layoutChange, () => {
+      PubSub.subscribe(MESSAGES.layoutChange, () => {
         this.smartImageElem.dispatchEvent(Events.createCustomEvent("siLoad"));
       });
     }
 
-    PubSub.subscribe(Events.messages.resize, () => {
+    PubSub.subscribe(MESSAGES.resize, () => {
       this.smartImageElem.dispatchEvent(Events.createCustomEvent("siReload"));
     });
 
-    PubSub.subscribe(Events.messages.breakChange, () => {
+    PubSub.subscribe(MESSAGES.breakChange, () => {
       this.smartImageElem.dispatchEvent(Events.createCustomEvent("siReload"));
     });
   }
 }
-
-
-class SmartImageFactory {
-  constructor () {
-    this.subscribeToEvents();
-  }
-
-  createNewSmartImageObjects (data) {
-    const SMART_IMAGES = data.querySelectorAll(SEL_SMART_IMAGE);
-    Array.prototype.forEach.call(SMART_IMAGES, element => {
-      const newSmartImage = new SmartImage(element);
-    });
-  }
-
-  displaySmartImages () {
-    
-  }
-
-  subscribeToEvents () {
-    // On a content change, the newly-added elements are passed as parameters to a function
-    // that finds any smartImages and instantiates controlling objects for each
-    PubSub.subscribe(Events.messages.contentChange, (topic, data) => {
-      this.createNewSmartImageObjects(data);
-    });
-
-    PubSub.subscribe(Events.messages.contentDisplayed, (topic, data) => {
-      this.displaySmartImages(data);
-    });
-  } 
-}
-
-/**
- * delegateEvents - Create delegated event listeners for the components managed within this module
- *
- * @returns {type} Description
- */
-function delegateEvents() {
-  Events.delegate("click", SEL_CLICK_TO_LOAD_SMART_IMAGE, "siClickLoad");
-}
-
-/**
- *
- *  Instantiate objects to manage smart image components
- */
-function initialiseSmartImages() {
-  const SMART_IMAGES = document.querySelectorAll(SEL_SMART_IMAGE);
-
-  SMART_IMAGES.forEach(element => {
-    const NEW_SMART_IMAGE = new SmartImage(element);
-  });
-}
-
-
-/**
- * Handle observed intersections for smart image components
- *
- * @param {*} entries
- * @param {*} observer
- */
-function handleSmartImageIntersection (entries, observer) {
-  entries.forEach(function(entry) {
-    if (entry.intersectionRatio > 0) {
-      entry.target.dispatchEvent(Events.createCustomEvent("imageInView"));
-    }
-  });
-}
-
-/**
- * Instantiate an IntersectionObserver object for the smart image components
- *
- */
-function initialiseSmartImageObserver() { 
-  if (typeof (window.IntersectionObserver) !== 'undefined') {
-    imageObserver = new IntersectionObserver(handleSmartImageIntersection, OBSERVER_OPTIONS);
-  }  
-}
-
-/**
- * initModule - Initialise this module and the components contained in it
- *
- * @returns {type} Description
- */
-export function initModule() {
-  // Create delegated event listeners for the components within this module
-  delegateEvents();
-
-  // Initialise an observer object to detect when smart image elements are in view
-  initialiseSmartImageObserver();
-
-  // Find and initialise Show/Hide components using the ShowHide class
-  initialiseSmartImages(); 
-
-}
-
-export default { initModule: initModule };

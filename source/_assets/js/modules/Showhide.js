@@ -6,7 +6,7 @@
 ////////////////////
 
 import PubSub from "pubsub-js";
-import Events from "Modules/Events";
+import { MESSAGES } from "Modules/events/messages";
 import Animation from "Modules/Animation";
 
 //////////////////////

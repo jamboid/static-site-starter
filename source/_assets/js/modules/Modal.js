@@ -2,7 +2,7 @@
 "use strict";
 
 import PubSub from "pubsub-js";
-import Events from "Modules/Events";
+import { MESSAGES } from "Modules/events/messages";
 import { createNodeFromHTML } from "Modules/utilities/createNodeFromHTML"; 
 
 const MODAL_TEMPLATE = `
@@ -18,11 +18,17 @@ const MODAL_TEMPLATE = `
 
 const MODAL_SCREEN_TEMPLATE = `<div class='cp_ModalScreen'></div>`;
 
-// const SEL_MODAL_COMPONENT = ".cp_Modal";
 const SEL_MODAL_LINK = "[data-modal-source]";
 const SEL_MODAL_CLOSE = ".cp_Modal__closeLink";
 const SEL_MODAL_CONTENT = ".cp_Modal__content";
 const SEL_MODAL_SCREEN = ".cp_ModalScreen";
+
+const MODAL_CLASSES = {
+  image: "cp_Modal--image",
+  display: "is_Displayed",
+  loaded: "is_Loaded",
+  contentHolder: "cp_Modal__contentHolder"
+}
 
 const BODY_ELEMENT = document.getElementsByTagName('body')[0];
 
@@ -34,7 +40,7 @@ const BODY_ELEMENT = document.getElementsByTagName('body')[0];
 class Modal {
 
   /**
-   *Creates an instance of Modal.
+   * Creates an instance of Modal.
    * @param {*} element
    * @param {*} modalType
    * @param {*} modalID
@@ -64,7 +70,7 @@ class Modal {
       this.displayContentInModal();
     }
 
-    PubSub.publish("modal/opened");
+    PubSub.publish(MESSAGES.modalOpened);
   }
 
   /**
@@ -73,15 +79,14 @@ class Modal {
    * @memberof Modal
    */
   displaySmartImageInModal () {
-    this.modal.classList.add("cp_Modal--image");
+    this.modal.classList.add(MODAL_CLASSES.image);
 
     const modalContent = this.modal.querySelector(SEL_MODAL_CONTENT);
     modalContent.appendChild(this.modalContent);
 
     //BODY_ELEMENT.classList.add("modalDisplayed");
-    
     this.positionModal();
-    PubSub.publish(Events.messages.contentChange, this.modalContent);
+    PubSub.publish(MESSAGES.contentChange, this.modalContent);
   }
 
   /**
@@ -90,7 +95,7 @@ class Modal {
    * @memberof Modal
    */
   positionModal () {
-    this.modal.classList.add("is_Displayed");
+    this.modal.classList.add(MODAL_CLASSES.display);
   }
 
   /**
@@ -99,7 +104,7 @@ class Modal {
    * @memberof Modal
    */
   activateModal () {
-    this.modal.classList.add("is_Loaded");
+    this.modal.classList.add(MODAL_CLASSES.loaded);
     this.positionModal();
 
     // Site.analytics.trackPageEvent("Modal Image", "Modal Opened", "Image ID: " + thisModalID);
@@ -151,15 +156,15 @@ class Modal {
    */
   subscribeToEvents () {
 
-    // PubSub.subscribe(Events.messages.resize, () => {
+    // PubSub.subscribe(MESSAGES.resize, () => {
     //   this.modal.dispatchEvent(Events.createCustomEvent("updatelayout"));
     // });
 
-    // PubSub.subscribe(Events.messages.contentChange, () => {
+    // PubSub.subscribe(MESSAGES.contentChange, () => {
     //   this.modal.dispatchEvent(Events.createCustomEvent("updatelayout"));
     // });
 
-    PubSub.subscribe(Events.messages.imageLoaded, () => {
+    PubSub.subscribe(MESSAGES.imageLoaded, () => {
       this.modal.dispatchEvent(Events.createCustomEvent("activateModal"));
     });
   }
@@ -177,7 +182,7 @@ class ModalLinkManager {
    */
   constructor() {
     this.modalLinkContent = document.createElement("div");
-    this.modalLinkContent.classList.add("cp_Modal__contentHolder");
+    this.modalLinkContent.classList.add(MODAL_CLASSES.contentHolder);
 
     // Call initial methods
     this.subscribeToEvents();
@@ -226,7 +231,7 @@ class ModalLinkManager {
    * @memberof ModalLinkManager
    */
   subscribeToEvents() {
-    PubSub.subscribe("display/modal", (topic, data) => {
+    PubSub.subscribe(MESSAGES.displayModal, (topic, data) => {
       let modalLink;
 
       if (data.target.matches(SEL_MODAL_LINK)) {
@@ -250,7 +255,7 @@ class ModalLinkManager {
 function delegateEvents() {
   Events.delegate("click", SEL_MODAL_CLOSE, "closeModal");
   Events.delegate("click", SEL_MODAL_SCREEN, "closeModal");
-  Events.global("click", SEL_MODAL_LINK, "display/modal", true);
+  Events.global("click", SEL_MODAL_LINK, MESSAGES.displayModal, true);
 }
 
 /**

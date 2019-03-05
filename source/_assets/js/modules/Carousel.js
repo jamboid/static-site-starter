@@ -3,7 +3,7 @@
 
 
 import PubSub from "pubsub-js";
-import Events from "Modules/Events";
+import Events from "Modules/events/Events";
 
 const selComponent = "[data-carousel=component]";
 
