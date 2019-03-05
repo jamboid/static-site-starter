@@ -154,7 +154,7 @@ export function decodeCharacters(text) {
  *
  * @returns {type} Description
  */
-export function resetStyles(element) {
+export function removeInlineStyles(element) {
   element.setAttribute('style', '');
 }
 
@@ -193,7 +193,7 @@ export default {
   outerHeight: outerHeight,
   getURLQueryString: getURLQueryString,
   decodeCharacters: decodeCharacters,
-  resetStyles: resetStyles,
+  removeInlineStyles: removeInlineStyles,
   getOffset: getOffset,
   createNodeFromHTML: createNodeFromHTML,
   indexOfNode: indexOfNode,
