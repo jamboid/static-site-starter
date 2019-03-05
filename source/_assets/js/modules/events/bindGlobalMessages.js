@@ -3,7 +3,7 @@
  *
  * @returns {type} Description
  */
-function bindGlobalMessages() {
+export function bindGlobalMessages() {
   // Handle page scroll if browser doesn't support IntersectionObserver API.
   // This may have to be updated if we're looking to bind events and activity
   // to the actual page scroll, rather than using it as a IO fallback, but for 

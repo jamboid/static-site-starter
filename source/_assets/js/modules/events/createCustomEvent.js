@@ -6,7 +6,7 @@
  *
  * @returns {object} Custom Event object
  */
-function createCustomEvent(eventName, eventData) {
+export function createCustomEvent(eventName, eventData) {
   let customEvent;
 
   if (window.CustomEvent) {
