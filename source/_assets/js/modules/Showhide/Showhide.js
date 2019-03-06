@@ -1,27 +1,27 @@
 // Show/Hide Components module
 "use strict";
 
-////////////////////
-// Module Imports //
-////////////////////
+/////////////
+// Imports //
+/////////////
 
 import PubSub from "pubsub-js";
 import createDelegate from "Modules/Events/createDelegatedEventListener";
 import collapseElement from "Modules/Utilities/collapseElement";
 import expandElement from "Modules/Utilities/expandElement";
 
-//////////////////////
-// Module Constants //
-//////////////////////
+///////////////
+// Constants //
+///////////////
 
 const SEL_COMPONENT = "[data-showhide=component]";
 const SEL_ACTION = "[data-showhide=component] [data-showhide=toggle]";
 const SEL_CONTENT = "[data-showhide=content]";
 const CLASS_DISPLAY = "is_Open";
 
-////////////////////////////////
-// Module Classes & Functions //
-////////////////////////////////
+/////////////////////////
+// Classes & Functions //
+/////////////////////////
 
 /**
  * ShowHide - Class representing a Show/Hide DOM component

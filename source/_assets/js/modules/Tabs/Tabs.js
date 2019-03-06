@@ -1,16 +1,16 @@
 // Tab Components module
 "use strict";
 
-////////////////////
-// Module Imports //
-////////////////////
+////////////
+// mports //
+////////////
 
 import createDelegate from "Modules/Events/createDelegatedEventListener";
 import getIndexOfNode from "Modules/Utilities/getIndexOfNode";
  
-//////////////////////
-// Module Constants //
-////////////////////// 
+///////////////
+// Constants //
+///////////////
 
 const SEL_TAB_COMPONENT = "[data-tabs=component]";
 const SEL_TAB_PANEL = "[data-tabs=panel]";
@@ -28,9 +28,9 @@ const SEL_TAB_CONTROL_GLOBAL = "[data-tabs=component] [data-tabs=control]";
 //   </div>`; 
 // const tabControlTemplate = `<a href="#" class="tabLink" data-tabs="control"></a>`;
 
-////////////////////////////////
-// Module Classes & Functions // 
-////////////////////////////////
+/////////////////////////
+// Classes & Functions // 
+/////////////////////////
 
 class TabbedContent {
   constructor(element) {

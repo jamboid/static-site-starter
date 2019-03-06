@@ -49,7 +49,6 @@ export default class SmartImage {
     this.imageToAdd = document.createElement("img");
     this.srcSet = JSON.parse(this.smartImageElem.dataset.srcSet) || {};
     
-
     // Add Image Element to observer if it has the "view" loading method
     if(this.loadingMethod === 'view') {
       this.observer.observe(this.smartImageElem);
