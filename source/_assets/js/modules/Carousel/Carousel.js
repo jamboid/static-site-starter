@@ -3,10 +3,9 @@
 
 
 import PubSub from "pubsub-js";
-import Events from "Modules/events/Events";
+import Events from "Modules/Events/Events";
 
 const selComponent = "[data-carousel=component]";
-
 
 /**
  * Carousel - Base class for different carousel types, each of which extend this.
@@ -22,22 +21,6 @@ class Carousel {
 }
 
 
-/**
- * Fader - Description
- * @extends Carousel
- */
-export class Fader extends Carousel {
-  constructor(element) {
-    super(element);
-  }
-}
 
-/**
- * Scroller - Description
- * @extends Carousel
- */
-export class Scroller extends Carousel {
-  constructor(element) {
-    super(element);
-  }
-}
+
+

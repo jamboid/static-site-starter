@@ -2,8 +2,10 @@
 "use strict";
 
 import PubSub from "pubsub-js";
-import { MESSAGES } from "Modules/events/messages";
-import { createNodeFromHTML } from "Modules/utilities/createNodeFromHTML"; 
+import createDelegate from "Modules/Events/createDelegatedEventListener";
+import createGlobal from "Modules/Events/createGlobalMessenger";
+import MESSAGES from "Modules/Events/messages";
+import createNodeFromHTML from "Modules/Utilities/createNodeFromHTML";
 
 const MODAL_TEMPLATE = `
   <div class="cp_Modal" aria-modal="true">
@@ -253,9 +255,9 @@ class ModalLinkManager {
  * @returns {type} Description
  */
 function delegateEvents() {
-  Events.delegate("click", SEL_MODAL_CLOSE, "closeModal");
-  Events.delegate("click", SEL_MODAL_SCREEN, "closeModal");
-  Events.global("click", SEL_MODAL_LINK, MESSAGES.displayModal, true);
+  createDelegate("click", SEL_MODAL_CLOSE, "closeModal");
+  createDelegate("click", SEL_MODAL_SCREEN, "closeModal");
+  createGlobal("click", SEL_MODAL_LINK, MESSAGES.displayModal, true);
 }
 
 /**

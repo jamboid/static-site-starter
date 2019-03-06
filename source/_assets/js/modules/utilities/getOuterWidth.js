@@ -5,7 +5,7 @@
  *
  * @returns {int} calculated outer width of el
  */
-export function getOuterWidth(el) {
+export default function getOuterWidth(el) {
   let width = parseInt(el.offsetWidth);
   const STYLE = getComputedStyle(el);
 

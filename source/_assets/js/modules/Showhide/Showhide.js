@@ -6,8 +6,9 @@
 ////////////////////
 
 import PubSub from "pubsub-js";
-import { MESSAGES } from "Modules/events/messages";
-import Animation from "Modules/Animation";
+import { createDelegatedEventListener as createDelegate } from "Modules/Events/createDelegatedEventListener";
+import { collapseElement } from "Modules/Utilities/collapseElement";
+import { expandElement } from "Modules/Utilities/expandElement";
 
 //////////////////////
 // Module Constants //
@@ -57,10 +58,10 @@ class ShowHide {
     event.preventDefault();
 
     if (this.element.classList.contains(displayClass)) {
-      Animation.collapseElement(this.content);
+      collapseElement(this.content);
       this.element.classList.remove(displayClass);
     } else {
-      Animation.expandElement(this.content);
+      expandElement(this.content);
       this.element.classList.add(displayClass);
     }
 
@@ -74,7 +75,7 @@ class ShowHide {
    */
   setStartState() {
     if (this.startState === true) {
-      Animation.expandElement(this.content);
+      expandElement(this.content);
       this.element.classList.add(displayClass);
     }
   }
@@ -98,7 +99,7 @@ class ShowHide {
  * @returns {type} Description
  */
 function delegateEvents() {
-  Events.delegate("click", selAction, "toggleShowHide");
+  createDelegate("click", selAction, "toggleShowHide");
 }
 
 /**

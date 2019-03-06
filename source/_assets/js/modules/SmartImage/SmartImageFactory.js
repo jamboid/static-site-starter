@@ -5,7 +5,6 @@ export class SmartImageFactory {
     this.observer = observer;
   }
 
-
   /**
    * 
    *
@@ -15,7 +14,7 @@ export class SmartImageFactory {
   createNewSmartImageObjects(data) {
     const SMART_IMAGES = data.querySelectorAll(SEL_SMART_IMAGE);
     Array.prototype.forEach.call(SMART_IMAGES, element => {
-      const newSmartImage = new SmartImage(element);
+      const newSmartImage = new SmartImage(element, this.observer);
     });
   }
 

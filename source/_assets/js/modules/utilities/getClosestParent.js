@@ -6,7 +6,7 @@
  * @param   {boolean}       [includeSelf]
  * @return  {Element|null}
  */
-export function getClosestParent(el, selector, includeSelf) {
+export default function getClosestParent(el, selector, includeSelf) {
   let parent = el.parentNode;
 
   if (includeSelf && el.matches(selector)) {

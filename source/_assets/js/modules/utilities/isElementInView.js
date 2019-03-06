@@ -6,7 +6,7 @@
  *
  * @returns {boolean} Description
  */
-export function isElementInView(element) {
+export default function isElementInView(element) {
   const WINDOW_HEIGHT = window.innerHeight;
   const SCROLL_TOP = window.scrollY;
   const ELEMENT_OFFSET = element.getBoundingClientRect();

@@ -5,8 +5,8 @@
 // Module Imports //
 ////////////////////
 
-import { createDelegatedEventListener as delegate } from "Modules/events/createDelegatedEventListener";
-import { getIndexOfNode } from "Modules/utilities/getIndexOfNode";
+import createDelegate from "Modules/Events/createDelegatedEventListener";
+import getIndexOfNode from "Modules/Utilities/getIndexOfNode";
  
 //////////////////////
 // Module Constants //
@@ -77,7 +77,7 @@ class TabbedContent {
  * @returns {type} Description
  */
 function delegateEvents() {
-  delegate("click", SEL_TAB_CONTROL_GLOBAL, "selectTab");
+  createDelegate("click", SEL_TAB_CONTROL_GLOBAL, "selectTab");
 }
 
 /**
@@ -99,4 +99,4 @@ export function initModule() {
 
 export default {
   initModule: initModule
-};
+}

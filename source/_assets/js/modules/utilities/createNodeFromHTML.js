@@ -5,9 +5,12 @@
  * @param {*} htmlString
  * @returns
  */
-export function createNodeFromHTML(htmlString) {
+export default function createNodeFromHTML(htmlString) {
   const CONTAINER_ELEMENT = document.createElement('div');
+  
   CONTAINER_ELEMENT.innerHTML = htmlString.trim();
+  
   // Change this to div.childNodes to support multiple top-level nodes
-  return CONTAINER_ELEMENT.firstChild;
+  // return CONTAINER_ELEMENT.firstChild;
+  return CONTAINER_ELEMENT.childNodes;
 }

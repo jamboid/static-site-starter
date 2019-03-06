@@ -3,7 +3,7 @@
  *
  * @param {function} fn Description
  */
-export function ready(fn) {
+export default function ready(fn) {
   if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
     fn();
   } else {

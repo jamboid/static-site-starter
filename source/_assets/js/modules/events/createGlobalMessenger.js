@@ -1,3 +1,5 @@
+import delegate from "delegate";
+
 /**
  * createGlobalMessenger
  *
@@ -7,7 +9,7 @@
  * @param {string} message
  * @param {boolean} preventBubble
  */
-export function createGlobalMessenger(eventType, selector, message, preventBubble) {
+export default function createGlobalMessenger(eventType, selector, message, preventBubble) {
   delegate(document.body, selector, eventType, (e) => {
     if (preventBubble) {
       e.preventDefault();

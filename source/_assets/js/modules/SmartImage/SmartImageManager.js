@@ -7,10 +7,10 @@
 
 import "intersection-observer";
 
-import { createDelegatedEventListener as delegate } from "Modules/events/createDelegatedEventListener";
-import { SmartImage } from "Modules/media/SmartImage";
+import createDelegate from "Modules/Events/createDelegatedEventListener";
+import SmartImage from "Modules/SmartImage/SmartImage";
 
-//////////////////////
+////////////////////// 
 // Module Constants //
 //////////////////////
 
@@ -37,7 +37,7 @@ let imageObserver;
  * @returns {type} Description
  */
 function delegateEvents() {
-  delegate("click", SEL_CLICK_TO_LOAD_SMART_IMAGE, "siClickLoad");
+  createDelegate("click", SEL_CLICK_TO_LOAD_SMART_IMAGE, "siClickLoad");
 }
 
 /**
@@ -49,7 +49,7 @@ function initialiseSmartImages() {
 
   SMART_IMAGES.forEach(element => {
     let smartImage = new SmartImage(element, imageObserver);
-  });
+  })
 }
 
 /**
@@ -61,7 +61,7 @@ function initialiseSmartImages() {
 function handleSmartImageIntersection(entries, observer) {
   entries.forEach(function (entry) {
     if (entry.intersectionRatio > 0) {
-      entry.target.dispatchEvent(Events.createCustomEvent("imageInView"));
+      entry.target.dispatchEvent(Events.createCustomEvent("imageObservedInView"));
     }
   });
 }
@@ -81,7 +81,7 @@ function initialiseSmartImageObserver() {
  *
  * @returns {type} Description
  */
-export function initModule() {
+export default function initSmartImages() {
   // Create delegated event listeners for the components within this module
   delegateEvents();
 
@@ -90,7 +90,4 @@ export function initModule() {
 
   // Find and initialise Show/Hide components using the ShowHide class
   initialiseSmartImages();
-
 }
-
-export default { initModule: initModule };

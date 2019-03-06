@@ -1,12 +1,11 @@
-// Navigation Menu 
+// Navigation Manager 
 
 ////////////////////
 // Module Imports //
 ////////////////////
 
-import PubSub from "pubsub-js";
-
-import { createDelegatedEventListener as delegate } from "Modules/events/createDelegatedEventListener";
+import createDelegate from "Modules/Events/createDelegatedEventListener";
+import MainNavToggle from "Modules/Navigation/MainNavToggle";
 
 //////////////////////
 // Module Constants //
@@ -21,43 +20,11 @@ const SEL_MAIN_NAV_SECONDARY_MENU_CONTAINER = ".cp_MainNav__secondaryMenu";
 const SEL_MAIN_NAV_SECONDARY_ITEM = "li.secondary";
 const MENU_SHOW_HIDE_TRANSITION_TIME = 350;
 
-
 ////////////////////////////////
 // Module Classes & Functions //
 ////////////////////////////////
 
-
-class MainNavToggle {
-  constructor(element) {
-    this.menuToggle = element;
-
-    this.bindCustomMessageEvents();
-    this.subscribeToEvents();
-  }
-
-  toggleMenu() {
-    document.body.classList.toggle("nav_Visible");
-  }
-
-  openMenu() {}
-
-  closeMenu() {}
-
-  subscribeToEvents() {} 
-
-  /**
-   * Add event handler for main navigation toggle
-   * @function
-   */
-  bindCustomMessageEvents() {
-    this.menuToggle.addEventListener("toggleMainNav", this.toggleMenu.bind(this));
-    this.menuToggle.addEventListener("openMainNav", this.openMenu.bind(this));
-    this.menuToggle.addEventListener("closeMainNav", this.closeMenu.bind(this));
-  }
-}
-
-
-function initialiseMainMenu() {
+function initialiseMainNavigation() {
   const NAV_TOGGLE = document.querySelectorAll(SEL_MAIN_NAV_TOGGLE);
 
   Array.prototype.forEach.call(NAV_TOGGLE, element => {
@@ -71,7 +38,7 @@ function initialiseMainMenu() {
  * @returns {type} Description
  */
 function delegateEvents() {
-  delegate("click", SEL_MAIN_NAV_TOGGLE, "toggleMainNav");
+  createDelegate("click", SEL_MAIN_NAV_TOGGLE, "toggleMainNav");
 }
 
 
@@ -83,7 +50,7 @@ function delegateEvents() {
 export function initModule() {
   // Create delegated event listeners for the components within this module
   delegateEvents();
-  initialiseMainMenu();
+  initialiseMainNavigation();
 }
 
 export default { initModule: initModule };

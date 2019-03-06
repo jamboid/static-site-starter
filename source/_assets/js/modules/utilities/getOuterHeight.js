@@ -3,7 +3,7 @@
  * 
  * @param {Element} el
  */
-export function getOuterHeight(el) {
+export default function getOuterHeight(el) {
   let height = parseInt(el.offsetHeight);
   const STYLE = getComputedStyle(el);
 

@@ -8,7 +8,7 @@ import delegate from "delegate";
  * @param {string} eventToTrigger custom event we want to send back to target element
  * @param {object} eventData      data passed as part of triggered custom event 
  */
-export function createDelegatedEventListener(eventType, selector, eventToTrigger, eventData = null) {
+function createDelegatedEventListener(eventType, selector, eventToTrigger, eventData = null) {
   delegate(document.body, selector, eventType, (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -16,3 +16,5 @@ export function createDelegatedEventListener(eventType, selector, eventToTrigger
     e.target.dispatchEvent(customEvent);
   }, false);
 }
+
+export default createDelegatedEventListener;

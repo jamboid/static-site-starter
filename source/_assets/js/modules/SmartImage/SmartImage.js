@@ -1,42 +1,31 @@
-// Image Components module
-"use strict";
 
-////////////////////
-// Module Imports //
-//////////////////// 
+/////////////
+// Imports //
+/////////////
 
 import "intersection-observer";
 import PubSub from "pubsub-js";
 import imagesLoaded from "imagesloaded";
 
-import { MESSAGES } from "Modules/events/messages";
+import MESSAGES from "Modules/Events/messages";
 
-//////////////////////
-// Module Constants //
-//////////////////////
+///////////////
+// Constants //
+///////////////
 
 // Selectors
 const SEL_PLACEHOLDER_IMAGE = "img";
 
-// Classes
-
-// const classes = {
-//   IMAGE_LOADING_CLASS :"ob_Media--loading",
-//   IMAGE_LOADED_CLASS : "ob_Media--loaded",
-//   IMAGE_DISPLAYED_CLASS : "ob_Media--displayed",
-//   IMAGE_FLEX_CLASS : "ob_Media--flex",
-//   IMAGE_HIDDEN_CLASS : "ob_Media--isHidden"
-// }
-
+// HTML Classes
 const IMAGE_LOADING_CLASS = "ob_Media--loading";
 const IMAGE_LOADED_CLASS = "ob_Media--loaded";
 const IMAGE_DISPLAYED_CLASS = "ob_Media--displayed";
 const IMAGE_FLEX_CLASS = "ob_Media--flex";
 const IMAGE_HIDDEN_CLASS = "ob_Media--isHidden";
 
-////////////////////////////////
-// Module Classes & Functions //
-////////////////////////////////
+/////////////////////////
+// Classes & Functions //
+/////////////////////////
 
 /**
  * SmartImage - Class representing a Smart Image component that loads optimised images based on screen size
@@ -44,7 +33,7 @@ const IMAGE_HIDDEN_CLASS = "ob_Media--isHidden";
  * @export
  * @class SmartImage
  */
-export class SmartImage { 
+export default class SmartImage { 
   constructor(element, observer) {
     // Set properties
     this.smartImageElem = element;

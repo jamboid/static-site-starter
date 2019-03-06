@@ -3,7 +3,7 @@
  * 
  * @return  {Array}
  */
-export function getURLQueryString() {
+export default function getURLQueryString() {
   let vars = [];
   let hash;
   

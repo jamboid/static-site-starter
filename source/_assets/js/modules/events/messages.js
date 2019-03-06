@@ -3,7 +3,7 @@
  * 
  * @constant
  */
-export const MESSAGES = {
+const MESSAGES = {
   "resize": "page/resize",
   "scroll": "page/scroll",
   "load": "page/load",
@@ -15,3 +15,5 @@ export const MESSAGES = {
   "modalOpened": "modal/opened",
   "displayModal": "modal/display"
 }
+
+export default MESSAGES;

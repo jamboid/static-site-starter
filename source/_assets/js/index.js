@@ -1,15 +1,14 @@
 "use strict";
 
-import { wrapElement } from "Modules/utilities/wrapElement";
-import { ready } from "Modules/utilities/ready";
+import wrapElement from "Modules/Utilities/wrapElement";
+import ready from "Modules/Utilities/ready";
 
-import { initModule as initShowhide } from "Modules/Showhide";
-import { initModule as initModal } from "Modules/Modal";
-import { initModule as initSmartImageManager } from "Modules/media/SmartImageManager";
-import { initModule as initVideo } from "Modules/Video";
-import { initModule as initNav } from "Modules/Navigation";
-import { initModule as initTabs } from "Modules/Tabs";
-
+//import { initModule as initShowhide } from "Modules/showhide/Showhide";
+import { initModule as initModal } from "Modules/Modal/Modal";
+import SmartImageAPI from "Modules/SmartImage";
+import InlineVideoAPI from "Modules/InlineVideo";
+import { initModule as initNav } from "Modules/Navigation/NavigationManager";
+import { initModule as initTabs } from "Modules/Tabs/Tabs";
 
 /**
  * initialiseComponentModules - call module init functions
@@ -17,13 +16,11 @@ import { initModule as initTabs } from "Modules/Tabs";
  * @returns {type} Description
  */ 
 function initialiseComponentModules() {
-  // initEvents();
-  // initNav(); 
-  // initShowhide(); 
-  initSmartImageManager();
-  // initModal();
-  // initVideo();
-  // initTabs();
+  initNav(); 
+  SmartImageAPI.initSmartImages(); 
+  InlineVideoAPI.initInlineVideos();
+  initModal();
+  initTabs();
 
   // Wrap tables in container to allow overflow scroll
   // This is a small enough bit of functionality to put on it's own here.
