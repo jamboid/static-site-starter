@@ -85,7 +85,7 @@ function delegateEvents() {
  *
  * @returns {type} Description
  */
-export function initModule() {
+export default function initialiseTabs() {
   // Create delegated event listeners for the components within this module
   delegateEvents(); 
 
@@ -95,8 +95,4 @@ export function initModule() {
   TAB_COMPONENTS.forEach((element) => {
     const newTabbedContent = new TabbedContent(element);
   });
-}
-
-export default {
-  initModule: initModule
 }

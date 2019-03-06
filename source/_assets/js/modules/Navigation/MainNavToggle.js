@@ -1,16 +1,16 @@
 
-//////////////////////
-// Module Constants //
-//////////////////////
+///////////////
+// Constants //
+///////////////
 
 const CLASS_BODY_NAV_VISIBLE = "nav_Visible";
 
-////////////////////////////////
-// Module Classes & Functions //
-////////////////////////////////
+/////////////////////////
+// Classes & Functions //
+/////////////////////////
 
 /**
- *
+ * Class to manage the toggle control for display of the main navigation menu
  *
  * @export
  * @class MainNavToggle

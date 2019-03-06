@@ -7,6 +7,8 @@ import createGlobal from "Modules/Events/createGlobalMessenger";
 import MESSAGES from "Modules/Events/messages";
 import createNodeFromHTML from "Modules/Utilities/createNodeFromHTML";
 
+import trackPageEvent from "Modules/Analytics/trackPageEvent";
+
 const MODAL_TEMPLATE = `
   <div class="cp_Modal" aria-modal="true">
     <div id="confirmation-popup" class="cp_Modal__inner">
@@ -109,7 +111,7 @@ class Modal {
     this.modal.classList.add(MODAL_CLASSES.loaded);
     this.positionModal();
 
-    // Site.analytics.trackPageEvent("Modal Image", "Modal Opened", "Image ID: " + thisModalID);
+    trackPageEvent("Modal Image", "Modal Opened", "Image ID: " + thisModalID);
 
     // let delayPosition = setTimeout(this.positionModal.bind(this), 1000);
   }
@@ -265,11 +267,9 @@ function delegateEvents() {
  *
  * @returns {type} Description
  */
-export function initModule() {
+export default function initialiseModals() {
   // Create delegated event listeners for the components within this module
   delegateEvents();
 
   const newModalLinkManager = new ModalLinkManager();
 }
-
-export default { initModule: initModule };

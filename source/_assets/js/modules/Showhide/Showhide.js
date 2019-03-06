@@ -6,18 +6,18 @@
 ////////////////////
 
 import PubSub from "pubsub-js";
-import { createDelegatedEventListener as createDelegate } from "Modules/Events/createDelegatedEventListener";
-import { collapseElement } from "Modules/Utilities/collapseElement";
-import { expandElement } from "Modules/Utilities/expandElement";
+import createDelegate from "Modules/Events/createDelegatedEventListener";
+import collapseElement from "Modules/Utilities/collapseElement";
+import expandElement from "Modules/Utilities/expandElement";
 
 //////////////////////
 // Module Constants //
 //////////////////////
 
-const selComponent = "[data-showhide=component]";
-const selAction = "[data-showhide=component] [data-showhide=toggle]";
-const selContent = "[data-showhide=content]";
-const displayClass = "is_Open";
+const SEL_COMPONENT = "[data-showhide=component]";
+const SEL_ACTION = "[data-showhide=component] [data-showhide=toggle]";
+const SEL_CONTENT = "[data-showhide=content]";
+const CLASS_DISPLAY = "is_Open";
 
 ////////////////////////////////
 // Module Classes & Functions //
@@ -37,8 +37,8 @@ class ShowHide {
   constructor(element) {
     // Set properties
     this.element = element;
-    this.action = this.element.querySelectorAll(selAction)[0];
-    this.content = this.element.querySelectorAll(selContent)[0];
+    this.action = this.element.querySelectorAll(SEL_ACTION)[0];
+    this.content = this.element.querySelectorAll(SEL_CONTENT)[0];
     this.config = this.element.getAttribute("data-showhide-config");
     this.animate = this.config.animate || false;
     this.speed = this.config.speed || 200;
@@ -57,12 +57,12 @@ class ShowHide {
   toggleControl(event) {
     event.preventDefault();
 
-    if (this.element.classList.contains(displayClass)) {
+    if (this.element.classList.contains(CLASS_DISPLAY)) {
       collapseElement(this.content);
-      this.element.classList.remove(displayClass);
+      this.element.classList.remove(CLASS_DISPLAY);
     } else {
       expandElement(this.content);
-      this.element.classList.add(displayClass);
+      this.element.classList.add(CLASS_DISPLAY);
     }
 
     PubSub.publish(Events.messages.contentChange);
@@ -76,7 +76,7 @@ class ShowHide {
   setStartState() {
     if (this.startState === true) {
       expandElement(this.content);
-      this.element.classList.add(displayClass);
+      this.element.classList.add(CLASS_DISPLAY);
     }
   }
 
@@ -99,7 +99,7 @@ class ShowHide {
  * @returns {type} Description
  */
 function delegateEvents() {
-  createDelegate("click", selAction, "toggleShowHide");
+  createDelegate("click", SEL_ACTION, "toggleShowHide");
 }
 
 /**
@@ -107,18 +107,14 @@ function delegateEvents() {
  *
  * @returns {type} Description
  */
-export function initModule() {
+export default function initialiseShowhide() {
   // Create delegated event listeners for the components within this module
   delegateEvents();
 
   // Find and initialise Show/Hide components using the ShowHide class
-  const showHideComponents = document.querySelectorAll(selComponent);
+  const showHideComponents = document.querySelectorAll(SEL_COMPONENT);
   
   Array.prototype.forEach.call(showHideComponents, element => {
     const newShowHide = new ShowHide(element);
   });
 }
-
-export default {
-  initModule: initModule
-};

@@ -7,7 +7,7 @@
  * @param {*} label
  * @param {*} value
  */
-export function trackPageEvent (category, action, label, value) {
+export default function trackPageEvent (category, action, label, value) {
   const THIS_CATEGORY = category;
   const THIS_ACTION = action;
   const THIS_LABEL = (typeof label === 'undefined') ? undefined : label;

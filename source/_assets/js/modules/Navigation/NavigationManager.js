@@ -47,10 +47,8 @@ function delegateEvents() {
  *
  * @returns {type} Description
  */
-export function initModule() {
+export default function initialiseNavigation() {
   // Create delegated event listeners for the components within this module
   delegateEvents();
   initialiseMainNavigation();
 }
-
-export default { initModule: initModule };

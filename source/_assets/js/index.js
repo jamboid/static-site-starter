@@ -3,12 +3,12 @@
 import wrapElement from "Modules/Utilities/wrapElement";
 import ready from "Modules/Utilities/ready";
 
-//import { initModule as initShowhide } from "Modules/showhide/Showhide";
-import { initModule as initModal } from "Modules/Modal/Modal";
+import ShowhideAPI from "Modules/Showhide";
+import ModalAPI from "Modules/Modal";
 import SmartImageAPI from "Modules/SmartImage";
 import InlineVideoAPI from "Modules/InlineVideo";
-import { initModule as initNav } from "Modules/Navigation/NavigationManager";
-import { initModule as initTabs } from "Modules/Tabs/Tabs";
+import NavigationAPI from "Modules/Navigation";
+import TabsAPI from "Modules/Tabs";
 
 /**
  * initialiseComponentModules - call module init functions
@@ -16,11 +16,12 @@ import { initModule as initTabs } from "Modules/Tabs/Tabs";
  * @returns {type} Description
  */ 
 function initialiseComponentModules() {
-  initNav(); 
+  NavigationAPI.initialiseNavigation();
   SmartImageAPI.initSmartImages(); 
   InlineVideoAPI.initInlineVideos();
-  initModal();
-  initTabs();
+  ModalAPI.initialiseModals();
+  TabsAPI.initialiseTabs();
+  ShowhideAPI.initialiseShowhide();
 
   // Wrap tables in container to allow overflow scroll
   // This is a small enough bit of functionality to put on it's own here.
