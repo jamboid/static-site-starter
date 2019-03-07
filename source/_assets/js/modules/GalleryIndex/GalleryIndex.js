@@ -16,6 +16,12 @@ const CLASS_CURRENT_INDEX_NODE = "is_Current";
 /////////////////////////
 
 export default class GalleryIndex {
+
+  /**
+   *Creates an instance of GalleryIndex.
+   * @param {*} el
+   * @memberof GalleryIndex
+   */
   constructor(el) {
     this.galleryIndexNode = el;
     this.indexNodes = this.galleryIndexNode.querySelectorAll(SEL_INDEX_NODE);
@@ -23,12 +29,21 @@ export default class GalleryIndex {
     this.currentIndexNode = this.indexNodes.item(0);
   }  
 
-  // Get current position
+  /**
+   * Get the currentPosition property
+   *
+   * @memberof GalleryIndex
+   */
   get position() {
     return this.currentPosition;
   }
 
-  // Set current position
+  
+  /**
+   * Set the currentPosition property
+   *
+   * @memberof GalleryIndex
+   */
   set position(newPos) {
     if(typeof newPos === "number") {
       this.currentPosition = newPos;
@@ -36,7 +51,11 @@ export default class GalleryIndex {
     }
   }
 
-  // Update current node
+  /**
+   * Update the current node in the index
+   *
+   * @memberof GalleryIndex
+   */
   updateCurrentIndexNode() {  
     // Remove "current" class from previous "current" node
     this.currentIndexNode.classList.remove(CLASS_CURRENT_INDEX_NODE)

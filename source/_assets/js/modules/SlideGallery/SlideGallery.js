@@ -20,7 +20,25 @@ const SEL_GALLERY_INDEX = "[data-gallery=index]";
 // Classes & Functions //
 /////////////////////////
 
+
+
+/**
+ * This is a class to control a simple scrolling gallery, where the slide position
+ * is set with the CSS scroll-snap property. All this class does is maintain the state
+ * of a related gallery index using the IntersectionObserver API to determine which slide
+ * is currently visible and update the index accordingly.
+ *
+ * @export
+ * @class SlideGallery
+ */
 export default class SlideGallery {
+
+  /**
+   * Creates an instance of SlideGallery.
+   * 
+   * @param {*} el
+   * @memberof SlideGallery
+   */
   constructor(el) {
     this.slideGalleryNode = el;
     this.gallerySlideNodes = this.slideGalleryNode.querySelectorAll(SEL_GALLERY_SLIDE);
@@ -50,6 +68,13 @@ export default class SlideGallery {
     });
   }
 
+
+  /**
+   * 
+   *
+   * @param {*} newIndex
+   * @memberof SlideGallery
+   */
   updateIndex(newIndex) {
     this.galleryIndex.position = newIndex
   }
