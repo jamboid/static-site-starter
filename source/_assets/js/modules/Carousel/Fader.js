@@ -1,4 +1,4 @@
-import { Carousel } from "Modules/carousel/Carousel"; 
+import Carousel from "Modules/Carousel/Carousel"; 
 
 /**
  * Fader - Description
