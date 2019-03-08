@@ -27,9 +27,13 @@ export default class MainNavToggle {
     document.body.classList.toggle(CLASS_BODY_NAV_VISIBLE);
   }
   
-  openMenu() { }
+  openMenu() {
+    document.body.classList.add(CLASS_BODY_NAV_VISIBLE);
+   }
 
-  closeMenu() { }
+  closeMenu() {
+    document.body.classList.remove(CLASS_BODY_NAV_VISIBLE);
+  }
 
   subscribeToEvents() { }
 
