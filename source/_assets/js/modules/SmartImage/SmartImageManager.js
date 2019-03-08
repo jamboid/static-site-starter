@@ -1,5 +1,4 @@
 // Image Components module
-"use strict";
 
 ////////////////////
 // Module Imports //
@@ -8,7 +7,11 @@
 import "intersection-observer";
 
 import createDelegate from "Modules/Events/createDelegatedEventListener";
+import createCustomEvent from "Modules/Events/createCustomEvent";
+
 import SmartImage from "Modules/SmartImage/SmartImage";
+import SmartInlineImage from "Modules/SmartImage/SmartImageInline";
+import SmartBackgroundImage from "Modules/SmartImage/SmartImageBackground";
 
 ////////////////////// 
 // Module Constants //
@@ -48,7 +51,13 @@ function initialiseSmartImages() {
   const SMART_IMAGES = document.querySelectorAll(SEL_SMART_IMAGE);
 
   SMART_IMAGES.forEach(element => {
-    let smartImage = new SmartImage(element, imageObserver);
+    const imageType = JSON.parse(element.dataset.imageConfig).type;
+
+    if (imageType === "inline") {
+      let smartImage = new SmartInlineImage(element, imageObserver);
+    } else if(imageType === "background") {
+      let smartImage = new SmartBackgroundImage(element, imageObserver);
+    }    
   })
 }
 
@@ -61,7 +70,9 @@ function initialiseSmartImages() {
 function handleSmartImageIntersection(entries, observer) {
   entries.forEach(function (entry) {
     if (entry.intersectionRatio > 0) {
-      entry.target.dispatchEvent(Events.createCustomEvent("imageObservedInView"));
+      entry.target.dispatchEvent(
+        createCustomEvent("imageObservedInView")
+      );
     }
   });
 }

@@ -6,22 +6,14 @@
 import "intersection-observer";
 import PubSub from "pubsub-js";
 import imagesLoaded from "imagesloaded";
-
-import MESSAGES from "Modules/Events/messages";
+import createCustomEvent from "Modules/Events/createCustomEvent";
 
 ///////////////
 // Constants //
 ///////////////
 
-// Selectors
-const SEL_PLACEHOLDER_IMAGE = "img";
-
-// HTML Classes
-const IMAGE_LOADING_CLASS = "ob_Media--loading";
-const IMAGE_LOADED_CLASS = "ob_Media--loaded";
-const IMAGE_DISPLAYED_CLASS = "ob_Media--displayed";
-const IMAGE_FLEX_CLASS = "ob_Media--flex";
-const IMAGE_HIDDEN_CLASS = "ob_Media--isHidden";
+import MESSAGES from "Modules/Events/messages";
+import * as CONSTANTS from "Modules/SmartImage/constants";
 
 /////////////////////////
 // Classes & Functions //
@@ -39,7 +31,7 @@ export default class SmartImage {
     this.smartImageElem = element;
     this.observer = observer;
 
-    this.placeholderImage = this.smartImageElem.querySelector(SEL_PLACEHOLDER_IMAGE);
+    this.placeholderImage = this.smartImageElem.querySelector(CONSTANTS.SEL_PLACEHOLDER_IMAGE);
     this.loadingMethod = this.smartImageElem.dataset.imageLoad;
     this.config = JSON.parse(this.smartImageElem.dataset.imageConfig);
     this.imageType = this.config.type || false;
@@ -47,7 +39,7 @@ export default class SmartImage {
     this.imageTargetSel = this.smartImageElem.dataset.imageTarget || null;
     this.imageLoaded = false;
     this.imageToAdd = document.createElement("img");
-    this.srcSet = JSON.parse(this.smartImageElem.dataset.srcSet) || {};
+    this.srcset = JSON.parse(this.smartImageElem.dataset.srcSet) || {};
     
     // Add Image Element to observer if it has the "view" loading method
     if(this.loadingMethod === 'view') {
@@ -58,6 +50,7 @@ export default class SmartImage {
     this.bindCustomMessageEvents();
     this.subscribeToEvents();
 
+    // Load image immediately if loading method is pageload
     if (this.loadingMethod === "pageload") {
       this.getImageFile();
     }
@@ -72,8 +65,8 @@ export default class SmartImage {
     const PAGE_WIDTH = window.innerWidth;
     let imageSrcKey = "max";
 
-    for (let key in this.srcSet) {
-      if (this.srcSet.hasOwnProperty(key)) {
+    for (let key in this.srcset) {
+      if (this.srcset.hasOwnProperty(key)) {
         // If the current key is not 'max' check that the page width is less than it,
         // and it is less than the current value for imageSrcKey
         if (key !== "max") {
@@ -95,96 +88,17 @@ export default class SmartImage {
       }
     }
 
+    // Return the correct key
     return imageSrcKey;
   }
 
   /**
-   * updateImageAttributes - Description
-   *
-   * @param {Element} image <img> html element
-   *
-   */
-  updateImageAttributes(image) {
-    const IMAGE_ALT = this.smartImageElem.dataset.alt || "image";
-    const IMAGE_WIDTH = this.smartImageElem.dataset.width;
-    const IMAGE_CLASS = this.smartImageElem.dataset.class;
-
-    if (IMAGE_ALT.length > 0) {
-      image.alt = IMAGE_ALT;
+  * Load and display a smart image - use this when being in view doesn't matter
+  */
+  loadImage() {
+    if (this.imageLoaded === false || this.imageReloader === true) {
+      this.getImageFile(this.smartImageElem);
     }
-
-    if (IMAGE_WIDTH) {
-      image.width = IMAGE_WIDTH;
-    }
-
-    if (IMAGE_CLASS) {
-      image.classList.add(IMAGE_CLASS);
-    }
-  }
-
-  /**
-   * displayImageInContainer - Description
-   *
-   */
-  displayImageInContainer() {
-    // Add 'loading' class to SmartImage container
-    this.smartImageElem.classList.add(IMAGE_LOADING_CLASS);
-
-    if (this.placeholderImage) {
-      this.placeholderImage.src = this.imageToAdd.src;
-      this.placeholderImage.classList.remove("placeholder");
-      this.placeholderImage.removeAttribute("width");
-      this.placeholderImage.removeAttribute("height");
-
-      this.updateImageAttributes(this.placeholderImage);
-    } else {
-      this.updateImageAttributes(this.imageToAdd);
-
-      if (this.imageTargetSel !== null) {
-        //this.smartImageElem.parent().find(imageTargetSel).eq(0).append(this.imageToAdd);
-      } else {
-        this.smartImageElem.insertBefore(this.imageToAdd, null);
-      }
-      this.placeholderImage = this.imageToAdd;
-    }
-
-    this.smartImageElem.classList.add(IMAGE_LOADED_CLASS);
-    // Need to allow browser a moment to process the addition of the image before displaying it
-    window.setTimeout(() => {
-      this.smartImageElem.classList.add(IMAGE_DISPLAYED_CLASS);
-      PubSub.publish("content/update");
-    }, 50);
-
-    this.imageLoaded = true;
-
-    if (typeof (window.IntersectionObserver) !== 'undefined') {
-      this.observer.unobserve(this.smartImageElem);
-    }
-  }
-
-  /**
-   * displayImageAsBackground - Description
-   *
-   * @param {string} path Description
-   *
-   */
-  displayImageAsBackground(path) {
-    const SMART_IMAGE_CSS = "url(" + path + ")";
-    const IMAGE_BACKGROUND_POS = this.smartImageElem.dataset.position;
-    const IMAGE_BACKGROUND_COLOR = this.smartImageElem.dataset.backgroundColor;
-
-    this.smartImageElem.classList.add(IMAGE_LOADED_CLASS);
-    this.smartImageElem.style.backgroundImage = SMART_IMAGE_CSS;
-    this.smartImageElem.classList.add(IMAGE_BACKGROUND_POS);
-    this.smartImageElem.style.backgroundColor = IMAGE_BACKGROUND_COLOR;
-
-    window.setTimeout(() => {
-      this.smartImageElem.classList.add(IMAGE_DISPLAYED_CLASS);
-      PubSub.publish(MESSAGES.contentChange);
-    }, 50);
-
-    this.imageLoaded = true;
-    imageObserver.unobserve(this.smartImageElem);
   }
 
   /**
@@ -192,9 +106,7 @@ export default class SmartImage {
    *
    */
   getImageFile() {
-    const THIS_IMAGE_URL = this.srcSet[this.calculateImageBreakpointToUse()];
-
-    //Site.utils.cl("image url: " + THIS_IMAGE_URL);
+    const THIS_IMAGE_URL = this.srcset[this.calculateImageBreakpointToUse()];
 
     if (THIS_IMAGE_URL !== "none") {
       this.smartImageElem.classList.remove("is_Hidden");
@@ -202,57 +114,16 @@ export default class SmartImage {
 
       const IMAGE_LOADER = imagesLoaded(this.imageToAdd);
 
-      if (this.imageType === "inline") {
-        IMAGE_LOADER.on("done", () => {
-          this.smartImageElem.classList.remove(IMAGE_LOADING_CLASS);
-          this.displayImageInContainer(this.imageToAdd);
-        });
-      } else if (this.imageType === "background") {
-        // The imagesLoaded function is called for image we want to load.
-        // There is no initial callback because everything we want to do can wait
-        // until the image is fully downloaded.
-        IMAGE_LOADER.on("done", () => {
-          this.smartImageElem.classList.add(IMAGE_FLEX_CLASS);
-          this.displayImageAsBackground(THIS_IMAGE_URL);
-        });
-      }
+      IMAGE_LOADER.on("done", () => {
+        this.displayImage();
+      });
+
     } else {
-      this.smartImageElem.classList.add(IMAGE_HIDDEN_CLASS);
+      this.smartImageElem.classList.add(CONSTANTS.IMAGE_HIDDEN_CLASS);
     }
 
     PubSub.publish(MESSAGES.imageLoaded);
     PubSub.publish(MESSAGES.layoutChange);
-  }
-
-  /**
-   * Load and display a smart image - use this when being in view doesn't matter
-   */
-  loadImage() {
-    if (this.imageType === "inline") {
-      if (this.imageLoaded === false || this.imageReloader === true) {
-        this.getImageFile(this.smartImageElem);
-      }
-    } else if (this.imageType === "background") {
-      this.smartImageElem.classList.add(IMAGE_FLEX_CLASS);
-      if (this.imageLoaded === false || this.imageReloader === true) {
-        this.getImageFile(this.smartImageElem);
-      }
-    }
-  }
-
-  /**
-   * loadImageIfInView - Check if
-   */
-  loadImageIfInView() {
-    let component = this.smartImageElem;
-
-    if (this.imageType === "background") {
-      component = component.parentNode;
-    }
-
-    // if ( isElementInView(component) && (this.imageLoaded === false || this.imageReloader === true)) {
-    //   this.getImageFile(this.smartImageElem);
-    // }
   }
 
   /**
@@ -264,7 +135,7 @@ export default class SmartImage {
     e.preventDefault();
 
     if (this.imageLoaded === false) {
-      this.loadImageIfInView(this.smartImageElem);
+      this.loadImage();
     }
   }
 
@@ -327,20 +198,20 @@ export default class SmartImage {
   subscribeToEvents() {
     if (this.loadingMethod === "view") {           
       PubSub.subscribe(MESSAGES.load, () => {
-        this.smartImageElem.dispatchEvent(Events.createCustomEvent("siLoad"));
+        this.smartImageElem.dispatchEvent(createCustomEvent("siLoad"));
       });
 
       PubSub.subscribe(MESSAGES.layoutChange, () => {
-        this.smartImageElem.dispatchEvent(Events.createCustomEvent("siLoad"));
+        this.smartImageElem.dispatchEvent(createCustomEvent("siLoad"));
       });
     }
 
     PubSub.subscribe(MESSAGES.resize, () => {
-      this.smartImageElem.dispatchEvent(Events.createCustomEvent("siReload"));
+      this.smartImageElem.dispatchEvent(createCustomEvent("siReload"));
     });
 
     PubSub.subscribe(MESSAGES.breakChange, () => {
-      this.smartImageElem.dispatchEvent(Events.createCustomEvent("siReload"));
+      this.smartImageElem.dispatchEvent(createCustomEvent("siReload"));
     });
   }
 }

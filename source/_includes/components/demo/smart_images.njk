@@ -1,8 +1,23 @@
-<div class="ob_Section">
-  <h2>Smart Image Loading</h2>
+<div class="ob_Section--offScreen ob_Section">
+  <h2>Inline Image Loading</h2>
 
-  <div class="ob_Image lazyLoader" data-image-load="pageload" 
+  <div class="ob_Image lazyLoader" data-image-load="view" 
     data-image-config='{ "type" : "inline", "reload" : true }' 
+    data-src-set='{
+      "max":"/assets/img/placeholder_epoch.png",
+      "1100":"/assets/img/placeholder_epoch.png",
+      "500":"/assets/img/placeholder_epoch.png"
+    }' 
+    data-alt="Highland mountains">
+    <noscript >
+      <img src="/assets/img/placeholder_epoch.png" alt="Placeholder" />
+    </noscript>
+  </div>
+
+  <h2>Bcakground Image Loading</h2>
+
+  <div class="ob_Image--background ob_Image lazyLoader" data-image-load="view" 
+    data-image-config='{ "type" : "background", "reload" : true }' 
     data-src-set='{
       "max":"/assets/img/placeholder_epoch.png",
       "1100":"/assets/img/placeholder_epoch.png",

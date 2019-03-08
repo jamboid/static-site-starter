@@ -1,4 +1,6 @@
 
+
+
 export class SmartImageFactory {
   constructor(observer) {
     this.subscribeToEvents();
@@ -14,7 +16,13 @@ export class SmartImageFactory {
   createNewSmartImageObjects(data) {
     const SMART_IMAGES = data.querySelectorAll(SEL_SMART_IMAGE);
     Array.prototype.forEach.call(SMART_IMAGES, element => {
-      const newSmartImage = new SmartImage(element, this.observer);
+      const imageType = JSON.parse(element.dataset.imageConfig).type;
+
+      if (imageType === "inline") {
+        let smartImage = new SmartInlineImage(element, imageObserver);
+      } else if (imageType === "background") {
+        let smartImage = new SmartBackgroundImage(element, imageObserver);
+      } 
     });
   }
 

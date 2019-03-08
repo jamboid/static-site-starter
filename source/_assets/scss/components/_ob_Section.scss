@@ -1,5 +1,7 @@
 // Content Section object
 
 .ob_Section {
-  
+  &--offScreen {
+    padding-top: 150vh;
+  }
 }
