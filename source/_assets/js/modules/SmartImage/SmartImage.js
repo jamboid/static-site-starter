@@ -93,6 +93,16 @@ export default class SmartImage {
   }
 
   /**
+   *
+   *
+   */
+  displayImage() {
+    // Stub that is implemented inheritors of this class:
+    // * SmartImageBackground
+    // * SmartImageInline
+  }
+
+  /**
   * Load and display a smart image - use this when being in view doesn't matter
   */
   loadImage() {

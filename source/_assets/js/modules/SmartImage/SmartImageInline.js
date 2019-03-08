@@ -15,6 +15,13 @@ import * as CONSTANTS from "Modules/SmartImage/constants";
 // Classes & Functions //
 /////////////////////////
 
+/**
+ *
+ *
+ * @export
+ * @class SmartImageInline
+ * @extends {SmartImage}
+ */
 export default class SmartImageInline extends SmartImage {
   constructor(element, observer) {
     super(element, observer);

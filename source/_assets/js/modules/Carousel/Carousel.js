@@ -2,9 +2,6 @@
 "use strict";
 
 
-import PubSub from "pubsub-js";
-import Events from "Modules/Events/Events";
-
 const selComponent = "[data-carousel=component]";
 
 /**

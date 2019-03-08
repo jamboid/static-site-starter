@@ -22,8 +22,8 @@ export default class GalleryIndex {
    * @param {*} el
    * @memberof GalleryIndex
    */
-  constructor(el) {
-    this.galleryIndexNode = el;
+  constructor(elem) {
+    this.galleryIndexNode = elem;
     this.indexNodes = this.galleryIndexNode.querySelectorAll(SEL_INDEX_NODE);
     this.currentPosition = 0;
     this.currentIndexNode = this.indexNodes.item(0);

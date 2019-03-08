@@ -15,6 +15,9 @@ export default function trackPageEvent (category, action, label, value) {
 
   // Tag Manager events
   if (typeof dataLayer !== 'undefined') {
+    
+    // Push event information to a generic GAEvent event set up in GTM
+    // Details can be found here: https://www.simoahava.com/analytics/create-a-generic-event-tag/
     dataLayer.push({
       'event': 'GAEvent',
       'eventCategory': THIS_CATEGORY,
@@ -23,8 +26,17 @@ export default function trackPageEvent (category, action, label, value) {
       'eventValue': THIS_VALUE
     });
 
-  } else { // TODO: Added fallbacks for UA and GA legacy scripts
-
+  } else if (typeof ga !== "undefined") {
+    
+    // Using Google Universal Analytics
+    ga("send", "event", thisCategory, thisAction, thisLabel);
+  
+  } else if (typeof _gaq !== "undefined") {
+  
+    // Using Asynchronous Analytics
+    _gaq.push(["_trackEvent", thisCategory, thisAction, thisLabel]);
+  
+  } else {
     // window.console.log("Page Event tracked");
     // window.console.log('Event Category:');
     // window.console.log(thisCategory);
@@ -35,6 +47,6 @@ export default function trackPageEvent (category, action, label, value) {
     // window.console.log('Event Value:');
     // window.console.log(thisValue);
 
-    window.console.log("Google Tag Manager not available");
+    window.console.log("Google Analytics is not available");
   }
 }
