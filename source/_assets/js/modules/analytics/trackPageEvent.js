@@ -47,6 +47,6 @@ export default function trackPageEvent (category, action, label, value) {
     // window.console.log('Event Value:');
     // window.console.log(thisValue);
 
-    window.console.log("Google Analytics is not available");
+    // window.console.log("Google Analytics is not available");
   }
 }

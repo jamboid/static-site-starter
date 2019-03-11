@@ -3,7 +3,10 @@
 // Imports //
 /////////////
 
+import PubSub from "pubsub-js";
+
 import MESSAGES from "Modules/Events/messages";
+import createCustomEvent from "Modules/Events/createCustomEvent";
 
 ///////////////
 // Constants //
@@ -11,6 +14,7 @@ import MESSAGES from "Modules/Events/messages";
 
 const SEL_INLINE_VIDEO_PLAYER = "[data-inline-video=player]";
 const CLASS_IS_PLAYING = "is_Playing";
+const CLASS_IS_PAUSED = "is_Paused"; 
 
 /////////////////////////
 // Classes & Functions //
@@ -27,11 +31,11 @@ export default class InlineVideo {
    * @param {node} element
    * @memberof InlineVideo
    */
-  constructor(element) {
+  constructor(element, videoObserver) {
     this.videoContainer = element;
     this.videoPlayer = this.videoContainer.querySelector(SEL_INLINE_VIDEO_PLAYER);
-    this.videoSource = this.videoPlayer.querySelector('source');
-    this.videoURL = this.videoSource.dataset.src;
+    this.videoSources = this.videoPlayer.querySelectorAll('source');
+    this.videoObserver = videoObserver;
 
     this.isLoaded = false;
     this.isPlaying = false;
@@ -39,13 +43,13 @@ export default class InlineVideo {
     this.isLoaded = false;
     this.userPause = false;
 
-    if (typeof (window.IntersectionObserver) !== 'undefined') {
-      videoObserver.observe(this.videoContainer);
-    }
+    this.videoObserver.observe(this.videoContainer);
 
     // Call initial methods
     this.bindCustomMessageEvents();
     this.subscribeToEvents();
+
+    this.videoContainer.classList.add(CLASS_IS_PAUSED);
   }
 
   /**
@@ -57,7 +61,12 @@ export default class InlineVideo {
     e.preventDefault();
 
     if (!this.isLoaded) {
-      this.videoPlayer.setAttribute("src", this.videoURL);
+      // Set src for each source
+      this.videoSources.forEach(currentValue => {
+        const videoURL = currentValue.dataset.src;
+        currentValue.setAttribute("src", videoURL);
+      });
+
       this.videoPlayer.load();
       this.isLoaded = true;
     }
@@ -70,9 +79,10 @@ export default class InlineVideo {
    */
   playVideo(e) {
     e.preventDefault();
-
+    this.videoPlayer.play();
     this.isPlaying = true;
     this.videoContainer.classList.add(CLASS_IS_PLAYING);
+    this.videoContainer.classList.remove(CLASS_IS_PAUSED);
   }
 
   /**
@@ -82,9 +92,10 @@ export default class InlineVideo {
    */
   pauseVideo(e) {
     e.preventDefault();
-
+    this.videoPlayer.pause();
     this.isPlaying = false;
     this.videoContainer.classList.remove(CLASS_IS_PLAYING);
+    this.videoContainer.classList.add(CLASS_IS_PAUSED);
   }
 
   /**
@@ -96,9 +107,9 @@ export default class InlineVideo {
     e.preventDefault();
 
     if (this.isPlaying) {
-      this.videoPlayer.pause();
+      this.pauseVideo(e);
     } else {
-      this.videoPlayer.play();
+      this.playVideo(e);
     }
   }
 
@@ -122,6 +133,8 @@ export default class InlineVideo {
    *
    */
   subscribeToEvents() {
-    
+    PubSub.subscribe(MESSAGES.stopMedia, () => {
+      this.videoContainer.dispatchEvent(createCustomEvent("pause"));
+    });
   }
 }

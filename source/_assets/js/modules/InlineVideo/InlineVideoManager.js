@@ -4,10 +4,10 @@
 // Imports //
 /////////////
 
-import PubSub from "pubsub-js";
+import "intersection-observer";
 
 import createDelegate from "Modules/Events/createDelegatedEventListener";
-//import createGlobal from "Modules/Events/createGlobalMessenger";
+import createCustomEvent from "Modules/Events/createCustomEvent";
 import InlineVideo from "Modules/InlineVideo/InlineVideo";
 
 ///////////////
@@ -47,7 +47,7 @@ function delegateEvents() {
 function initialiseVideoPlayers() {
   const inlineVideos = document.querySelectorAll(SEL_INLINE_VIDEO);
   inlineVideos.forEach(element => {
-    const newInlineVideo = new InlineVideo(element);
+    const newInlineVideo = new InlineVideo(element, videoObserver);
   });
 }
 
@@ -60,7 +60,7 @@ function initialiseVideoPlayers() {
 function handleIntersection(entries, observer) {
   entries.forEach(function (entry) {
     if (entry.intersectionRatio > 0) {
-      entry.target.dispatchEvent(Events.createCustomEvent("videoObservedInView"));
+      entry.target.dispatchEvent(createCustomEvent("videoObservedInView"));
     }
   });
 }

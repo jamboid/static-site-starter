@@ -1,4 +1,5 @@
 import delegate from "delegate";
+import createCustomEvent from "Modules/Events/createCustomEvent";
 
 /**
  * createDelegatedEventListener - Simple factory function to bind a common delegated event listener to the <body> element

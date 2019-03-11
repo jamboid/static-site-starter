@@ -13,7 +13,8 @@ const MESSAGES = {
   "breakChange": "breakpoint/change",
   "imageLoaded": "image/loaded",
   "modalOpened": "modal/opened",
-  "displayModal": "modal/display"
+  "displayModal": "modal/display",
+  "stopMedia" : "media/stop"
 }
 
 export default MESSAGES;

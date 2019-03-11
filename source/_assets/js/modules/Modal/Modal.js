@@ -3,6 +3,7 @@
 
 import PubSub from "pubsub-js";
 import createDelegate from "Modules/Events/createDelegatedEventListener";
+import createCustomEvent from "Modules/Events/createCustomEvent";
 import createGlobal from "Modules/Events/createGlobalMessenger";
 import MESSAGES from "Modules/Events/messages";
 import createNodeFromHTML from "Modules/Utilities/createNodeFromHTML";
@@ -169,7 +170,7 @@ class Modal {
     // });
 
     PubSub.subscribe(MESSAGES.imageLoaded, () => {
-      this.modal.dispatchEvent(Events.createCustomEvent("activateModal"));
+      this.modal.dispatchEvent(createCustomEvent("activateModal"));
     });
   }
 }

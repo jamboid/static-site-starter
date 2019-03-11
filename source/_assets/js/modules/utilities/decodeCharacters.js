@@ -7,8 +7,7 @@
  */
 export default function decodeCharacters(text) {
   let elem = document.createElement('textarea');
-  
   elem.innerHTML = text;
-  
+
   return elem.value;
 }
