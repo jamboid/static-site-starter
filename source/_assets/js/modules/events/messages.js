@@ -6,7 +6,7 @@
 const MESSAGES = {
   "resize": "page/resize",
   "scroll": "page/scroll",
-  "load": "page/load",
+  "load": "page/loaded",
   "contentChange": "page-content/change",
   "contentDisplayed": "page-content/displayed",
   "layoutChange": "layout/change",

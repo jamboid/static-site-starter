@@ -9,6 +9,7 @@ import SmartImageAPI from "Modules/SmartImage";
 import InlineVideoAPI from "Modules/InlineVideo";
 import NavigationAPI from "Modules/Navigation";
 import TabsAPI from "Modules/Tabs";
+import CarouselAPI from "Modules/Carousel";
 
 /**
  * initialiseComponentModules - call module init functions
@@ -22,6 +23,7 @@ function initialiseComponentModules() {
   ModalAPI.initialiseModals();
   TabsAPI.initialiseTabs();
   ShowhideAPI.initialiseShowhide();
+  CarouselAPI.initiliseCarousels();
 
   // Wrap tables in container to allow overflow scroll
   // This is a small enough bit of functionality to put on it's own here.

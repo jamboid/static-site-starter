@@ -4,8 +4,10 @@ import Carousel from "Modules/Carousel/Carousel";
  * Fader - Description
  * @extends Carousel
  */
-export class Fader extends Carousel {
+export default class Fader extends Carousel {
   constructor(element) {
     super(element);
   }
+
+  
 }
