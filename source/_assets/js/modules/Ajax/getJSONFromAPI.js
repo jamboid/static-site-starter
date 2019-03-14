@@ -3,8 +3,13 @@ import handleStatus from "Modules/Ajax/handleFetchResponseStatus";
 import handleContentType from "Modules/Ajax/handleFetchResponseContentType";
 import processData from "Modules/Ajax/processData";
 
-
-// Abstract Ajax Get function
+/**
+ * Abstract Ajax Get function
+ *
+ * @export
+ * @param {*} query
+ * @returns
+ */
 export function getJSON(query) {
   return window.fetch(query, {
     method: 'GET',
