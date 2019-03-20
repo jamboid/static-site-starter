@@ -5,11 +5,10 @@
  * @param {*} node
  * @returns
  */
-export default function indexOfNode(node) {
+export default function getIndexOfNode(node) {
   const CHILD = node;
   const PARENT = CHILD.parentNode;
   // The equivalent of parent.children.indexOf(child)
   const INDEX = Array.prototype.indexOf.call(PARENT.children, CHILD);
-
   return INDEX;
 }
