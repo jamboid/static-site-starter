@@ -14,6 +14,7 @@
   "author": "Jamie Boyd",
   "license": "ISC",
   "dependencies": {
+    "@wearegood/good-utilities": "^1.0.0",
     "debounce": "^1.2.0",
     "delegate": "^3.2.0",
     "imagesloaded": "^4.1.4",
@@ -31,7 +32,7 @@
     "concurrently": "^4.1.0",
     "copy-webpack-plugin": "^4.6.0",
     "css-loader": "^0.28.11",
-    "cssnano": "^4.1.7",
+    "cssnano": "^4.1.10",
     "eslint": "^5.9.0",
     "eslint-loader": "^2.1.1",
     "extract-loader": "^3.1.0",

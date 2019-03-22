@@ -6,9 +6,7 @@
 /////////////
 
 import PubSub from "pubsub-js";
-import createDelegate from "Modules/Events/createDelegatedEventListener";
-import collapseElement from "Modules/Utilities/collapseElement";
-import expandElement from "Modules/Utilities/expandElement";
+import { collapseElement, expandElement, createDelegatedEventListener } from "@wearegood/good-utilities";
 
 ///////////////
 // Constants //
@@ -99,7 +97,7 @@ class ShowHide {
  * @returns {type} Description
  */
 function delegateEvents() {
-  createDelegate("click", SEL_ACTION, "toggleShowHide");
+  createDelegatedEventListener("click", SEL_ACTION, "toggleShowHide");
 }
 
 /**

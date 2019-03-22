@@ -4,9 +4,9 @@
 // Imports //
 /////////////
 
-import MESSAGES from "Modules/Events/messages";
+import "swiped-events";
+import { messages as MESSAGES } from "@wearegood/good-utilities";
 import * as CONSTANTS from "Modules/Carousel/constants";
-import 'swiped-events';
 
 ///////////////
 // Constants //

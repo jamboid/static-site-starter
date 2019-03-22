@@ -5,11 +5,11 @@
 // Imports //
 /////////////
 
+import { createDelegatedEventListener } from "@wearegood/good-utilities";
+
 import Slider from "Modules/Carousel/Slider";
 import Fader from "Modules/Carousel/Fader";
-
 import * as CONSTANTS from "Modules/Carousel/constants";
-import createDelegate from "Modules/Events/createDelegatedEventListener";
 
 ///////////////
 // Constants //
@@ -40,7 +40,7 @@ function initialiseCarousels() {
 }
 
 function delegateEvents() {
-  createDelegate("click", CONSTANTS.EVENT_SEL_CAROUSEL_CONTROL, "controlInteraction");
+  createDelegatedEventListener("click", CONSTANTS.EVENT_SEL_CAROUSEL_CONTROL, "controlInteraction");
   
 }
 

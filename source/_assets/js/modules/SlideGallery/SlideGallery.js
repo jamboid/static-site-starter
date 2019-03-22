@@ -5,8 +5,8 @@
 /////////////
 
 import "intersection-observer";
+import { getIndexOfNode } from '@wearegood/good-utilities';
 
-import getIndexOfNode from 'Modules/Utilities/getIndexOfNode';
 import GalleryIndex from 'Modules/GalleryIndex';
 
 ///////////////

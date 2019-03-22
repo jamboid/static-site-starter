@@ -6,8 +6,7 @@
 
 import "intersection-observer";
 
-import createDelegate from "Modules/Events/createDelegatedEventListener";
-import createCustomEvent from "Modules/Events/createCustomEvent";
+import { createCustomEvent, createDelegatedEventListener } from "@wearegood/good-utilities";
 
 import SmartImage from "Modules/SmartImage/SmartImage";
 import SmartInlineImage from "Modules/SmartImage/SmartImageInline";
@@ -40,7 +39,7 @@ let imageObserver;
  * @returns {type} Description
  */
 function delegateEvents() {
-  createDelegate("click", SEL_CLICK_TO_LOAD_SMART_IMAGE, "siClickLoad");
+  createDelegatedEventListener("click", SEL_CLICK_TO_LOAD_SMART_IMAGE, "siClickLoad");
 }
 
 /**

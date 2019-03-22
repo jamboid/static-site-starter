@@ -2,11 +2,7 @@
 "use strict";
 
 import PubSub from "pubsub-js";
-import createDelegate from "Modules/Events/createDelegatedEventListener";
-import createCustomEvent from "Modules/Events/createCustomEvent";
-import createGlobal from "Modules/Events/createGlobalMessenger";
-import MESSAGES from "Modules/Events/messages";
-import createNodeFromHTML from "Modules/Utilities/createNodeFromHTML";
+import { createNodeFromHTML, createDelegatedEventListener, createCustomEvent, createGlobalMessenger as createGlobal,  messages as MESSAGES } from "@wearegood/good-utilities";
 
 import trackPageEvent from "Modules/Analytics/trackPageEvent";
 
@@ -258,8 +254,8 @@ class ModalLinkManager {
  * @returns {type} Description
  */
 function delegateEvents() {
-  createDelegate("click", SEL_MODAL_CLOSE, "closeModal");
-  createDelegate("click", SEL_MODAL_SCREEN, "closeModal");
+  createDelegatedEventListener("click", SEL_MODAL_CLOSE, "closeModal");
+  createDelegatedEventListener("click", SEL_MODAL_SCREEN, "closeModal");
   createGlobal("click", SEL_MODAL_LINK, MESSAGES.displayModal, true);
 }
 

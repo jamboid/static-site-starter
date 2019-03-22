@@ -5,8 +5,7 @@
 // mports //
 ////////////
 
-import createDelegate from "Modules/Events/createDelegatedEventListener";
-import getIndexOfNode from "Modules/Utilities/getIndexOfNode";
+import { getIndexOfNode, createDelegatedEventListener } from "@wearegood/good-utilities";
  
 ///////////////
 // Constants //
@@ -77,7 +76,7 @@ class TabbedContent {
  * @returns {type} Description
  */
 function delegateEvents() {
-  createDelegate("click", SEL_TAB_CONTROL_GLOBAL, "selectTab");
+  createDelegatedEventListener("click", SEL_TAB_CONTROL_GLOBAL, "selectTab");
 }
 
 /**

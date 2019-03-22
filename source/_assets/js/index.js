@@ -1,7 +1,6 @@
 "use strict";
 
-import wrapElement from "Modules/Utilities/wrapElement";
-import ready from "Modules/Utilities/ready";
+import { ready , wrapElement } from "@wearegood/good-utilities";
 
 import ShowhideAPI from "Modules/Showhide";
 import ModalAPI from "Modules/Modal";
@@ -23,7 +22,7 @@ function initialiseComponentModules() {
   ModalAPI.initialiseModals();
   TabsAPI.initialiseTabs();
   ShowhideAPI.initialiseShowhide();
-  CarouselAPI.initiliseCarousels();
+  //CarouselAPI.initiliseCarousels();
 
   // Wrap tables in container to allow overflow scroll
   // This is a small enough bit of functionality to put on it's own here.

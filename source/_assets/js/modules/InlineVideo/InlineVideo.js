@@ -5,8 +5,7 @@
 
 import PubSub from "pubsub-js";
 
-import MESSAGES from "Modules/Events/messages";
-import createCustomEvent from "Modules/Events/createCustomEvent";
+import { messages as MESSAGES, createCustomEvent } from "@wearegood/good-utilities";
 
 ///////////////
 // Constants //

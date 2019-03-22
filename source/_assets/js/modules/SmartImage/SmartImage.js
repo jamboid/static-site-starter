@@ -6,13 +6,12 @@
 import "intersection-observer";
 import PubSub from "pubsub-js";
 import imagesLoaded from "imagesloaded";
-import createCustomEvent from "Modules/Events/createCustomEvent";
+import { createCustomEvent, messages as MESSAGES } from "@wearegood/good-utilities";
 
 ///////////////
 // Constants //
 ///////////////
 
-import MESSAGES from "Modules/Events/messages";
 import * as CONSTANTS from "Modules/SmartImage/constants";
 
 /////////////////////////

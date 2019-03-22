@@ -4,7 +4,7 @@
 // Module Imports //
 ////////////////////
 
-import createDelegate from "Modules/Events/createDelegatedEventListener";
+import { createDelegatedEventListener } from "@wearegood/good-utilities";
 import MainNavToggle from "Modules/Navigation/MainNavToggle";
 
 //////////////////////
@@ -38,7 +38,7 @@ function initialiseMainNavigation() {
  * @returns {type} Description
  */
 function delegateEvents() {
-  createDelegate("click", SEL_MAIN_NAV_TOGGLE, "toggleMainNav");
+  createDelegatedEventListener("click", SEL_MAIN_NAV_TOGGLE, "toggleMainNav");
 }
 
 

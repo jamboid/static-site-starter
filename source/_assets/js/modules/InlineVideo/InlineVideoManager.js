@@ -5,9 +5,8 @@
 /////////////
 
 import "intersection-observer";
+import { createDelegatedEventListener, createCustomEvent } from "@wearegood/good-utilities";
 
-import createDelegate from "Modules/Events/createDelegatedEventListener";
-import createCustomEvent from "Modules/Events/createCustomEvent";
 import InlineVideo from "Modules/InlineVideo/InlineVideo";
 
 ///////////////
@@ -27,7 +26,7 @@ const OBSERVER_OPTIONS = {
 let videoObserver; 
 
 /////////////////////////
-// Classes & Functions //
+// Classes & Functions // 
 /////////////////////////
   
 
@@ -37,7 +36,7 @@ let videoObserver;
  * @returns {type} Description
  */
 function delegateEvents() {
-  createDelegate("click", SEL_INLINE_VIDEO_TOGGLE, "playbackToggled");
+  createDelegatedEventListener("click", SEL_INLINE_VIDEO_TOGGLE, "playbackToggled");
 }
 
 /**

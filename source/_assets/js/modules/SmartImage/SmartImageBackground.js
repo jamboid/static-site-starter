@@ -3,13 +3,13 @@
 /////////////
 
 import PubSub from "pubsub-js";
+import { messages as MESSAGES} from "@wearegood/good-utilities";
 import SmartImage from "Modules/SmartImage/SmartImage";
 
 ///////////////
 // Constants //
 ///////////////
 
-import MESSAGES from "Modules/Events/messages";
 import * as CONSTANTS from "Modules/SmartImage/constants";
 
 /////////////////////////
