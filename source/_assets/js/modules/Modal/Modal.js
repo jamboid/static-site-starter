@@ -2,9 +2,7 @@
 "use strict";
 
 import PubSub from "pubsub-js";
-import { createNodeFromHTML, createDelegatedEventListener, createCustomEvent, createGlobalMessenger as createGlobal,  messages as MESSAGES } from "@wearegood/good-utilities";
-
-import trackPageEvent from "Modules/Analytics/trackPageEvent";
+import { createNodeFromHTML, createDelegatedEventListener, createCustomEvent, createGlobalMessenger as createGlobal, messages as MESSAGES, trackPageEvent } from "@wearegood/good-utilities";
 
 const MODAL_TEMPLATE = `
   <div class="cp_Modal" aria-modal="true">
