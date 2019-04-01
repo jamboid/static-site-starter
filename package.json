@@ -14,7 +14,7 @@
   "author": "Jamie Boyd",
   "license": "MIT",
   "dependencies": {
-    "@wearegood/good-utilities": "^1.0.0",
+    "@wearegood/good-utilities": "^1.1.0",
     "debounce": "^1.2.0",
     "delegate": "^3.2.0",
     "imagesloaded": "^4.1.4",
@@ -24,10 +24,9 @@
   },
   "devDependencies": {
     "@11ty/eleventy": "^0.7.1",
+    "@babel/preset-env": "^7.4.2",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-es2015": "^6.24.1",
     "clean-webpack-plugin": "^1.0.1",
     "concurrently": "^4.1.0",
     "copy-webpack-plugin": "^4.6.0",
