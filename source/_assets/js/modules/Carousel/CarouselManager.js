@@ -37,8 +37,6 @@ function initialiseCarousels() {
       let fader = new Fader(element);
     }  
   });
-
-  delegateEvents();
 }
 
 
@@ -59,4 +57,5 @@ function delegateEvents() {
 export default function initCarousels() {
   // Find and initialise Show/Hide components using the ShowHide class
   initialiseCarousels();
+  delegateEvents();
 }

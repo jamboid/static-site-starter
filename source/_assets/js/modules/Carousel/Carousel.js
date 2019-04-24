@@ -5,8 +5,9 @@
 /////////////
 
 import "swiped-events";
-import { messages as MESSAGES } from "@wearegood/good-utilities";
+import { createCustomEvent, messages as MESSAGES } from "@wearegood/good-utilities";
 import * as CONSTANTS from "Modules/Carousel/constants";
+
 
 ///////////////
 // Constants //
@@ -63,6 +64,7 @@ export default class Carousel {
     this.moveWidth;
 
     this.subscribeToEvents();
+    this.bindCustomMessageEvents();
   }
 
   handleToggleCycleEvent(e) {
@@ -105,7 +107,9 @@ export default class Carousel {
    * @memberof Carousel
    */
   handleControlInteractionEvent(e) {
+    console.log(e.target);
     e.preventDefault();
+    
   }
 
     /**

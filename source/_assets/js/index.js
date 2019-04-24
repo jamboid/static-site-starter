@@ -22,7 +22,7 @@ function initialiseComponentModules() {
   ModalAPI.initialiseModals();
   TabsAPI.initialiseTabs();
   ShowhideAPI.initialiseShowhide();
-  //CarouselAPI.initiliseCarousels();
+  CarouselAPI.initialiseCarousels();
 
   // Wrap tables in container to allow overflow scroll
   // This is a small enough bit of functionality to put on it's own here.

@@ -1,1 +1,13 @@
 // Carousel object
+.ob_Carousel {
+  grid-column: span 12;
+
+  &__slides {
+    overflow: hidden;
+    width: 100%;
+  }
+
+  &__slide {
+    flex:0 0 100%;
+  }
+}
