@@ -37,11 +37,18 @@ function initialiseCarousels() {
       let fader = new Fader(element);
     }  
   });
+
+  delegateEvents();
 }
 
+
+/**
+ * Delegate global event listeners for carousel components
+ *
+ */
 function delegateEvents() {
   createDelegatedEventListener("click", CONSTANTS.EVENT_SEL_CAROUSEL_CONTROL, "controlInteraction");
-  
+  createDelegatedEventListener("click", CONSTANTS.EVENT_SEL_CAROUSEL_INDEX_ITEM, "indexInteraction");
 }
 
 /**
