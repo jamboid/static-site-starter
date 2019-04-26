@@ -67,11 +67,16 @@ export default class Carousel {
 
     this.subscribeToEvents();
     this.bindCustomMessageEvents(); 
-
     this.buildIndex();
     this.slideContainer.style.transitionDuration = this.transition + 'ms';
   }
 
+  /**
+   *
+   *
+   * @param {*} e
+   * @memberof Carousel
+   */
   handleToggleCycleEvent(e) {
     e.preventDefault();
 
@@ -112,8 +117,6 @@ export default class Carousel {
    */
   buildIndex() {
     if(this.carouselIndex) {
-      console.log('build index...');
-
       this.slides.forEach((currentValue, currentIndex, listObj) => {
         const INDEX_ITEM_TEMPLATE = `<a href="#" data-carousel="indexItem" data-index="${currentIndex}">${currentIndex}</a>`;
         const INDEX_ITEM_HTML = createNodeFromHTML(INDEX_ITEM_TEMPLATE).item(0);
