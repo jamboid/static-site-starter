@@ -9,8 +9,8 @@ export default class Slider extends Carousel {
     super(element);
   }
 
-  advanceCarousel(direction) { 
-    const INDEX_OF_TARGET_SLIDE = this.getIndexOfTargetSlide(direction);
+  advanceCarousel(index) { 
+    const INDEX_OF_TARGET_SLIDE = index;
     if (this.inTransition === false) {
 
       this.inTransition = true;

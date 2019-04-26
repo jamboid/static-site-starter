@@ -169,8 +169,8 @@ export default class Carousel {
    */
   handleControlInteractionEvent(e) {
     e.preventDefault();    
-    const DIRECTION = e.target.dataset.action;
-    this.advanceCarousel(DIRECTION);
+    const TARGET_INDEX = this.getIndexOfTargetSlide(e.target.dataset.action);
+    this.advanceCarousel(TARGET_INDEX);
   }
 
     /**
