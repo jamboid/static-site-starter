@@ -5,7 +5,7 @@
 /////////////
 
 import "swiped-events";
-import { createCustomEvent, messages as MESSAGES } from "@wearegood/good-utilities";
+import { createNodeFromHTML, createCustomEvent, messages as MESSAGES } from "@wearegood/good-utilities";
 import * as CONSTANTS from "Modules/Carousel/constants";
 
 
@@ -31,22 +31,24 @@ export default class Carousel {
    * @memberof Carousel
    */
   constructor(element) {
-    this.carouselElem = element;
+    this.carouselElem = element; 
     this.carouselID = this.carouselElem.getAttribute('id') || "unidentified";
+    this.slidesHolder = this.carouselElem.querySelector(CONSTANTS.SEL_CAROUSEL_SLIDES_HOLDER);    
     this.slideContainer = this.carouselElem.querySelector(CONSTANTS.SEL_CAROUSEL_SLIDE_CONTAINER);    
     this.slides = this.carouselElem.querySelectorAll(CONSTANTS.SEL_CAROUSEL_SLIDE); 
     this.numberOfSlides = this.slides.length;
+    this.carouselIndex = this.carouselElem.querySelector(CONSTANTS.SEL_CAROUSEL_INDEX); 
     this.tabs;
     this.config = JSON.parse(this.carouselElem.dataset.carouselConfig);
     this.interval = this.config.interval || 5000;
     this.mode = this.config.mode || "slider";
     this.transition = this.config.transition || 1000;
     this.autoplay = this.config.autoplay || false;
-    this.needToBuildTabs = this.config.buildTabs || false;
+    this.needToBuildTabs = this.config.buildTabs || false; 
     this.flexibleHeight = this.config.flexHeight || true;
     this.inGroup = this.config.inGroup || false;
     this.tellCurrent = this.config.tellCurrent || false;
-    this.currentSlide;
+    this.currentSlide = this.slides.item(0);
     this.nextSlide;
     this.firstSlide;
     this.lastSlide;
@@ -64,7 +66,10 @@ export default class Carousel {
     this.moveWidth;
 
     this.subscribeToEvents();
-    this.bindCustomMessageEvents();
+    this.bindCustomMessageEvents(); 
+
+    this.buildIndex();
+    this.slideContainer.style.transitionDuration = this.transition + 'ms';
   }
 
   handleToggleCycleEvent(e) {
@@ -99,7 +104,63 @@ export default class Carousel {
     this.autoplay = false;
     window.clearTimeout(cycleTimeout);
   }
-  
+
+  /**
+   *
+   *
+   * @memberof Carousel
+   */
+  buildIndex() {
+    if(this.carouselIndex) {
+      console.log('build index...');
+
+      this.slides.forEach((currentValue, currentIndex, listObj) => {
+        const INDEX_ITEM_TEMPLATE = `<a href="#" data-carousel="indexItem" data-index="${currentIndex}">${currentIndex}</a>`;
+        const INDEX_ITEM_HTML = createNodeFromHTML(INDEX_ITEM_TEMPLATE).item(0);
+        this.carouselIndex.appendChild(INDEX_ITEM_HTML);  
+      }); 
+    }
+  }
+
+  /**
+   *
+   *
+   * @memberof Carousel
+   */
+  setIndexToValue() {
+    
+  }
+
+  /**
+   *
+   *
+   * @param {*} direction
+   * @returns
+   * @memberof Carousel
+   */
+  getIndexOfTargetSlide(direction) {
+    const THIS_DIRECTION = direction;
+    let currentPos = Array.prototype.indexOf.call(this.slides, this.currentSlide);
+    let targetIndex;
+
+    // Set next slide based on direction
+    if (THIS_DIRECTION === "n") {
+      if (currentPos + 1 < this.numberOfSlides) {
+        targetIndex = currentPos + 1;
+      } else {
+        targetIndex = 0;
+      }
+    } else if (THIS_DIRECTION === "p") {
+      if (currentPos > 0) {
+        targetIndex = currentPos - 1;
+      } else {
+        targetIndex = this.slides.length -1;
+      }
+    }
+
+    return targetIndex;
+  }
+
   /**
    *
    *
@@ -107,9 +168,9 @@ export default class Carousel {
    * @memberof Carousel
    */
   handleControlInteractionEvent(e) {
-    console.log(e.target);
-    e.preventDefault();
-    
+    e.preventDefault();    
+    const DIRECTION = e.target.dataset.action;
+    this.advanceCarousel(DIRECTION);
   }
 
     /**
@@ -177,7 +238,7 @@ export default class Carousel {
    * @memberof Carousel
    */
   setLayout() {
-
+    
   }
 
   /**
