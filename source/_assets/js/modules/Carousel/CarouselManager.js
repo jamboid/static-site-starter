@@ -5,6 +5,7 @@
 // Imports //
 /////////////
 
+import "nodelist-foreach-polyfill";
 import { createDelegatedEventListener } from "@wearegood/good-utilities";
 
 import Slider from "Modules/Carousel/Slider";

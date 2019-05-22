@@ -5,6 +5,7 @@
 // Imports //
 /////////////
 
+import "nodelist-foreach-polyfill";
 import PubSub from "pubsub-js";
 import { collapseElement, expandElement, createDelegatedEventListener } from "@wearegood/good-utilities";
 

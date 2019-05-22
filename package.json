@@ -14,20 +14,22 @@
   "author": "Jamie Boyd",
   "license": "MIT",
   "dependencies": {
-    "@wearegood/good-utilities": "^1.1.0",
+    "@wearegood/good-utilities": "^1.2.3",
     "axios": "^0.18.0",
     "debounce": "^1.2.0",
     "delegate": "^3.2.0",
     "imagesloaded": "^4.1.4",
     "intersection-observer": "^0.5.1",
+    "nodelist-foreach-polyfill": "^1.2.0",
     "pubsub-js": "^1.7.0",
     "swiped-events": "^1.0.9"
   },
   "devDependencies": {
     "@11ty/eleventy": "^0.8.3",
+    "@babel/core": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.5",
+    "babel-loader": "^8.0.6",
+    "babel-preset-env": "^1.7.0",
     "clean-webpack-plugin": "^1.0.1",
     "concurrently": "^4.1.0",
     "copy-webpack-plugin": "^4.6.0",
@@ -41,7 +43,7 @@
     "postcss-loader": "^2.1.6",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.21.0",
-    "webpack": "^4.31.0",
+    "webpack": "^4.32.0",
     "webpack-cli": "^3.3.2",
     "webpack-notifier": "^1.7.0"
   }

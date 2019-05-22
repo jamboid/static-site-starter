@@ -4,6 +4,7 @@
 // Imports //
 /////////////
 
+import "nodelist-foreach-polyfill";
 import "swiped-events";
 import { createNodeFromHTML, createCustomEvent, messages as MESSAGES } from "@wearegood/good-utilities";
 import * as CONSTANTS from "Modules/Carousel/constants";

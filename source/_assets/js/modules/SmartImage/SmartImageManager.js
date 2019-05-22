@@ -4,8 +4,8 @@
 // Module Imports //
 //////////////////// 
 
+import "nodelist-foreach-polyfill";
 import "intersection-observer";
-
 import { createCustomEvent, createDelegatedEventListener } from "@wearegood/good-utilities";
 
 import SmartImage from "Modules/SmartImage/SmartImage";

@@ -5,7 +5,8 @@
 // mports //
 ////////////
 
-import { getIndexOfNode, createDelegatedEventListener } from "@wearegood/good-utilities";
+import "nodelist-foreach-polyfill";
+import { createDelegatedEventListener } from "@wearegood/good-utilities";
  
 ///////////////
 // Constants //

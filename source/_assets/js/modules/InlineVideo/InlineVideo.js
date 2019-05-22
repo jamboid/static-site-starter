@@ -3,8 +3,8 @@
 // Imports //
 /////////////
 
+import "nodelist-foreach-polyfill";
 import PubSub from "pubsub-js";
-
 import { messages as MESSAGES, createCustomEvent } from "@wearegood/good-utilities";
 
 ///////////////
