@@ -4,10 +4,11 @@
 /////////////
 // imports //
 /////////////
+import PubSub from "pubsub-js";
 
 import "nodelist-foreach-polyfill";
 import "smoothscroll-polyfill";
-import { createDelegatedEventListener, getIndexOfNode, getOffset, getOuterHeight } from "@wearegood/good-utilities";
+import { createDelegatedEventListener, createCustomEvent, getIndexOfNode, getOffset, getOuterHeight, messages as MESSAGES } from "@wearegood/good-utilities";
 
 ///////////////
 // Constants //
@@ -19,9 +20,12 @@ const SEL_TAB_COMPONENT = "[data-tabs=component]";
 const SEL_TAB_PANEL = "[data-tabs=panel]";
 const SEL_TAB_CONTROLS = "[data-tabs=tabs]";
 const SEL_TAB_CONTROL = "[data-tabs=link]";
-// const selTabControlCurrent = ".current[data-tabs=control]";
 const SEL_TAB_CONTROL_GLOBAL = "[data-tabs=component] [data-tabs=link]";
-// const selTabAdvance = "[data-tabs=advance]";
+
+const CLASS_CURRENT = "is_Current";
+const CLASS_STICKY = "is_Sticky";
+
+
 
 // TODO: Add functionality to dynamically create tab controls
 // const tabControlsContainerTemplate = `
@@ -51,8 +55,10 @@ class TabbedContent {
     this.tabPanels = this.component.querySelectorAll(SEL_TAB_PANEL);
     this.currentIndex = 0;
     this.currentTab;
+    this.pageHeader = document.querySelector(SEL_HEADER);
 
     this.bindCustomMessageEvents();
+    this.subscribeToEvents();
     this.setupTabs();
   }
 
@@ -63,43 +69,66 @@ class TabbedContent {
    */
   setupTabs() {
     if (this.config.sticky) {
-      this.tabControlsContainer.classList.add('is_Sticky');
-      // TODO: Add functionality to build tab controls dynamically
+      this.tabControlsContainer.classList.add(CLASS_STICKY);
+
+      // Set the sticky offset based on the header height
+      this.setStickyOffset();
+
     }
 
-    this.tabPanels.item(this.currentIndex).classList.add('is_Current');
-    this.tabControls.item(this.currentIndex).classList.add("is_Current");
+    this.tabPanels.item(this.currentIndex).classList.add(CLASS_CURRENT);
+    this.tabControls.item(this.currentIndex).classList.add(CLASS_CURRENT);
+  }
+
+  /**
+   * Get the height of the page's sticky header component
+   *
+   * @returns
+   * @memberof TabbedContent
+   */
+  getHeaderHeight() {
+    return getOuterHeight(this.pageHeader);
+  }
+
+  /**
+   * Set the offset for the sticky tabs, accounting for the page header
+   *
+   * @memberof TabbedContent
+   */
+  setStickyOffset() {
+    const HEADER_HEIGHT = this.getHeaderHeight();
+    console.log(HEADER_HEIGHT);
+    this.tabControlsContainer.style.top = HEADER_HEIGHT + 'px';
   }
 
   /**
    * Update the current tab based on user interaction
    *
    * @param {*} e
-   * @memberof TabbedContent
+   * @memberof TabbedContent 
    */
   updateCurrentTab(e) {
     e.preventDefault();
 
     const TARGET_INDEX = getIndexOfNode(event.target);
 
-    this.tabPanels.item(this.currentIndex).classList.remove("is_Current");
-    this.tabControls.item(this.currentIndex).classList.remove("is_Current");
-
-    this.tabPanels.item(TARGET_INDEX).classList.add("is_Current");
-    this.tabControls.item(TARGET_INDEX).classList.add("is_Current");
-
     // If the target index is not equal to the current index (i.e. the clicked tab isn't the current one )
     // update the tabbed content and scroll back to its start.
     if (TARGET_INDEX !== this.currentIndex) {
+
+      this.tabPanels.item(this.currentIndex).classList.remove(CLASS_CURRENT);
+      this.tabControls.item(this.currentIndex).classList.remove(CLASS_CURRENT);
+
+      this.tabPanels.item(TARGET_INDEX).classList.add(CLASS_CURRENT);
+      this.tabControls.item(TARGET_INDEX).classList.add(CLASS_CURRENT);
+
       this.currentIndex = TARGET_INDEX;
 
       if (this.config.sticky) {
-        const HEADER = document.querySelector(SEL_HEADER);
-        const HEADER_HEIGHT = getOuterHeight(HEADER);
-        this.tabControlsContainer.style.top = HEADER_HEIGHT;
+        this.setStickyOffset();
 
         const TOP_OFFSET = getOffset(this.component).top;
-        const SCROLL_OFFSET = TOP_OFFSET - HEADER_HEIGHT;
+        const SCROLL_OFFSET = TOP_OFFSET - this.getHeaderHeight();
 
         window.scroll({
           top: SCROLL_OFFSET,
@@ -111,12 +140,34 @@ class TabbedContent {
   }
 
   /**
+   *
+   *
+   * @memberof TabbedContent
+   */
+  updateLayout() {
+    console.log('updateLayout');
+    this.setStickyOffset();
+  }
+
+  /**
+   * Subscribes the component to global messages and sets the component's responses via internal custom events
+   *
+   * @memberof TabbedContent
+   */
+  subscribeToEvents() {
+    PubSub.subscribe(MESSAGES.resize, () => {
+      this.component.dispatchEvent(createCustomEvent("updateLayout"));
+    });
+  }
+
+  /**
    * Bind custom messages for this class
    *
    * @memberof TabbedContent
    */
   bindCustomMessageEvents() {
     this.component.addEventListener("selectTab", this.updateCurrentTab.bind(this));
+    this.component.addEventListener("updateLayout", this.updateLayout.bind(this));
   }
 }
 

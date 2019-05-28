@@ -1,6 +1,6 @@
 "use strict";
 
-import { ready , wrapElement } from "@wearegood/good-utilities";
+import { ready, wrapElement, bindGlobalResizeMessage } from "@wearegood/good-utilities";
 
 import ShowhideAPI from "Modules/Showhide";
 import ModalAPI from "Modules/Modal";
@@ -23,6 +23,8 @@ function initialiseComponentModules() {
   TabsAPI.initialiseTabs();
   ShowhideAPI.initialiseShowhide();
   CarouselAPI.initialiseCarousels();
+
+  bindGlobalResizeMessage();
 
   // Wrap tables in container to allow overflow scroll
   // This is a small enough bit of functionality to put on it's own here.
