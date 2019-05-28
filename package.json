@@ -14,7 +14,7 @@
   "author": "Jamie Boyd",
   "license": "MIT",
   "dependencies": {
-    "@wearegood/good-utilities": "^1.2.3",
+    "@wearegood/good-utilities": "^1.2.4",
     "axios": "^0.18.0",
     "debounce": "^1.2.0",
     "delegate": "^3.2.0",
