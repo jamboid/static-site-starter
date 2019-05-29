@@ -3,7 +3,8 @@ module.exports = function (api) {
 
   const presets = [
     ['@babel/preset-env', {
-      "useBuiltIns": "entry"
+      "useBuiltIns": "entry",
+      corejs: { version: 3, proposals: true }
     }]
   ];
   const plugins = [];
