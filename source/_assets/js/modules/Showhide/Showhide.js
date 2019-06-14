@@ -7,7 +7,7 @@
 
 import "nodelist-foreach-polyfill";
 import PubSub from "pubsub-js";
-import { collapseElement, expandElement, createDelegatedEventListener } from "@wearegood/good-utilities";
+import { collapseElement, expandElement, createDelegatedEventListener, messages as MESSAGES } from "@wearegood/good-utilities";
 
 ///////////////
 // Constants //
@@ -35,10 +35,10 @@ class ShowHide {
    */
   constructor(element) {
     // Set properties
-    this.element = element;
-    this.action = this.element.querySelectorAll(SEL_ACTION)[0];
-    this.content = this.element.querySelectorAll(SEL_CONTENT)[0];
-    this.config = this.element.getAttribute("data-showhide-config");
+    this.showhideElement = element;
+    this.action = this.showhideElement.querySelectorAll(SEL_ACTION)[0];
+    this.content = this.showhideElement.querySelectorAll(SEL_CONTENT)[0];
+    this.config = this.showhideElement.getAttribute("data-showhide-config");
     this.animate = this.config.animate || false;
     this.speed = this.config.speed || 200;
     this.startState = this.config.open || false;
@@ -56,15 +56,15 @@ class ShowHide {
   toggleControl(event) {
     event.preventDefault();
 
-    if (this.element.classList.contains(CLASS_DISPLAY)) {
+    if (this.showhideElement.classList.contains(CLASS_DISPLAY)) {
       collapseElement(this.content);
-      this.element.classList.remove(CLASS_DISPLAY);
+      this.showhideElement.classList.remove(CLASS_DISPLAY);
     } else {
       expandElement(this.content);
-      this.element.classList.add(CLASS_DISPLAY);
+      this.showhideElement.classList.add(CLASS_DISPLAY);
     }
 
-    PubSub.publish(Events.messages.contentChange);
+    PubSub.publish(MESSAGES.contentChange);
   }
 
   /**
@@ -75,7 +75,7 @@ class ShowHide {
   setStartState() {
     if (this.startState === true) {
       expandElement(this.content);
-      this.element.classList.add(CLASS_DISPLAY);
+      this.showhideElement.classList.add(CLASS_DISPLAY);
     }
   }
 
@@ -85,7 +85,7 @@ class ShowHide {
    * @returns {type} Description
    */
   bindCustomMessageEvents() {
-    this.element.addEventListener(
+    this.showhideElement.addEventListener(
       "toggleShowHide",
       this.toggleControl.bind(this)
     );
