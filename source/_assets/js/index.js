@@ -9,6 +9,7 @@ import InlineVideoAPI from "Modules/InlineVideo";
 import NavigationAPI from "Modules/Navigation";
 import TabsAPI from "Modules/Tabs";
 import CarouselAPI from "Modules/Carousel";
+import LoaderAPI from "Modules/Loader";
 
 /**
  * initialiseComponentModules - call module init functions
@@ -23,6 +24,7 @@ function initialiseComponentModules() {
   TabsAPI.initialiseTabs();
   ShowhideAPI.initialiseShowhide();
   CarouselAPI.initialiseCarousels();
+  LoaderAPI.initLoader();
 
   bindGlobalResizeMessage();
 
