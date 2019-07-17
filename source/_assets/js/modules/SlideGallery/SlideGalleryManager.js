@@ -5,6 +5,7 @@
 // Imports //
 /////////////
 
+import "nodelist-foreach-polyfill";
 import SlideGallery from "Modules/SlideGallery/SlideGallery";
 
 ///////////////

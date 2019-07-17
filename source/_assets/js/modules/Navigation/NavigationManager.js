@@ -4,6 +4,7 @@
 // Module Imports //
 ////////////////////
 
+import "nodelist-foreach-polyfill";
 import { createDelegatedEventListener } from "@wearegood/good-utilities";
 import MainNavToggle from "Modules/Navigation/MainNavToggle";
 

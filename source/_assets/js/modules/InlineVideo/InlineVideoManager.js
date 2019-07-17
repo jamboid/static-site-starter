@@ -4,6 +4,7 @@
 // Imports //
 /////////////
 
+import "nodelist-foreach-polyfill";
 import "intersection-observer";
 import { createDelegatedEventListener, createCustomEvent } from "@wearegood/good-utilities";
 

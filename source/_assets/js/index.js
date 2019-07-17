@@ -1,6 +1,6 @@
 "use strict";
 
-import { ready , wrapElement } from "@wearegood/good-utilities";
+import { ready, wrapElement, bindGlobalResizeMessage } from "@wearegood/good-utilities";
 
 import ShowhideAPI from "Modules/Showhide";
 import ModalAPI from "Modules/Modal";
@@ -9,6 +9,7 @@ import InlineVideoAPI from "Modules/InlineVideo";
 import NavigationAPI from "Modules/Navigation";
 import TabsAPI from "Modules/Tabs";
 import CarouselAPI from "Modules/Carousel";
+import LoaderAPI from "Modules/Loader";
 
 /**
  * initialiseComponentModules - call module init functions
@@ -23,6 +24,9 @@ function initialiseComponentModules() {
   TabsAPI.initialiseTabs();
   ShowhideAPI.initialiseShowhide();
   CarouselAPI.initialiseCarousels();
+  LoaderAPI.initLoader();
+
+  bindGlobalResizeMessage();
 
   // Wrap tables in container to allow overflow scroll
   // This is a small enough bit of functionality to put on it's own here.

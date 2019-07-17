@@ -5,8 +5,9 @@
 // Imports //
 /////////////
 
+import "nodelist-foreach-polyfill";
 import PubSub from "pubsub-js";
-import { collapseElement, expandElement, createDelegatedEventListener } from "@wearegood/good-utilities";
+import { collapseElement, expandElement, createDelegatedEventListener, messages as MESSAGES } from "@wearegood/good-utilities";
 
 ///////////////
 // Constants //
@@ -34,13 +35,15 @@ class ShowHide {
    */
   constructor(element) {
     // Set properties
-    this.element = element;
-    this.action = this.element.querySelectorAll(SEL_ACTION)[0];
-    this.content = this.element.querySelectorAll(SEL_CONTENT)[0];
-    this.config = this.element.getAttribute("data-showhide-config");
+    this.component = element;
+    this.action = this.component.querySelectorAll(SEL_ACTION)[0];
+    this.content = this.component.querySelectorAll(SEL_CONTENT)[0];
+    this.config = this.component.getAttribute("data-showhide-config");
     this.animate = this.config.animate || false;
     this.speed = this.config.speed || 200;
     this.startState = this.config.open || false;
+
+    this.expanded = false;
 
     // Call initial methods
     this.bindCustomMessageEvents();
@@ -55,15 +58,19 @@ class ShowHide {
   toggleControl(event) {
     event.preventDefault();
 
-    if (this.element.classList.contains(CLASS_DISPLAY)) {
+    if (this.expanded) {
       collapseElement(this.content);
-      this.element.classList.remove(CLASS_DISPLAY);
+      this.component.classList.remove(CLASS_DISPLAY);
+      this.content.setAttribute('aria-hidden','true');
+      this.expanded = false;
     } else {
       expandElement(this.content);
-      this.element.classList.add(CLASS_DISPLAY);
+      this.component.classList.add(CLASS_DISPLAY);
+      this.content.setAttribute('aria-hidden','false');
+      this.expanded = true;
     }
 
-    PubSub.publish(Events.messages.contentChange);
+    PubSub.publish(MESSAGES.contentChange);
   }
 
   /**
@@ -74,7 +81,11 @@ class ShowHide {
   setStartState() {
     if (this.startState === true) {
       expandElement(this.content);
-      this.element.classList.add(CLASS_DISPLAY);
+      this.component.classList.add(CLASS_DISPLAY);
+      this.content.setAttribute('aria-hidden','false');
+      this.expanded = true;
+    } else {
+      this.content.setAttribute('aria-hidden','true');
     }
   }
 
@@ -84,7 +95,7 @@ class ShowHide {
    * @returns {type} Description
    */
   bindCustomMessageEvents() {
-    this.element.addEventListener(
+    this.component.addEventListener(
       "toggleShowHide",
       this.toggleControl.bind(this)
     );
