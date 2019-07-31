@@ -48,6 +48,8 @@ export default class SmartImageBackground extends SmartImage {
     window.setTimeout(() => {
       this.smartImageElem.classList.add(CONSTANTS.IMAGE_DISPLAYED_CLASS);
       PubSub.publish(MESSAGES.contentChange);
+      PubSub.publish(MESSAGES.imageLoaded);
+      PubSub.publish(MESSAGES.layoutChange);
     }, 50);
 
     this.imageLoaded = true;

@@ -130,9 +130,6 @@ export default class SmartImage {
     } else {
       this.smartImageElem.classList.add(CONSTANTS.IMAGE_HIDDEN_CLASS);
     }
-
-    PubSub.publish(MESSAGES.imageLoaded);
-    PubSub.publish(MESSAGES.layoutChange);
   }
 
   /**

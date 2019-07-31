@@ -4,6 +4,7 @@
 
 import PubSub from "pubsub-js";
 import SmartImage from 'Modules/SmartImage/SmartImage';
+import {messages as MESSAGES} from "@wearegood/good-utilities";
 
 ///////////////
 // Constants //
@@ -80,7 +81,9 @@ export default class SmartImageInline extends SmartImage {
     // Need to allow browser a moment to process the addition of the image before displaying it
     window.setTimeout(() => {
       this.smartImageElem.classList.add(CONSTANTS.IMAGE_DISPLAYED_CLASS);
-      PubSub.publish("content/update");
+      PubSub.publish(MESSAGES.contentChange);
+      PubSub.publish(MESSAGES.imageLoaded);
+      PubSub.publish(MESSAGES.layoutChange);
     }, 50);
 
     this.imageLoaded = true;
