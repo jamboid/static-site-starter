@@ -17,6 +17,7 @@ const SEL_COMPONENT = "[data-showhide=component]";
 const SEL_ACTION = "[data-showhide=component] [data-showhide=toggle]";
 const SEL_CONTENT = "[data-showhide=content]";
 const CLASS_DISPLAY = "is_Open";
+const CLASS_HIDE = "is_Closed";
 
 /////////////////////////
 // Classes & Functions //
@@ -38,10 +39,10 @@ class ShowHide {
     this.component = element;
     this.action = this.component.querySelectorAll(SEL_ACTION)[0];
     this.content = this.component.querySelectorAll(SEL_CONTENT)[0];
-    this.config = this.component.getAttribute("data-showhide-config");
+    this.config = JSON.parse(this.component.getAttribute("data-showhide-config"));
     this.animate = this.config.animate || false;
-    this.speed = this.config.speed || 200;
     this.startState = this.config.open || false;
+    this.mode = this.config.mode || "css";
 
     this.expanded = false;
 
@@ -59,12 +60,18 @@ class ShowHide {
     event.preventDefault();
 
     if (this.expanded) {
-      collapseElement(this.content);
+      if(this.mode === 'js') {
+        collapseElement(this.content);
+      }
       this.component.classList.remove(CLASS_DISPLAY);
+      this.component.classList.add(CLASS_HIDE);
       this.content.setAttribute('aria-hidden','true');
       this.expanded = false;
     } else {
-      expandElement(this.content);
+      if(this.mode === 'js') {
+        expandElement(this.content);
+      }
+      this.component.classList.remove(CLASS_HIDE);
       this.component.classList.add(CLASS_DISPLAY);
       this.content.setAttribute('aria-hidden','false');
       this.expanded = true;
@@ -79,12 +86,14 @@ class ShowHide {
    * @returns {type} Description
    */
   setStartState() {
+    // Add inline CSS for transition time
     if (this.startState === true) {
-      expandElement(this.content);
+      //expandElement(this.content);
       this.component.classList.add(CLASS_DISPLAY);
       this.content.setAttribute('aria-hidden','false');
       this.expanded = true;
     } else {
+      this.component.classList.add(CLASS_HIDE);
       this.content.setAttribute('aria-hidden','true');
     }
   }
