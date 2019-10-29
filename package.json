@@ -14,7 +14,7 @@
   "author": "Jamie Boyd",
   "license": "MIT",
   "dependencies": {
-    "@wearegood/good-utilities": "^1.2.6",
+    "@wearegood/good-utilities": "^1.2.7",
     "debounce": "^1.2.0",
     "delegate": "^3.2.0",
     "imagesloaded": "^4.1.4",
@@ -26,25 +26,25 @@
   },
   "devDependencies": {
     "@11ty/eleventy": "^0.8.3",
-    "@babel/core": "^7.4.4",
-    "@babel/preset-env": "^7.4.4",
+    "@babel/core": "^7.6.4",
+    "@babel/preset-env": "^7.6.3",
     "babel-loader": "^8.0.6",
     "babel-preset-env": "^1.7.0",
     "clean-webpack-plugin": "^1.0.1",
-    "concurrently": "^4.1.0",
+    "concurrently": "^4.1.2",
     "copy-webpack-plugin": "^4.6.0",
     "css-loader": "^0.28.11",
     "cssnano": "^4.1.10",
     "eslint": "^5.16.0",
-    "eslint-loader": "^2.1.2",
+    "eslint-loader": "^2.2.1",
     "extract-loader": "^3.1.0",
     "file-loader": "^2.0.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.0",
     "postcss-loader": "^2.1.6",
-    "sass-loader": "^7.1.0",
+    "sass-loader": "^7.3.1",
     "style-loader": "^0.21.0",
-    "webpack": "^4.32.0",
-    "webpack-cli": "^3.3.2",
-    "webpack-notifier": "^1.7.0"
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.9",
+    "webpack-notifier": "^1.8.0"
   }
 }

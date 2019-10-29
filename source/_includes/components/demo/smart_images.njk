@@ -1,3 +1,30 @@
+
+<div class="ob_Section--1col ob_Section">
+  <div class="ob_Section__inner">
+    <h2 class="ob_Section__title">HTML Img srcset Demo</h2>
+    <figure class="ob_Image">
+    <img srcset="/assets/img/placeholder_480.png 480w,
+             /assets/img/placeholder_600.png 600w,
+             /assets/img/placeholder_1000.png 1000w"
+     sizes="(max-width: 480px) 440px,
+            (max-width: 600px) 560px,
+            1000px" 
+     src="/assets/img/placeholder_480.png" alt="Alt text for img" />
+     </figure>
+  </div>
+
+   <div class="ob_Section__inner">
+    <h2 class="ob_Section__title">HTML Picture Demo</h2>
+    <picture class="ob_Image"> 
+      <source srcset="/assets/img/placeholder_480.png"
+          media="(max-width: 400px)">
+      <source srcset="/assets/img/placeholder_600.png"
+          media="(max-width: 680px)">
+      <img src="/assets/img/placeholder_1000.png" alt="alt text" /> 
+    </picture>
+  </div>
+</div>
+
 <div class="ob_Section--2col ob_Section">
   <div class="ob_Section__inner">
     <h2 class="ob_Section__title">Inline Image Loading</h2>

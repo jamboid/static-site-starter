@@ -10,6 +10,7 @@ import NavigationAPI from "Modules/Navigation";
 import TabsAPI from "Modules/Tabs";
 import CarouselAPI from "Modules/Carousel";
 import LoaderAPI from "Modules/Loader";
+import GridAPI from "Modules/Grid";
  
 /**
  * initialiseComponentModules - call module init functions
@@ -25,6 +26,7 @@ function initialiseComponentModules() {
   ShowhideAPI.initialiseShowhide();
   CarouselAPI.initialiseCarousels();
   LoaderAPI.initLoader();
+  GridAPI.initGrids();
 
   bindGlobalResizeMessage();
 
