@@ -1,26 +1,21 @@
-
 <div class="ob_Section--1col ob_Section">
   <div class="ob_Section__inner">
     <h2 class="ob_Section__title">HTML Img srcset Demo</h2>
     <figure class="ob_Image">
-    <img srcset="/assets/img/placeholder_480.png 480w,
-             /assets/img/placeholder_600.png 600w,
-             /assets/img/placeholder_1000.png 1000w"
-     sizes="(max-width: 480px) 440px,
-            (max-width: 600px) 560px,
-            1000px" 
-     src="/assets/img/placeholder_480.png" alt="Alt text for img" />
-     </figure>
+      <img srcset="/assets/img/placeholder_480.png 480w,
+                      /assets/img/placeholder_600.png 600w,
+                      /assets/img/placeholder_1000.png 1000w" sizes="(max-width: 480px) 440px,
+                      (max-width: 600px) 560px,
+                      1000px" src="/assets/img/placeholder_480.png" alt="Alt text for img"/>
+    </figure>
   </div>
 
-   <div class="ob_Section__inner">
+  <div class="ob_Section__inner">
     <h2 class="ob_Section__title">HTML Picture Demo</h2>
-    <picture class="ob_Image"> 
-      <source srcset="/assets/img/placeholder_480.png"
-          media="(max-width: 400px)">
-      <source srcset="/assets/img/placeholder_600.png"
-          media="(max-width: 680px)">
-      <img src="/assets/img/placeholder_1000.png" alt="alt text" /> 
+    <picture class="ob_Image">
+      <source srcset="/assets/img/placeholder_480.png" media="(max-width: 400px)">
+      <source srcset="/assets/img/placeholder_600.png" media="(max-width: 680px)">
+      <img src="/assets/img/placeholder_1000.png" alt="alt text"/>
     </picture>
   </div>
 </div>
@@ -29,16 +24,13 @@
   <div class="ob_Section__inner">
     <h2 class="ob_Section__title">Inline Image Loading</h2>
 
-    <div class="ob_Image lazyLoader" data-image-load="view" 
-      data-image-config='{ "type" : "inline", "reload" : true }' 
-      data-src-set='{
-        "max":"/assets/img/placeholder_epoch.png",
-        "1100":"/assets/img/placeholder_epoch.png",
-        "500":"/assets/img/placeholder_epoch.png"
-      }' 
-      data-alt="Highland mountains">
-      <noscript >
-        <img src="/assets/img/placeholder_epoch.png" alt="Placeholder" />
+    <div class="ob_Image lazyLoader" data-image-load="view" data-image-config='{ "type" : "inline", "reload" : true }' data-src-set='{
+              "max":"/assets/img/placeholder_epoch.png",
+              "1100":"/assets/img/placeholder_epoch.png",
+              "500":"/assets/img/placeholder_epoch.png"
+            }' data-alt="Highland mountains">
+      <noscript>
+        <img src="/assets/img/placeholder_epoch.png" alt="Placeholder"/>
       </noscript>
     </div>
   </div>
@@ -46,16 +38,13 @@
   <div class="ob_Section__inner">
     <h2 class="ob_Section__title">Background Image Loading</h2>
 
-    <div class="ob_Image--background ob_Image lazyLoader" data-image-load="view" 
-      data-image-config='{ "type" : "background", "reload" : true }' 
-      data-src-set='{
-        "max":"/assets/img/placeholder_epoch.png",
-        "1100":"/assets/img/placeholder_epoch.png",
-        "500":"/assets/img/placeholder_epoch.png"
-      }' 
-      data-alt="Highland mountains">
-      <noscript >
-        <img src="/assets/img/placeholder_epoch.png" alt="Placeholder" />
+    <div class="ob_Image--background ob_Image lazyLoader" data-image-load="view" data-image-config='{ "type" : "background", "reload" : true }' data-src-set='{
+              "max":"/assets/img/placeholder_epoch.png",
+              "1100":"/assets/img/placeholder_epoch.png",
+              "500":"/assets/img/placeholder_epoch.png"
+            }' data-alt="Highland mountains">
+      <noscript>
+        <img src="/assets/img/placeholder_epoch.png" alt="Placeholder"/>
       </noscript>
     </div>
   </div>
