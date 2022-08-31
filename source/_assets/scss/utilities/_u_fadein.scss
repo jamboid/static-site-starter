@@ -1,0 +1,15 @@
+.u_fadein {
+  --fade-delay:1s;
+  opacity: 0;
+  
+  &.is_Seen { 
+    opacity: 1;
+    transition:opacity var(--dt-trans-very-long);
+    transition-delay:var(--fade-delay);
+  }
+
+  @media (prefers-reduced-motion) {
+    --fade-delay:0s;
+    opacity: 1;
+  } 
+}

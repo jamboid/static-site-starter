@@ -11,5 +11,5 @@
 }
 
 @mixin standardShadow {
-  box-shadow:0 4px 7px  rgba($clrBlack,0.1);  
+  box-shadow:0 4px 7px  rgba(var(--dt-clr-grey-000),0.1);  
 }

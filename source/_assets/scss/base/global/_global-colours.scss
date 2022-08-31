@@ -40,15 +40,16 @@ $clrNone: none;
 $clrInvsibile: rgba(0,0,0,0);
 
 /* ! Black to White */
+$clrAbBlack:#000000;
 $clrBlack: #050302;
 $clrDarkGrey: #1a1a1a;
 $clrMurkyGrey:#53565A;
 $clrGrey: #4d4d4d;
-$clrLightGrey: #969696;
+$clrLightGrey: #707070;
 $clrPalerShadeOfGrey:#B4B4B4;
 $clrVeryLightGrey:#D8D8D9;
-$clrPaleGrey: #e6e6e6;
-$clrOffWhite:#F7F7F7;
+$clrPaleGrey: #EAEAEA;
+$clrOffWhite:#f2f2f2;
 $clrWhite: #fff;
 
 $clrYellow:#FFBB24;
@@ -61,8 +62,12 @@ $clrDarkGreen:#00959b;
 $clrBrightBlue:#4995EE;
 $clrLightBlue:#53a5ce;
 $clrKindOfBlue:#163A59;
-$clrBlue:#003B5C;
+$clrBlue:rgb(0, 107, 168);
 $clrDarkBlue:#203244;
+
+$clrProtoBlue:#007FEB;
+$clrProtoLightBlue:#BCE0FD;
+$clrProtoVeryLightBlue:#F1F9FF;
 
 $clrLightRed:#FFF0F4;
 $clrRed:#ee495b;

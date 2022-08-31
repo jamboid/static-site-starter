@@ -1,0 +1,25 @@
+.b_pageHeader {
+  background:var(--header-back, transparent);
+  color:var(--dt-clr-theme-foreground-dark);
+  box-shadow:var(--header-shadow, none);
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 100;
+  transition:all var(--dt-trans-long);
+
+  &__inner {
+    --wrapper-width: #{rem(1345)};
+    gap:var(--dt-size-m);
+    padding-block: var(--header-spacing, var(--dt-size-s-l));
+    justify-content: space-between;
+    align-items: center;
+    transition:all var(--dt-trans-long);
+  }
+}
+
+.down_Page {
+  --header-spacing: var(--dt-size-xs-s);
+  --header-back:var(--dt-clr-theme-background-dark);
+  --header-shadow:var(--dt-clr-shadow-large);
+}

@@ -1,0 +1,7 @@
+*:is(.u_flow) {
+  --flow-space: 1.5rem;
+
+  > * + * {  
+    margin-block-start:var(--flow-space,1.5rem);
+  }
+}

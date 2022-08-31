@@ -1,0 +1,36 @@
+.b_tabs {
+  &__controls {
+    --spacing-top:var(--dt-size-m-l);
+    --spacing-bottom:0;
+    
+    background:var(--dt-clr-grey-200);
+    
+  }
+
+  &__list {
+    gap:var(--dt-size-m);
+    align-items: stretch;
+  }
+
+  &__tab {
+    color:var(--dt-clr-theme-foreground-dark);
+    text-decoration: none; 
+    padding:var(--dt-size-s) var(--dt-size-m);
+    display: block;
+    background:var(--dt-clr-grey-700);
+    border-radius:var(--dt-border-rad-small) var(--dt-border-rad-small) 0 0;
+
+    &.is_Current {
+      background:var(--dt-clr-grey-1000);
+      color:var(--dt-clr-grey-300);
+    }
+  }
+
+  &__panel {
+    display: none;
+
+    &.is_Current {
+      display: block;
+    }
+  }
+}

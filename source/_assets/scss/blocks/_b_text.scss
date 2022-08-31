@@ -1,0 +1,28 @@
+.b_text {
+  $self: &;
+
+  --measure-width:#{rem(930)};
+
+  &__inner {
+    text-align: center;
+  }
+
+  &__icon {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__actions {
+    --flow-space:var(--dt-size-l-xl);
+  }
+
+  &--major {
+    --measure-width:min(1000px,50ch);
+  }
+
+  &--standout {
+    #{ $self }__inner {
+      --flow-space:var(--dt-size-l-xl);
+    }
+  }
+}

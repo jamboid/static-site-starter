@@ -1,0 +1,10 @@
+.u_pseudo {
+  position: relative;
+
+  &:before,
+  &:after {
+    content:"";
+    display: block;
+    position: absolute;
+  }
+}

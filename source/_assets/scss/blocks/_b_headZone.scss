@@ -1,0 +1,15 @@
+.b_headZone {
+  --headzone-height:max(25vh,200px);
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  width:100%;
+  height:var(--headzone-height);
+  z-index: -10;
+  opacity: 0;
+
+  @include mq($bpLarge) {
+    --headzone-height:2px;
+  }
+}

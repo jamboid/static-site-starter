@@ -1,0 +1,10 @@
+.b_pageFooter {
+  background:var(--dt-clr-theme-background-alt-dark);
+  color:var(--dt-clr-theme-foreground-dark);
+
+  &__inner {
+    --spacing-top:var(--dt-size-xl);
+    --spacing-bottom:var(--dt-size-m);
+    height:min(30vw,500px);
+  }
+}

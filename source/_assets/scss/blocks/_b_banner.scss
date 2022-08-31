@@ -1,0 +1,49 @@
+.b_banner {
+  display: grid;
+  align-items: stretch;
+  
+
+  &__image,
+  &__details {
+    grid-column: 1;
+    grid-row:1;
+    max-height:100vh;
+  }
+
+  &__image {
+
+  }
+
+  &__details {
+    text-align: center;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+    gap:var(--dt-size-m-l);
+    padding-block-start:var(--space-divider);
+
+    span:not([class*=b_stroke]) {
+      display: block;
+      position: relative;
+      z-index: 12;
+    }
+
+    strong {
+      font-weight: inherit;
+    }
+  }
+
+  &__text {
+    grid-row:1;
+    
+  }
+
+  &__actions {
+    
+    grid-row:2;
+    align-self: end;
+    justify-self: center;
+    padding-block:var(--dt-size-l-xl);
+  }
+}

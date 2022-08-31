@@ -1,0 +1,12 @@
+.u_measure {
+  > * {
+    max-width:var(--measure-width,70ch);
+    margin-inline-end: auto;
+  }
+
+  &--centre {
+    > * {
+      margin-inline-start: auto;
+    }
+  }
+}

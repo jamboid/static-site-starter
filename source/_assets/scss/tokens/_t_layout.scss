@@ -1,0 +1,44 @@
+$size-xs: 10px;
+$size-s: 20px;
+$size-m: 30px;
+$size-l: 40px;
+$size-xl: 64px;
+$size-xxl: 120px;
+$size-xxxl: 150px;
+
+:root {
+  // Static Sizes
+  --dt-size-xs:#{$size-xs};
+  --dt-size-s:#{$size-s};
+  --dt-size-m:#{$size-m};
+  --dt-size-l:#{$size-l};
+  --dt-size-xl:#{$size-xl};
+
+  // Dynamic Sizes
+  --dt-size-xs-s: #{clamped($size-xs,$size-s)}; 
+  --dt-size-xs-l: #{clamped($size-xs,$size-l)};
+  --dt-size-s-m:#{clamped($size-s,$size-m)};
+  --dt-size-s-l:#{clamped($size-s,$size-l)};
+  --dt-size-m-l:#{clamped($size-m,$size-l)};  
+  --dt-size-l-xl:#{clamped($size-l,$size-xl)}; 
+  --dt-size-m-xxl:#{clamped($size-m,$size-xxl)}; 
+  --dt-size-l-xxxl:#{clamped($size-l,$size-xxxl)}; 
+
+  --dt-border-rad-normal: var(--dt-size-s);
+  --dt-border-rad-small: calc(var(--dt-size-s)/2);
+
+  --dt-size-page-spacing:var(--dt-size-s-l);
+  --dt-size-page-gutter:var(--dt-size-s-l);
+
+  --dt-size-icon-large:var(--dt-size-s-l);
+
+  --dt-shadow-double-light:0px 0px 0px 2px var(var(--dt-clr-grey-1000)), 0px 0px 0px 4px var(--dt-clr-grey-800);
+  --dt-shadow-subtle:0px 2px 10px rgba(0,0,0,0.15), 0px 1px 5px rgba(0,0,0,0.15);
+
+  --dt-shadow-card:0px 0px 3px rgba(0, 0, 0, 0.15), 0px 6px 15px rgba(0, 0, 0, 0.1);
+
+  --divider-height: #{clamped(40px,120px)};
+  --space-default:calc(0.6 * var(--divider-height));
+  --space-divider:calc(1.6 * var(--divider-height));
+  --space-tall:calc(1 * var(--divider-height));
+}

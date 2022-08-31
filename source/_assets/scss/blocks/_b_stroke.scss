@@ -1,0 +1,78 @@
+.b_stroke {
+  $self: &;
+
+  display: inline-block;
+  position: relative;
+  z-index: 10;
+
+  &__mark {
+    position: absolute;
+    display: block;
+    background-position: center;
+    background-repeat:no-repeat;
+    background-size:contain;
+    z-index: -9;
+    transform:translate(var(--xOffset),var(--yOffset));
+    width:var(--stroke-width);
+    height:var(--stroke-height);
+    transition: clip-path var(--dt-trans-very-long);
+    transition-delay:var(--stroke-delay,0.3s);
+    clip-path: var(--stroke-clip);
+  }
+
+  &--one {
+    --xOffset:-2%;
+    --yOffset:15%;
+    --stroke-width:104%;
+    --stroke-height:auto;
+
+    #{ $self }__mark {
+      aspect-ratio: 13.04 / 1;
+      background-image:var(--stroke-sprite, url(../img/res_esg_stroke_1.png));
+      height: auto;
+      bottom:0;
+      left: 0;
+      --stroke-clip:inset(0 100% 0 0);
+    }
+  }
+
+  &--burst {
+    --xOffset:62%;
+    --yOffset:-68%;
+    --stroke-width:80px;
+    --stroke-height:90px;
+
+
+    #{ $self }__mark {
+      aspect-ratio: 1.61 / 1.9;
+      background-image:var(--stroke-sprite, url(../img/STARBURST.png));
+      top:0;
+      right: 0;
+    }
+
+    @include mq($bpXLarge) {
+      --stroke-width:calc(max(40px,#{vw(80,$bpXLarge)}));
+      --stroke-height:calc(max(45px,#{vw(90,$bpXLarge)}));
+    }
+  }
+
+  &--large {
+    --xOffset:-10%;
+    --yOffset:40%;
+    --stroke-width:120%;    
+  }
+
+  &--body {
+    --yOffset:60%;
+  }
+
+  &--delay {
+    --stroke-delay:1.5s;
+  }
+
+  &.is_Seen {
+    #{ $self }__mark {
+      --stroke-clip:inset(0 0 0 0);
+    }
+  }
+}

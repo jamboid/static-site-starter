@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&family=Inter:wght@200..700&display=swap');
+
+:root {
+  --dt-fontFamily-body:roboto, sans-serif; 
+  //--dt-fontFamily-display:din-condensed, sans-serif;
+  --dt-fontFamily-display:roboto, sans-serif;
+  //--dt-fontFamily-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  --dt-fontFamily-code: 'Fira Code', monospace;
+
+  --dt-font-size-1200: #{clamped(48px,60px)};  
+  --dt-font-size-1100: #{clamped(28px,40px)};
+  
+  --dt-font-size-1000: #{clamped(28px,40px)};
+  --dt-font-size-900: #{clamped(24px,36px)};
+  --dt-font-size-800: #{clamped(20px,24px)};
+  --dt-font-size-700: #{rem(18)};
+  --dt-font-size-500: #{clamped(20px,24px)};
+  --dt-font-size-400: #{clamped(17px,20px)}; 
+  --dt-font-size-300: #{clamped(16px,18px)};
+  --dt-font-size-200: #{rem(11)};
+
+  --dt-font-weight-light:300;
+  --dt-font-weight-normal:400;
+  --dt-font-weight-bold:700;
+
+  --dt-font-default: var(--dt-fontFamily-body);
+
+  
+  --dt-text-1200: var(--dt-font-weight-light) var(--dt-font-size-1200)/1.333 var(--dt-fontFamily-display);
+  --dt-text-1100: var(--dt-font-weight-light) var(--dt-font-size-1100)/1.15 var(--dt-fontFamily-display);
+  --dt-text-1000: var(--dt-font-weight-light) var(--dt-font-size-1000)/1.15 var(--dt-fontFamily-display);
+
+  --dt-text-900: var(--dt-font-weight-light) var(--dt-font-size-900)/1.3 var(--dt-fontFamily-body);
+
+  --dt-text-800: var(--dt-font-weight-bold) var(--dt-font-size-800)/1 var(--dt-fontFamily-body);
+  --dt-text-700: var(--dt-font-weight-bold) var(--dt-font-size-700)/1 var(--dt-fontFamily-body);
+  --dt-text-500: var(--dt-font-weight-light) var(--dt-font-size-500)/1.4 var(--dt-fontFamily-body);
+  --dt-text-400: var(--dt-font-weight-light) var(--dt-font-size-400)/1.4 var(--dt-fontFamily-body);
+  --dt-text-300: var(--dt-font-weight-normal) var(--dt-font-size-300)/1.4 var(--dt-fontFamily-body);
+  
+  --dt-text-code-300: 700 var(--dt-font-size-300)/1 var(--dt-fontFamily-code);
+  --dt-text-code-200: 700 var(--dt-font-size-200)/1 var(--dt-fontFamily-code);
+
+  --dt-kerning-display:0px;
+  --dt-kerning-body:0px;
+}

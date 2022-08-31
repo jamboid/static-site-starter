@@ -12,52 +12,37 @@ The following Tools are required to process this Sass framework correctly:
 * Sass 3.3
 * Autoprefixer
 
-*/
+*/ 
 
 // Variable for using modern/legacy throughout Sass files
 $legacy: false;
 
 /* Framework - Variables, Mixins, Functions, Resets, Placeholders */
 @import "base/all";
+@import "reset/all";
+@import "global/all"; 
+@import "functions/all";
+@import "utilities/all";
+@import "tokens/all";
 
-@import "components/base-content"; 
-@import "components/base-links";
-@import "components/base-forms";
 
-/* !== Layout */
-@import "components/base-layout-flex";
-@import "components/base-layout-grid";
+@import "blocks/b_page";
+@import "blocks/b_headZone";
+@import "blocks/b_wrapper";
+@import "blocks/b_pageHeader";
+@import "blocks/b_pageLogo";
+@import "blocks/b_pageTitle";
+@import "blocks/b_pageFooter";
+@import "blocks/b_section";
+@import "blocks/b_text";
+@import "blocks/b_image";
+@import "blocks/b_media";
+@import "blocks/b_banner";
+@import "blocks/b_gridList";
+@import "blocks/b_promo";
+@import "blocks/b_button";
+@import "blocks/b_stroke"; 
 
-/* !== Global Rules */
-@import "components/base-document";
 
-/* !== Typography */
-@import "components/base-typography";
-@import "components/base-typography-headings";
- 
-// Objects
-@import "components/ob_Media";
-@import "components/ob_Section"; 
-@import "components/ob_CardsList";
-@import "components/ob_Card";
-@import "components/ob_Button"; 
-@import "components/ob_Tabs";
-@import "components/ob_Table";
-@import "components/ob_PageSection";
-@import "components/ob_Promo";
-@import "components/ob_Image";
-@import "components/ob_Carousel";
-
-@import "components/tx_Prose"; 
-
-@import "components/cp_Brand";
-@import "components/cp_NavToggle";
-@import "components/cp_MainNav";
-
-@import "components/cp_PageTitle";
-
-@import "components/cp_Text";
-@import "components/cp_SimpleImage"; 
-@import "components/cp_VideoOverlay";
 
 

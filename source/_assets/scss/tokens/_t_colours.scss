@@ -1,0 +1,45 @@
+:root {
+  --dt-clr-grey-000: #000;
+  //--dt-clr-grey-100: #3c3c44;
+  --dt-clr-grey-100: #2E2D2D;
+  --dt-clr-grey-200: #45454b;
+  --dt-clr-grey-600: #707070;
+  --dt-clr-grey-700: #9D9D9D;
+  --dt-clr-grey-800: #EDEDED;
+  --dt-clr-grey-900: #F9F9F9;
+  --dt-clr-grey-1000: #ffffff; 
+
+  --dt-clr-green: #1F844D;
+
+  --dt-clr-blue-100:#032A3B;
+  --dt-clr-blue-300:#00A3FF;
+  --dt-clr-blue-400:#7CD0FF;
+  --dt-clr-blue-700:#f0f9fe;
+  --dt-clr-blue-900:#D0EEFF;
+
+  --dt-clr-red-400: #ee495b;
+  --dt-clr-red-900: #fff0f4;
+
+  --dt-clr-purple-900:#DDCDFE; 
+
+  --dt-clr-straw:#efede1;
+
+  --dt-clr-accent: var(--dt-clr-blue-300);
+  --dt-clr-border:var(--dt-clr-grey-800);
+  --dt-clr-alt-back: var(--dt-clr-grey-1000); 
+
+  --dt-clr-body: var(--dt-clr-blue-700); 
+  --dt-clr-text-heading: var(--dt-clr-grey-100); 
+  --dt-clr-text-body: var(--dt-clr-grey-100); 
+
+  --dt-clr-theme-background-light: var(--dt-clr-grey-1000);
+  --dt-clr-theme-background-alt-light: var(--dt-clr-straw);
+  --dt-clr-theme-foreground-light: var(--dt-clr-grey-100);
+  --dt-clr-theme-foreground-alt-light: var(--dt-clr-grey-100);
+
+  --dt-clr-theme-background-dark: var(--dt-clr-grey-000);
+  --dt-clr-theme-background-alt-dark: var(--dt-clr-blue-100);
+  --dt-clr-theme-foreground-dark: var(--dt-clr-grey-1000);
+
+  --dt-clr-shadow-large:0 0 30px 10px rgb(0 0 0 / 30%);
+}

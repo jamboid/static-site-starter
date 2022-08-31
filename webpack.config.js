@@ -1,7 +1,7 @@
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const WebpackNotifierPlugin = require("webpack-notifier");
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 // What does this Webpack workflow do?
 // ------------------------------------
@@ -48,17 +48,6 @@ const sitesData = [
     "assetsDir": "/assets/"
   },
 ];
-
-// Clean Options
-// -------------
-//
-// Settings for the Clean Webpack plugin that cleans up things before assets are recompiled/copied
-//
-// -------------
-const cleanOptions = {
-  beforeEmit: false,
-  verbose: false
-}
 
 /**
  * Loops through array of site in config array and generates a webpack configuration for each one,
@@ -128,6 +117,7 @@ function createConfig(siteConfig, envConfig) {
             {
               loader: "css-loader",
               options: {
+                sourceMap: false,
                 url: false,
                 importLoaders: 2
               }
@@ -151,8 +141,10 @@ function createConfig(siteConfig, envConfig) {
     },
 
     plugins: [
-      new CleanWebpackPlugin([envConfig.rootDir + siteConfig.assetsDir], cleanOptions),
-      new CopyWebpackPlugin([{ from: envConfig.assetsImgRoot, to: "assets/img" }]),
+      new CleanWebpackPlugin({
+        cleanOnceBeforeBuildPatterns: ["." + siteConfig.assetsDir],
+      }),
+      new CopyWebpackPlugin({patterns: [{ from: envConfig.assetsImgRoot, to: "assets/img" }]}),
       new WebpackNotifierPlugin({ alwaysNotify: true }),
     ]
   };

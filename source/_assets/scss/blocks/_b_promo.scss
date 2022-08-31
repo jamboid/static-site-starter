@@ -1,0 +1,13 @@
+.b_promo {
+  width:100%;
+  max-width:rem(350);
+  grid-gap:var(--dt-size-xs-s);
+
+  &__details {
+    text-align: center;
+  }
+
+  &__image {
+    justify-self: center;
+  }
+}

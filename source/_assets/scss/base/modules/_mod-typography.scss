@@ -20,13 +20,13 @@
 
 @mixin heading-3 {
   font-size:em(32);
-  font-weight: $bold;
+  font-weight: 700;
   line-height: 1.25;
 }
 
 @mixin heading-4 {
   font-size:em(48);
-  font-weight: $bold;
+  font-weight: 700;
   line-height: 1.1;
 }
 

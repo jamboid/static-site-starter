@@ -1,0 +1,45 @@
+.u_divider {
+  &:before,
+  &:after {
+    display: none;
+    width: 2px;
+    height: var(--divider-height);
+    position: absolute;
+    background:var(--divider-colour);
+    left:calc(50% - 1px);
+  }
+
+  &:before {
+    top: 0;
+  }
+
+  &:after {
+    bottom:0;
+  }
+
+  &--top {
+    --space-top:var(--space-divider);
+
+    &:before {
+      display: block;
+    }
+  }
+
+  &--bottom {
+    --space-bottom:var(--space-divider);
+
+    &:after {
+      display: block;
+    }
+  }
+
+  &--both {
+    --space-top:var(--space-divider);
+    --space-bottom:var(--space-divider);
+
+    &:before,
+    &:after {
+      display: block;
+    }
+  }
+}

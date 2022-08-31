@@ -1,0 +1,49 @@
+.b_section {
+  --divider-colour: var(--dt-clr-green);
+  
+  --flow-space:calc(1 * var(--divider-height));
+
+  background-color:var(--section-clr-back,var(--dt-clr-theme-background-light));
+  color:var(--section-clr-front,var(--dt-clr-theme-foreground-light));
+  overflow: hidden;
+  padding-block:var(--space-top,var(--space-default)) var(--space-bottom,0px);
+
+  
+
+  &--alt {
+    --section-clr-back:var(--dt-clr-theme-background-alt-light);
+    --section-clr-front:var(--dt-clr-theme-foreground-alt-light);
+  }
+
+  &--banner {
+    --section-clr-back:var(--dt-clr-theme-background-alt-dark);
+    --section-clr-front:var(--dt-clr-theme-foreground-dark);
+    --space-top:0;
+    --space-bottom:0;
+  }
+
+  &--target {
+    --section-clr-back:var(--dt-clr-grey-800);
+  }
+
+  &--divT {
+    --space-top:var(--space-divider);
+
+    &:before {
+      display: block;
+    }
+  }
+
+  &--divB {
+    --space-bottom:var(--space-divider);
+
+    &:after {
+      display: block;
+    }
+  }
+
+  &--tall {
+    --space-top:var(--space-tall);
+    --space-bottom:var(--space-tall);
+  }
+}

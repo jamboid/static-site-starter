@@ -1,0 +1,29 @@
+
+h1,
+.text-1200 {
+  font:var(--dt-text-1200);
+  letter-spacing: var(--dt-kerning-display);
+}
+
+h2,
+.text-1100 {
+  font:var(--dt-text-1100);
+  letter-spacing: var(--dt-kerning-display);
+}
+
+h3,
+.text-1000 {
+  font:var(--dt-text-1000);
+  letter-spacing: var(--dt-kerning-display);
+}
+
+p,li,
+.text-400 {
+  font:var(--dt-text-400);
+  letter-spacing: var(--dt-kerning-display);
+}
+
+ul {
+  margin-inline-start:var(--dt-size-l);
+}
+

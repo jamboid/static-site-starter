@@ -2,7 +2,7 @@
 
 /* !== Basic Button Style */
 @mixin buttonBase {
-  font: $bold 16px/ normal $bodyfontfamily;
+  font: 700 16px/ normal var(--dt-fontFamily-base);
   text-transform: uppercase;
   text-align: center;
   display: inline-block;
@@ -10,10 +10,10 @@
   text-decoration: none;
   transition: all var(--generic--timing--standard);
   cursor: pointer;
-  border: 1px solid $clrPrimaryTint;
+  border: 1px solid var(--clr-primary-rint);
   border-color: var(--buttonTint);
   border-radius: em(25, 16);
-  background: $clrWhite;
+  background: var(--dt-clr-grey-1000);
   color: $clrDarkGrey;
 
   &:hover,

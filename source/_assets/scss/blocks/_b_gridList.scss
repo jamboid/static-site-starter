@@ -1,0 +1,13 @@
+.b_gridList {
+  &__inner {
+    max-width:min(#{rem(1300)},100vw);
+    margin-inline:auto;    
+    grid-template-columns: repeat( auto-fit, minmax(280px, 1fr) );
+    grid-gap:var(--dt-size-m-l) var(--dt-size-m-xxl);
+    align-items: start;
+
+    > * {
+      justify-self: center;
+    }
+  }
+}

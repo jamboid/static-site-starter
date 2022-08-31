@@ -1,0 +1,32 @@
+.b_button {
+  background:var(--button-back,var(--dt-clr-green));
+  border:2px solid var(--button-border,var(--dt-clr-green));
+  padding:em(16,18) em(46,18);
+  color:var(--button-text,var(--dt-clr-grey-1000));
+  display: inline-block;
+  text-decoration: none;
+  transition:all var(--dt-trans-short);
+  font:var(--dt-text-300);
+
+  &:hover,&:focus,&:active {
+    --button-back:var(--dt-clr-grey-1000);
+    --button-text:var(--dt-clr-green);
+    --button-border:var(--dt-clr-green);
+  }
+
+  &--dark {
+    --button-back:transparent;
+    --button-text:var(--dt-clr-grey-1000);
+    --button-border:var(--dt-clr-grey-1000);
+
+    &:hover,&:focus,&:active {
+      --button-back:var(--dt-clr-grey-1000);
+      --button-text:var(--dt-clr-grey-100);
+      --button-border:var(--dt-clr-grey-1000);
+    }
+  }
+
+  &--major {
+    text-transform: uppercase;
+  }
+}

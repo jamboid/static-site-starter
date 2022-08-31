@@ -1,0 +1,15 @@
+.b_pageLogo {
+  gap:var(--dt-size-s);
+  align-items: center;
+  order:2;
+    
+  img {
+    width:rem(139);
+  }
+
+  &__label {
+    font:var(--dt-text-700);
+    font-weight: 200;
+    color:var
+  }
+}
