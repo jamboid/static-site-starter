@@ -10,6 +10,8 @@
 
 @use "sass:math";
 
+$textBase: 16;
+
 @function parseInt($n) {
   @return $n / ($n * 0 + 1);
 }

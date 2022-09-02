@@ -28,33 +28,12 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addLayoutAlias('default', 'layouts/default.njk');
   eleventyConfig.addLayoutAlias('pageindex', 'layouts/pageindex.njk');
 
-  let markdownIt = require("markdown-it");
+  // Shortcodes for responsive images
+  eleventyConfig.addNunjucksAsyncShortcode("image", imageShortcode);
+  eleventyConfig.addLiquidShortcode("image", imageShortcode);
+  eleventyConfig.addJavaScriptFunction("image", imageShortcode);
 
-  const md = new markdownIt({
-    html: true
-  });
-  
-  eleventyConfig.addShortcode("prototypeHeader", function(config ) {
-    if(!config.title) {
-      config.title = 'Add prototype title'; 
-    }
-
-    let notesLink = "";
-
-    if(config.notes) {
-      notesLink = `<a class="cp_PageHeader__notesLink" href="#notes">Notes</a>`
-    }
-
-    return `
-    <header class="cp_PageHeader--proto cp_PageHeader">
-      <div class="cp_PageHeader__inner--proto cp_PageHeader__inner">
-        <h1 class="cp_PageHeader__name--proto cp_PageHeader__name"><span class="cp_PageHeader__preTitle"></span> ${config.title}</h1>
-        <a class="cp_PageHeader__logo--proto cp_PageHeader__logo" href="/"><img class="ob_Image" src="/assets/img/good_logo_white.svg" width="687" height="388" alt="Good"> <span>Prototypes</span></a> 
-      </div>
-    </header>
-    `; 
-  }); 
-
+  // Shortcode for Markdown content
   eleventyConfig.addShortcode("animVideo", function(videoSrc, looped ) {
     let loop = '';
     
@@ -69,14 +48,18 @@ module.exports = function (eleventyConfig) {
     `
   });
 
+  // Shortcode for Markdown content
+  let markdownIt = require("markdown-it");
+
+  const md = new markdownIt({
+    html: true
+  });
 
   eleventyConfig.addPairedShortcode("markdown", (content) => {
     return md.render(content);
   });
 
-  eleventyConfig.addNunjucksAsyncShortcode("image", imageShortcode);
-  eleventyConfig.addLiquidShortcode("image", imageShortcode);
-  eleventyConfig.addJavaScriptFunction("image", imageShortcode);
+  
  
   return {
     dir: {

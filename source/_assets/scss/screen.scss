@@ -18,7 +18,6 @@ The following Tools are required to process this Sass framework correctly:
 $legacy: false;
 
 /* Framework - Variables, Mixins, Functions, Resets, Placeholders */
-@import "base/all";
 @import "reset/all";
 @import "global/all"; 
 @import "functions/all";
